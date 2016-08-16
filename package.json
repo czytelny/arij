@@ -1,0 +1,27 @@
+{
+  "name": "arij",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/czytelny/arij.git"
+  },
+  "author": "Michal Chwedczuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/czytelny/arij/issues"
+  },
+  "homepage": "https://github.com/czytelny/arij#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.9",
+    "socket.io": "^1.4.8"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
