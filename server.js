@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3030;
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ------- database
+mongoose.Promise = global.Promise;
 mongoose.connect(database.url, function (err) {
   if (err) throw err;
   console.log('Connection to MongoDB established');
