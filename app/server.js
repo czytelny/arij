@@ -12,7 +12,6 @@ const server = http.createServer(app);
 const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
-// ------- setup for all environments
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ------- database
@@ -23,8 +22,8 @@ mongoose.connect(database.url, function (err) {
 });
 
 // ------- routes
-const routes = require('./app/routes/routes');
-const userRoutes = require('./app/routes/userRoutes')(io);
+const routes = require('./routes/routes');
+const userRoutes = require('./routes/userRoutes')(io);
 app.use('/', routes);
 app.use('/users', userRoutes);
 

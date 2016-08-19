@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon target/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +23,9 @@
     "socket.io": "^1.4.8"
   },
   "devDependencies": {
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "nodemon": "^1.10.0"
+    "nodemon": "^1.10.0",
+    "run-sequence": "^1.2.2"
   }
 }
