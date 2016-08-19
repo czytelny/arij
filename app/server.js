@@ -21,9 +21,9 @@ mongoose.connect(database.url, function (err) {
   console.log('Connection to MongoDB established');
 });
 
-// ------- routes
-const routes = require('./routes/routes');
-const userRoutes = require('./routes/userRoutes')(io);
+// ------- controllers
+const routes = require('./controllers/routes');
+const userRoutes = require('./controllers/userRoutes')(io);
 app.use('/', routes);
 app.use('/users', userRoutes);
 

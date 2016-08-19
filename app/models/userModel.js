@@ -2,6 +2,7 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const modelDecoratorService = require('./../services/modelDecoratorService');
 
 const userSchema = new Schema({
   name: {type: String, required: true},
@@ -12,11 +13,7 @@ const userSchema = new Schema({
 });
 
 userSchema.pre('save', function (next) {
-  let currentDate = new Date();
-  this.updated_at = currentDate;
-  if (!this.created_at) {
-    this.created_at = currentDate;
-  }
+  modelDecoratorService.addTimestamp(this);
   next();
 });
 
