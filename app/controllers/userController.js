@@ -1,25 +1,20 @@
-"use strict";
-
 module.exports = function (io) {
+  "use strict";
+
   const express = require('express');
   const router = express.Router();
-  const User = require('../models/userModel');
+  const userService = require('./../services/userService');
 
   router.route('/')
     .get(function (req, res) {
       res.send('GET handler for /users route');
     })
     .post(function (req, res) {
-      let dude = new User({
-        "name": "Dude",
-        "email": "dude@gmail.com",
-        "password": "lebowsky"
-      });
-
-      dude.save(function (err) {
-        if (err) res.status(500).send('500');
-        res.json({message: 'Dude created!'});
-      });
+      userService.save()
+        .then(
+          () => res.json({message: 'Dude created!'}),
+          () => res.status(500).send('500')
+        );
     });
 
   // ---------websockets
