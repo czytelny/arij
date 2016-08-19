@@ -22,8 +22,8 @@ mongoose.connect(database.url, function (err) {
 });
 
 // ------- controllers
-const routes = require('./controllers/routes');
-const userRoutes = require('./controllers/userRoutes')(io);
+const routes = require('./controllers/restController');
+const userRoutes = require('./controllers/userController')(io);
 app.use('/', routes);
 app.use('/users', userRoutes);
 
