@@ -26,6 +26,8 @@
   "devDependencies": {
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-jasmine": "^2.4.0",
+    "gulp-watch": "^4.3.9",
     "jasmine": "^2.4.1",
     "nodemon": "^1.10.0",
     "run-sequence": "^1.2.2"
