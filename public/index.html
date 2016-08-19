@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Arij</title>
+    <!--TODO copied lib make use of npm -->
+    <script src="vendor/socket.io.js"></script>
 </head>
 <body>
+<script>
+    var socket = io.connect('http://localhost:3030');
+    socket.emit('some event', {my: 'dupa'});
+    socket.on('news', function (msg) {
+        console.log("some news arrived: " + JSON.stringify(msg));
+    })
+</script>
 <h1>Hello Arij</h1>
 </body>
 </html>
