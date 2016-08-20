@@ -48,6 +48,10 @@ gulp.task('test:watch', function() {
   }
 );
 
+gulp.task('dev:server', function () {
+  return gulp.watch('app/**/*.js', ['build:server']);
+});
+
 gulp.task('build', function() {
   runSequence('clean', 'build:server', 'build:public');
 });

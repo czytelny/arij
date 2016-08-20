@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "dev": "node target/server.js",
+    "dev": "nodemon target/server.js",
     "test": "jasmine"
   },
   "repository": {
@@ -19,6 +19,7 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "http-status-codes": "^1.0.6",
     "mongoose": "^4.5.9",
     "socket.io": "^1.4.8",
     "underscore": "^1.8.3"

@@ -4,16 +4,17 @@ module.exports = function (io) {
   const express = require('express');
   const router = express.Router();
   const userService = require('./../services/userService');
+  var HttpStatus = require('http-status-codes');
 
   router.route('/')
     .get(function (req, res) {
       res.send('GET handler for /users route');
     })
     .post(function (req, res) {
-      userService.save()
+      userService.save(req.body)
         .then(
-          () => res.json({message: 'Dude created!'}),
-          () => res.status(500).send('500')
+          () => res.status(HttpStatus.OK),
+          () => res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('error')
         );
     });
 

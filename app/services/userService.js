@@ -3,14 +3,8 @@
 const User = require('../models/userModel');
 
 
-function save() {
-  let dude = new User({
-    "name": "Dude",
-    "email": "dude@gmail.com",
-    "password": "lebowsky"
-  });
-
-  return dude.save();
+function save(objectToSave) {
+  return new User(objectToSave).save();
 }
 
 module.exports = {
