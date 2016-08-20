@@ -9,11 +9,11 @@ var npmDependencies = [
   'socket.io-client/socket.io.js'
 ];
 
-gulp.task('clean', function(){
+gulp.task('clean', function() {
   return del('target')
 });
 
-gulp.task('build:public', function () {
+gulp.task('build:public', function() {
   var mappedPaths = npmDependencies.map(file => {
     return path.resolve('node_modules', file)
   });
@@ -28,20 +28,28 @@ gulp.task('build:public', function () {
   return [copyJsNPMDependencies, copyIndex];
 });
 
-gulp.task('build:server', function () {
+gulp.task('build:server', function() {
   gulp.src('app/**/*.js')
     .pipe(gulp.dest('target'))
 });
 
-gulp.task('build', function(){
+gulp.task('test:single', function() {
+  return gulp.src('app/**/*spec.js')
+  // gulp-jasmine works on filepaths so you can't have any plugins before it
+    .pipe(jasmine());
+});
+
+gulp.task('test:watch', function() {
+    return gulp.watch('app/**/*.js', function() {
+      gulp.src('app/**/*spec.js')
+      // gulp-jasmine works on filepaths so you can't have any plugins before it
+        .pipe(jasmine());
+    });
+  }
+);
+
+gulp.task('build', function() {
   runSequence('clean', 'build:server', 'build:public');
 });
 
-gulp.task('tests', function() {
-  return gulp.watch('app/**/*.js', function () {
-    gulp.src('tests/**/*.js')
-    // gulp-jasmine works on filepaths so you can't have any plugins before it
-      .pipe(jasmine());
-  });
-  }
-);
+gulp.task('test', ['test:single','test:watch'], ()=>{});

@@ -1,4 +1,6 @@
-var modelDecoratorService = require('./../../../app/services/modelDecoratorService');
+"use strict";
+
+var modelDecoratorService = require('./modelDecoratorService');
 
 describe("modelDecoratorService", function () {
   describe("addTimestamp()", function () {
