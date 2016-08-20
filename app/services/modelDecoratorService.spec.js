@@ -9,7 +9,7 @@ describe("modelDecoratorService", function () {
       let modelObj = {};
 
       //when
-      modelDecoratorService.addTimestamp(modelObj);
+      modelDecoratorService.addTimestamp.call(modelObj);
 
       //then
       expect(modelObj.created_at).toBeDefined();
@@ -25,7 +25,7 @@ describe("modelDecoratorService", function () {
       };
 
       //when
-      modelDecoratorService.addTimestamp(modelObj);
+      modelDecoratorService.addTimestamp.call(modelObj);
 
       //then
       expect(modelObj.created_at).toEqual(someDate);

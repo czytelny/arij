@@ -13,7 +13,7 @@ const userSchema = new Schema({
 });
 
 userSchema.pre('save', function (next) {
-  modelDecoratorService.addTimestamp(this);
+  modelDecoratorService.addTimestamp.call(this);
   next();
 });
 

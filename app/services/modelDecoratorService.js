@@ -1,11 +1,12 @@
 "use strict";
 
-function addTimestamp(modelObj) {
+function addTimestamp() {
   let currentDate = new Date();
-  modelObj.updated_at = currentDate;
-  if (!modelObj.created_at) {
-    modelObj.created_at = currentDate;
+  this.updated_at = currentDate;
+  if (!this.created_at) {
+    this.created_at = currentDate;
   }
+  return this;
 }
 
 module.exports = {
