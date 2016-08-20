@@ -9,9 +9,9 @@
 <body>
 <script>
     var socket = io.connect('http://localhost:3030');
-    socket.emit('some event', {my: 'dupa'});
-    socket.on('news', function (msg) {
-        console.log("some news arrived: " + JSON.stringify(msg));
+    socket.emit("users:post", {name: 'czeslaw', email: 'czeslaw@wp.pl', password: 'aaa'});
+    socket.on('users:post', function (msg) {
+        console.log(msg);
     })
 </script>
 <h1>Hello Arij</h1>

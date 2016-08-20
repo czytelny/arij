@@ -52,6 +52,10 @@ gulp.task('dev:server', function () {
   return gulp.watch('app/**/*.js', ['build:server']);
 });
 
+gulp.task('dev:public', function () {
+  return gulp.watch('app/**/*.js', ['build:public']);
+});
+
 gulp.task('build', function() {
   runSequence('clean', 'build:server', 'build:public');
 });

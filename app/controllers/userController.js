@@ -4,27 +4,23 @@ module.exports = function (io) {
   const express = require('express');
   const router = express.Router();
   const userService = require('./../services/userService');
-  var HttpStatus = require('http-status-codes');
+  const httpStatus = require('http-status-codes');
+  const requests = require('../shared/requests');
 
   router.route('/')
     .get(function (req, res) {
       res.send('GET handler for /users route');
-    })
-    .post(function (req, res) {
-      userService.save(req.body)
-        .then(
-          () => res.status(HttpStatus.OK),
-          () => res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('error')
-        );
     });
 
-  // ---------websockets
+  // --------- websockets
   io.on('connection', function (socket) {
-    console.log("web socket connection established");
-    socket.emit('news', {hello: 'world'});
+    socket.on(requests.users.post, function (data) {
+      console.log("saving user data "+ JSON.stringify(data));
 
-    socket.on('some event', function (data) {
-      console.log(data);
+      userService.save(data).then(
+        () => io.emit(requests.users.post, httpStatus.OK),
+        () => io.emit(requests.users.post, httpStatus.INTERNAL_SERVER_ERROR)
+      );
     });
   });
 
