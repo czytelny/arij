@@ -15,11 +15,9 @@ module.exports = function (io) {
   // --------- websockets
   io.on('connection', function (socket) {
     socket.on(requests.users.post, function (data) {
-      console.log("saving user data "+ JSON.stringify(data));
-
       userService.save(data).then(
-        () => io.emit(requests.users.post, httpStatus.OK),
-        () => io.emit(requests.users.post, httpStatus.INTERNAL_SERVER_ERROR)
+        () => io.emit(requests.users.post_resp, httpStatus.OK),
+        () => io.emit(requests.users.post_resp, httpStatus.INTERNAL_SERVER_ERROR)
       );
     });
   });
