@@ -2,7 +2,6 @@ const del = require('del');
 const gulp = require('gulp');
 const path = require('path');
 const runSequence = require('run-sequence');
-const jasmine = require('gulp-jasmine');
 const watch = require('gulp-watch');
 
 var npmDependencies = [
@@ -33,21 +32,6 @@ gulp.task('build:server', function() {
     .pipe(gulp.dest('target'))
 });
 
-gulp.task('test:single', function() {
-  return gulp.src('app/**/*spec.js')
-  // gulp-jasmine works on filepaths so you can't have any plugins before it
-    .pipe(jasmine());
-});
-
-gulp.task('test:watch', function() {
-    return gulp.watch('app/**/*.js', function() {
-      gulp.src('app/**/*spec.js')
-      // gulp-jasmine works on filepaths so you can't have any plugins before it
-        .pipe(jasmine());
-    });
-  }
-);
-
 gulp.task('dev:server', function () {
   return gulp.watch('app/**/*.js', ['build:server']);
 });
@@ -59,5 +43,3 @@ gulp.task('dev:public', function () {
 gulp.task('build', function() {
   runSequence('clean', 'build:server', 'build:public');
 });
-
-gulp.task('test', ['test:single','test:watch'], ()=>{});
