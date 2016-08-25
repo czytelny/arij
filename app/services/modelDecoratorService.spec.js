@@ -13,8 +13,8 @@ describe("modelDecoratorService", function () {
       modelDecoratorService.addTimestamp.call(modelObj);
 
       //then
-      expect(modelObj.created_at).to.not.be.undefined;
-      expect(modelObj.updated_at).to.not.be.undefined;
+      expect(modelObj.created_at).to.not.be.an('undefined');
+      expect(modelObj.updated_at).to.not.be.an('undefined');
     });
 
     it("should not modify created_at if it exist, but modify updated_at", () => {
