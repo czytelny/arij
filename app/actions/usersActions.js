@@ -8,9 +8,11 @@ export function addUserRequest(user) {
   }
 }
 
-export function addUserRequestSuccess() {
+export function addUserRequestSuccess(body) {
   return {
-    type: types.ADD_USER_REQUEST_SUCCESS
+    type: types.ADD_USER_REQUEST_SUCCESS,
+    receivedAt: Date.now(),
+    body
   }
 }
 
@@ -20,5 +22,20 @@ export function addUserRequestFailure(code, msg) {
     code,
     msg
   }
+}
+
+export function getUserRequest(userId) {
+  return {
+    type: types.GET_USER_REQUEST,
+    userId
+  };
+}
+
+export function getUserRequestSuccess(body) {
+  return {
+    type: types.GET_USER_REQUEST_SUCCESS,
+    body
+  }
+
 }
 

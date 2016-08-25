@@ -5,34 +5,54 @@ import * as actions from './usersActions';
 
 describe('User Actions Creator', function () {
   describe("should create user action", function () {
-    it('new user', function () {
+    it('add user request', function () {
       const user = {
         name: 'xxx',
         email: 'a123@wp.pl'
       };
-      const expectedAction = {
+      expect(actions.addUserRequest(user)).to.eql({
         type: actionsTypes.ADD_USER_REQUEST,
         user
-      };
-      expect(actions.addUserRequest(user)).to.eql(expectedAction);
+      });
     });
 
-    it('user successfully created', function () {
-      const expectedAction = {
-        type: actionsTypes.ADD_USER_REQUEST_SUCCESS
-      };
-      expect(actions.addUserRequestSuccess()).to.eql(expectedAction);
+    it('add user request success', function () {
+      var body = {};
+      expect(actions.addUserRequestSuccess(body)).to.eql({
+        type: actionsTypes.ADD_USER_REQUEST_SUCCESS,
+        receivedAt: Date.now(),
+        body
+      });
     });
 
-    it('user creation failed', function () {
+    it('add user request failed', function () {
       const errorCode = 500;
       const errorMessage = "internal server error";
-      const expectedAction = {
+
+      expect(actions.addUserRequestFailure(errorCode, errorMessage))
+        .to.eql({
         type: actionsTypes.ADD_USER_REQUEST_FAILURE,
         code: errorCode,
         msg: errorMessage
-      };
-      expect(actions.addUserRequestFailure(errorCode, errorMessage)).to.eql(expectedAction);
+      });
+    });
+
+    it("get user request", function () {
+      const userId = 0;
+      expect(actions.getUserRequest(userId))
+        .to.eql({
+        type: actionsTypes.GET_USER_REQUEST,
+        userId
+      });
+    });
+
+    it("get user request success", function () {
+      const body = {id:3};
+      expect(actions.getUserRequestSuccess(body))
+        .to.eql({
+        type: actionsTypes.GET_USER_REQUEST_SUCCESS,
+        body
+      })
     });
   });
 });
