@@ -1,18 +1,38 @@
 import {expect} from 'chai'
-import * as actions from './userActionTypes';
-import {addUserRequest} from './usersActions';
+import * as actionsTypes from './userActionTypes';
+import * as actions from './usersActions';
 
 
 describe('User Actions Creator', function () {
-  it('should create an action to add a new user', () => {
-    const user = {
-      name: 'xxx',
-      email: 'a123@wp.pl'
-    };
-    const expectedAction = {
-      type: actions.ADD_USER_REQUEST,
-      user
-    };
-    expect(addUserRequest(user)).to.eql(expectedAction);
-  })
+  describe("should create user action", function () {
+    it('new user', function () {
+      const user = {
+        name: 'xxx',
+        email: 'a123@wp.pl'
+      };
+      const expectedAction = {
+        type: actionsTypes.ADD_USER_REQUEST,
+        user
+      };
+      expect(actions.addUserRequest(user)).to.eql(expectedAction);
+    });
+
+    it('user successfully created', function () {
+      const expectedAction = {
+        type: actionsTypes.ADD_USER_REQUEST_SUCCESS
+      };
+      expect(actions.addUserRequestSuccess()).to.eql(expectedAction);
+    });
+
+    it('user creation failed', function () {
+      const errorCode = 500;
+      const errorMessage = "internal server error";
+      const expectedAction = {
+        type: actionsTypes.ADD_USER_REQUEST_FAILURE,
+        code: errorCode,
+        msg: errorMessage
+      };
+      expect(actions.addUserRequestFailure(errorCode, errorMessage)).to.eql(expectedAction);
+    });
+  });
 });
