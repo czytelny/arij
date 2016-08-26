@@ -3,9 +3,15 @@ const mongoose = require('mongoose');
 const sinon = require('sinon');
 const when = require('when');
 
+import configureMockStore from 'redux-mock-store'
+import thunk from 'redux-thunk'
+
 import * as actionsTypes from './userActionTypes';
 import actions from './usersActions';
 const userService = require('./../services/userService');
+
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
 
 describe('userSchema Actions', function () {
   describe("should create action:", function () {
@@ -47,17 +53,19 @@ describe('userSchema Actions', function () {
     });
 
     it("get user request", sinon.test(function () {
-      var userServiceStub = this.stub(userService, 'findById').returns(when({hhh:"2134"}));;
-      var expectedAction = this.spy(actions, 'getUserRequestSuccess');
-      var dispath = function () {
-      };
-      var res = actions.getUserRequest("51bb793aca2ab77a3200000d")(dispath);
+      this.stub(userService, 'findById').returns(when({hhh: "2"}));
 
-      return res.then(function () {
-        console.log("expectedAction" + expectedAction.callCount);
-         sinon.assert.calledOnce(userServiceStub);
-        //todo doesn't work
-        // sinon.assert.calledOnce(expectedAction);
+      const expectedActions = [
+        {
+          type: actionsTypes.GET_USER_REQUEST_SUCCESS,
+          body: {hhh: "2"}
+        }
+      ];
+
+      const store = mockStore({});
+
+      return store.dispatch(actions.getUserRequest("51bb793aca2ab77a3200000d")).then(function () {
+        expect(store.getActions()).to.eql(expectedActions)
       });
     }));
 

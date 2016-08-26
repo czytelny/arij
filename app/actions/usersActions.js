@@ -30,7 +30,6 @@ function getUserRequest(userId) {
   return function (dispatch) {
     return userService.findById(userId)
       .then((response) => {
-        console.log("dispatch(getUserRequestSuccess(response)) : "+ JSON.stringify(response));
         dispatch(getUserRequestSuccess(response))
       }, (err) => {
         dispatch(addUserRequestFailure(err))
