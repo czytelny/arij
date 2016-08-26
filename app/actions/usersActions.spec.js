@@ -1,10 +1,20 @@
 import {expect} from 'chai'
-import * as actionsTypes from './userActionTypes';
-import * as actions from './usersActions';
+const mongoose = require('mongoose');
+const sinon = require('sinon');
+const when = require('when');
 
+import * as actionsTypes from './userActionTypes';
+import actions from './usersActions';
+const userService = require('./../services/userService');
 
 describe('userSchema Actions', function () {
   describe("should create action:", function () {
+    afterEach(function () {
+      mongoose.modelSchemas = {};
+      mongoose.models = {};
+    });
+
+
     it('add user request', function () {
       const user = {
         name: 'xxx',
@@ -18,9 +28,8 @@ describe('userSchema Actions', function () {
 
     it('add user request success', function () {
       var body = {};
-      expect(actions.addUserRequestSuccess(body)).to.eql({
+      expect(actions.addUserRequestSuccess(body)).to.contain({
         type: actionsTypes.ADD_USER_REQUEST_SUCCESS,
-        receivedAt: Date.now(),
         body
       });
     });
@@ -37,10 +46,20 @@ describe('userSchema Actions', function () {
       });
     });
 
-    it("get user request dupa", function () {
-      const userId = 32;
-       // expect(actions.getUserRequest(userId)).exist;
-    });
+    it("get user request", sinon.test(function () {
+      var userServiceStub = this.stub(userService, 'findById').returns(when({hhh:"2134"}));;
+      var expectedAction = this.spy(actions, 'getUserRequestSuccess');
+      var dispath = function () {
+      };
+      var res = actions.getUserRequest("51bb793aca2ab77a3200000d")(dispath);
+
+      return res.then(function () {
+        console.log("expectedAction" + expectedAction.callCount);
+         sinon.assert.calledOnce(userServiceStub);
+        //todo doesn't work
+        // sinon.assert.calledOnce(expectedAction);
+      });
+    }));
 
     it("get user request success", function () {
       const body = {id: 3};

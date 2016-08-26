@@ -3,14 +3,14 @@ import * as types from './userActionTypes'
 const userService = require('./../services/userService');
 
 /* function creators */
-export function addUserRequest(user) {
+function addUserRequest(user) {
   return {
     type: types.ADD_USER_REQUEST,
     user
   }
 }
 
-export function addUserRequestSuccess(body) {
+function addUserRequestSuccess(body) {
   return {
     type: types.ADD_USER_REQUEST_SUCCESS,
     receivedAt: Date.now(),
@@ -18,7 +18,7 @@ export function addUserRequestSuccess(body) {
   }
 }
 
-export function addUserRequestFailure(code, msg) {
+function addUserRequestFailure(code, msg) {
   return {
     type: types.ADD_USER_REQUEST_FAILURE,
     code,
@@ -26,23 +26,32 @@ export function addUserRequestFailure(code, msg) {
   }
 }
 
-export function getUserRequest(userId) {
+function getUserRequest(userId) {
   return function (dispatch) {
     return userService.findById(userId)
       .then((response) => {
-        console.log('found body: ' + JSON.stringify(response));
+        console.log("dispatch(getUserRequestSuccess(response)) : "+ JSON.stringify(response));
         dispatch(getUserRequestSuccess(response))
       }, (err) => {
-        console.log('an error occured ' + err);
         dispatch(addUserRequestFailure(err))
       })
   };
 }
 
-export function getUserRequestSuccess(body) {
+function getUserRequestSuccess(body) {
   return {
     type: types.GET_USER_REQUEST_SUCCESS,
     body
   }
 }
+
+export default {
+  addUserRequest,
+  addUserRequestSuccess,
+  addUserRequestFailure,
+  getUserRequest,
+  getUserRequestSuccess
+}
+
+
 

@@ -8,6 +8,7 @@ const socketIO = require('socket.io');
 const bodyParser = require('body-parser');
 
 const database = require('./config/databaseConfig');
+const modelConfig = require('./models/modelConfig');
 
 const app = express();
 const server = http.createServer(app);
@@ -15,13 +16,13 @@ const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
 import makeStore from './store/store';
-import * as actions from './actions/usersActions';
+import actions from './actions/usersActions';
 
 const store = makeStore();
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ------- database
-mongoose.Promise = global.Promise;
+modelConfig.setConfig();
 mongoose.connect(database.url, function (err) {
   if (err) throw err;
   console.log('Connection to MongoDB established');
