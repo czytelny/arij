@@ -1,5 +1,7 @@
 import * as types from './userActionTypes'
 
+const userService = require('./../services/userService');
+
 /* function creators */
 export function addUserRequest(user) {
   return {
@@ -25,9 +27,15 @@ export function addUserRequestFailure(code, msg) {
 }
 
 export function getUserRequest(userId) {
-  return {
-    type: types.GET_USER_REQUEST,
-    userId
+  return function (dispatch) {
+    return userService.findById(userId)
+      .then((response) => {
+        console.log('found body: ' + JSON.stringify(response));
+        dispatch(getUserRequestSuccess(response))
+      }, (err) => {
+        console.log('an error occured ' + err);
+        dispatch(addUserRequestFailure(err))
+      })
   };
 }
 
@@ -36,6 +44,5 @@ export function getUserRequestSuccess(body) {
     type: types.GET_USER_REQUEST_SUCCESS,
     body
   }
-
 }
 

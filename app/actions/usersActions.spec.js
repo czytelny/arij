@@ -3,8 +3,8 @@ import * as actionsTypes from './userActionTypes';
 import * as actions from './usersActions';
 
 
-describe('User Actions Creator', function () {
-  describe("should create user action", function () {
+describe('userSchema Actions', function () {
+  describe("should create action:", function () {
     it('add user request', function () {
       const user = {
         name: 'xxx',
@@ -37,17 +37,13 @@ describe('User Actions Creator', function () {
       });
     });
 
-    it("get user request", function () {
-      const userId = 0;
-      expect(actions.getUserRequest(userId))
-        .to.eql({
-        type: actionsTypes.GET_USER_REQUEST,
-        userId
-      });
+    it("get user request dupa", function () {
+      const userId = 32;
+       // expect(actions.getUserRequest(userId)).exist;
     });
 
     it("get user request success", function () {
-      const body = {id:3};
+      const body = {id: 3};
       expect(actions.getUserRequestSuccess(body))
         .to.eql({
         type: actionsTypes.GET_USER_REQUEST_SUCCESS,

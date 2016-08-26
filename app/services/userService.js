@@ -1,5 +1,3 @@
-"use strict";
-
 const User = require('../models/userModel');
 
 
@@ -7,6 +5,12 @@ function save(objectToSave) {
   return new User(objectToSave).save();
 }
 
+function findById(userId){
+  return User.findById(userId);
+}
+
+
 module.exports = {
-  save: save
+  save,
+  findById
 };
