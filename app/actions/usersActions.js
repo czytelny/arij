@@ -30,7 +30,7 @@ function getUserRequest(userId) {
       .then((response) => {
         dispatch(getUserRequestSuccess(response))
       }, (err) => {
-        dispatch(addUserRequestFailure(err))
+        dispatch(getUserRequestFailure(err))
       })
   };
 }

@@ -50,11 +50,22 @@ describe('User Actions', function () {
       });
     });
 
-    it("get user request", sinon.test(function () {
-      const objFromDB = {id: "2"};
+    it("get user request success", sinon.test(function () {
+      let objFromDB = {id: "2"};
       const store = mockStore({});
       const expectedActions = [actions.getUserRequestSuccess(objFromDB)];
-      this.stub(userService, 'findById').returns(when(objFromDB));
+      this.stub(userService, 'findById').returns(when.resolve(objFromDB));
+
+      return store
+        .dispatch(actions.getUserRequest("51bb793aca2ab77a3200000d"))
+        .then(() => expect(store.getActions()).to.eql(expectedActions));
+    }));
+
+    it("get user request failure", sinon.test(function () {
+      let errObj = {err: "500"};
+      const store = mockStore({});
+      const expectedActions = [actions.getUserRequestFailure(errObj)];
+      this.stub(userService, 'findById').returns(when.reject(errObj));
 
       return store
         .dispatch(actions.getUserRequest("51bb793aca2ab77a3200000d"))
