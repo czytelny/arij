@@ -9,7 +9,7 @@ function findById(userId){
 }
 
 
-module.exports = {
+export default {
   save,
   findById
 };

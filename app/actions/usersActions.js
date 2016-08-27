@@ -2,9 +2,12 @@ import * as types from './userActionTypes'
 import userService from './../services/userService';
 
 function addUserRequest(user) {
-  return {
-    type: types.ADD_USER_REQUEST,
-    user
+  return function (dispatch) {
+    return userService.save(user)
+      .then(
+        response => dispatch(addUserRequestSuccess(response)),
+        err => dispatch(addUserRequestFailure(err))
+      );
   }
 }
 
@@ -16,22 +19,20 @@ function addUserRequestSuccess(body) {
   }
 }
 
-function addUserRequestFailure(code, msg) {
+function addUserRequestFailure(err) {
   return {
     type: types.ADD_USER_REQUEST_FAILURE,
-    code,
-    msg
+    err
   }
 }
 
 function getUserRequest(userId) {
   return function (dispatch) {
     return userService.findById(userId)
-      .then((response) => {
-        dispatch(getUserRequestSuccess(response))
-      }, (err) => {
-        dispatch(getUserRequestFailure(err))
-      })
+      .then(
+        response => dispatch(getUserRequestSuccess(response)),
+        err => dispatch(getUserRequestFailure(err))
+      )
   };
 }
 

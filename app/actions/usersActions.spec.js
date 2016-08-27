@@ -19,16 +19,34 @@ describe('User Actions', function () {
 
   describe("should create action", function () {
     describe("add user", function () {
-      it('request', function () {
-        const user = {
-          name: 'xxx',
-          email: 'a123@wp.pl'
-        };
-        expect(actions.addUserRequest(user)).to.eql({
-          type: actionsTypes.ADD_USER_REQUEST,
-          user
-        });
+      it("request", function () {
+        let user = {};
+        expect(actions.addUserRequest(user)).to.be.a('Function');
       });
+
+      it('request success', sinon.test(function () {
+        let userToAdd = {name: "aaa"};
+        let addedUser = {id: 111, name: "aaa"};
+        const store = mockStore({});
+        const expectedAction = actions.addUserRequestSuccess(addedUser);
+        this.stub(userService, 'save').returns(when.resolve(addedUser));
+
+        return store
+          .dispatch(actions.addUserRequest(userToAdd))
+          .then(() => expect(store.getActions()[0].type).to.eql(expectedAction.type));
+      }));
+
+      it('request failure', sinon.test(function () {
+        let userToAdd = {name: "aaa"};
+        let addedUser = {id: 111, name: "aaa"};
+        const store = mockStore({});
+        const expectedAction = actions.addUserRequestFailure(addedUser);
+        this.stub(userService, 'save').returns(when.reject(addedUser));
+
+        return store
+          .dispatch(actions.addUserRequest(userToAdd))
+          .then(() => expect(store.getActions()[0].type).to.eql(expectedAction.type));
+      }));
 
       it('success', function () {
         var body = {};
@@ -39,14 +57,12 @@ describe('User Actions', function () {
       });
 
       it('failure', function () {
-        const errorCode = 500;
-        const errorMessage = "internal server error";
+        let err = 500;
 
-        expect(actions.addUserRequestFailure(errorCode, errorMessage))
+        expect(actions.addUserRequestFailure(err))
           .to.eql({
           type: actionsTypes.ADD_USER_REQUEST_FAILURE,
-          code: errorCode,
-          msg: errorMessage
+          err
         });
       });
     });
