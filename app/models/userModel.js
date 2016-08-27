@@ -1,8 +1,9 @@
 "use strict";
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import modelDecoratorService from './../services/modelDecoratorService';
+
 const Schema = mongoose.Schema;
-const modelDecoratorService = require('./../services/modelDecoratorService');
 
 const userSchema = new Schema({
   name: {type: String, required: true},

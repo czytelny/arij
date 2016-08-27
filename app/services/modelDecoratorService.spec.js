@@ -1,7 +1,6 @@
-"use strict";
 
-var expect = require('chai').expect;
-var modelDecoratorService = require('./modelDecoratorService');
+import {expect} from 'chai';
+import modelDecoratorService from './modelDecoratorService';
 
 describe("modelDecoratorService", function () {
   describe("addTimestamp()", function () {

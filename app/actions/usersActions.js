@@ -1,8 +1,6 @@
 import * as types from './userActionTypes'
+import userService from './../services/userService';
 
-const userService = require('./../services/userService');
-
-/* function creators */
 function addUserRequest(user) {
   return {
     type: types.ADD_USER_REQUEST,
@@ -44,12 +42,20 @@ function getUserRequestSuccess(body) {
   }
 }
 
+function getUserRequestFailure(err) {
+  return {
+    type: types.GET_USER_REQUEST_FAILURE,
+    err
+  }
+}
+
 export default {
   addUserRequest,
   addUserRequestSuccess,
   addUserRequestFailure,
   getUserRequest,
-  getUserRequestSuccess
+  getUserRequestSuccess,
+  getUserRequestFailure
 }
 
 

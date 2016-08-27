@@ -1,25 +1,23 @@
+import mongoose from 'mongoose';
+import sinon from 'sinon';
+import when from 'when';
 import {expect} from 'chai'
-const mongoose = require('mongoose');
-const sinon = require('sinon');
-const when = require('when');
-
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
+mongoose.models = {};
+mongoose.modelSchemas = {};
+mongoose.connection.close();
+
 import * as actionsTypes from './userActionTypes';
 import actions from './usersActions';
-const userService = require('./../services/userService');
+import userService from './../services/userService';
 
-const middlewares = [thunk]
-const mockStore = configureMockStore(middlewares)
+describe('User Actions', function () {
+  const middlewares = [thunk];
+  const mockStore = configureMockStore(middlewares);
 
-describe('userSchema Actions', function () {
   describe("should create action:", function () {
-    afterEach(function () {
-      mongoose.modelSchemas = {};
-      mongoose.models = {};
-    });
-
 
     it('add user request', function () {
       const user = {
@@ -53,20 +51,14 @@ describe('userSchema Actions', function () {
     });
 
     it("get user request", sinon.test(function () {
-      this.stub(userService, 'findById').returns(when({hhh: "2"}));
-
-      const expectedActions = [
-        {
-          type: actionsTypes.GET_USER_REQUEST_SUCCESS,
-          body: {hhh: "2"}
-        }
-      ];
-
+      const objFromDB = {id: "2"};
       const store = mockStore({});
+      const expectedActions = [actions.getUserRequestSuccess(objFromDB)];
+      this.stub(userService, 'findById').returns(when(objFromDB));
 
-      return store.dispatch(actions.getUserRequest("51bb793aca2ab77a3200000d")).then(function () {
-        expect(store.getActions()).to.eql(expectedActions)
-      });
+      return store
+        .dispatch(actions.getUserRequest("51bb793aca2ab77a3200000d"))
+        .then(() => expect(store.getActions()).to.eql(expectedActions));
     }));
 
     it("get user request success", function () {
@@ -75,6 +67,15 @@ describe('userSchema Actions', function () {
         .to.eql({
         type: actionsTypes.GET_USER_REQUEST_SUCCESS,
         body
+      })
+    });
+
+    it("get user request failure", function () {
+      const err = {msg:'500'};
+      expect(actions.getUserRequestFailure(err))
+        .to.eql({
+        type: actionsTypes.GET_USER_REQUEST_FAILURE,
+        err
       })
     });
   });

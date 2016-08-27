@@ -1,5 +1,4 @@
-const User = require('../models/userModel');
-
+import User from '../models/userModel';
 
 function save(objectToSave) {
   return new User(objectToSave).save();
