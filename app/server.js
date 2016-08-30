@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
-import makeStore from './store/store';
+import makeStore from './store';
 import actions from './actions/usersActions';
 
 const store = makeStore();
@@ -26,7 +26,12 @@ modelConfig.setConfig();
 mongoose.connect(database.url, function (err) {
   if (err) throw err;
   console.log('Connection to MongoDB established');
-  store.dispatch(actions.getUserRequest("57b8acaffbac163c1c00f245"));
+  let testUser = {
+    name: 'staszek',
+    email: 'stasz3k@gmail.com',
+    password: '123'
+  };
+  store.dispatch(actions.addUserRequest(testUser));
 });
 
 // ------- controllers
