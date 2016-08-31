@@ -1,29 +1,28 @@
 import * as actionTypes from './../actions/userActionTypes'
-import {Map, List} from 'immutable';
 
-const initialState = Map({
-  entries: List()
-});
+const initialState = {
+  selectedEntry: null,
+  entries: new Map()
+};
 
-function addUserRequestSuccess(state, body) {
-  const entries = state.get('entries').push(Map(body));
-  return state.merge({entries});
+function reduceAddUserReqSuccess(state, body) {
+  let nextState = Object.assign({}, state);
+  nextState.entries.set(body["_id"], body);
+  return nextState;
+}
+
+function reduceGetUserReqSuccess(state, body) {
+  let nextState = Object.assign({}, state);
+  nextState.selectedEntry = body._id;
+  return nextState;
 }
 
 export default function usersReducer(state = initialState, action) {
-  switch (action.type){
-    case actionTypes.ADD_USER_REQUEST:
-      return state;
+  switch (action.type) {
     case actionTypes.ADD_USER_REQUEST_SUCCESS:
-      return addUserRequestSuccess(state, action.body);
-    case actionTypes.ADD_USER_REQUEST_FAILURE:
-      return state;
-    case actionTypes.GET_USER_REQUEST:
-      return state;
+      return reduceAddUserReqSuccess(state, action.body);
     case actionTypes.GET_USER_REQUEST_SUCCESS:
-      return state;
-    case actionTypes.GET_USER_REQUEST_FAILURE:
-      return state;
+      return reduceGetUserReqSuccess(state, action.body);
   }
   return state;
 }
