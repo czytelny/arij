@@ -18,7 +18,7 @@ gulp.task('build:public', function() {
   });
 
   var copyJsNPMDependencies = gulp.src(mappedPaths, {base: 'node_modules'})
-    .pipe(gulp.dest('target/public/libs'));
+    .pipe(gulp.dest('target/public/build'));
 
   //Let's copy our index into target
   var copyIndex = gulp.src('public/index.html')
@@ -33,11 +33,11 @@ gulp.task('build:server', function() {
 });
 
 gulp.task('dev:server', function () {
-  return gulp.watch('app/**/*.js', ['build:server']);
+  return gulp.watch('app/**/*.*', ['build:server']);
 });
 
 gulp.task('dev:public', function () {
-  return gulp.watch('app/**/*.js', ['build:public']);
+  return gulp.watch('public/**/*.*', ['build:public']);
 });
 
 gulp.task('build', function() {

@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Arij</title>
-    <!--TODO copied lib make use of npm -->
-    <script src="libs/socket.io-client/socket.io.js"></script>
+    <script src="build/arij.js"></script>
 </head>
 <body>
-<script>
-    var socket = io.connect('http://localhost:3030');
-    socket.emit("users:post", {name: 'czeslaw', email: 'czeslaw@wp.pl', password: 'aaa'});
-    socket.on('users:post:response', function (msg) {
-        console.log(msg);
-    })
-</script>
 <h1>Hello Arij</h1>
+
+<div id="app">
+
+</div>
 </body>
 </html>
