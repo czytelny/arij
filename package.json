@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "dev": "babel-node target/server.js",
-    "test": "mocha app/**/*.spec.js --compilers js:babel-core/register --require ./app/test_helper.js --recursive",
-    "test:watch": "npm run test -- --watch",
+    "server": "babel-node target/server.js",
+    "test:server": "mocha app/**/*.spec.js --compilers js:babel-core/register --require ./app/test_helper.js --recursive",
+    "test:server:watch": "npm run test:server -- --watch",
     "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o target/public/build/arij.js",
     "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o target/public/build/arij.js"
   },
@@ -46,8 +46,6 @@
     "chai": "^3.5.0",
     "chai-immutable": "^1.6.0",
     "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-watch": "^4.3.9",
     "mocha": "^3.0.2",
     "nodemon": "^1.10.0",
     "redux-mock-store": "^1.1.4",
