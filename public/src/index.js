@@ -1,7 +1,9 @@
 var ReactDOM = require('react-dom');
 var React = require('react');
 var socketIO = require('socket.io-client');
-var Chat = require('./Chat');
+
+import Header from './app/header'
+import User from './user/user';
 
 // var socket = socketIO.connect('http://localhost:3030');
 // socket.emit("users:post", {name: 'czeslaw', email: 'czeslaw@wp.pl', password: 'aaa'});
@@ -9,9 +11,8 @@ var Chat = require('./Chat');
 //   console.log(msg);
 // });
 
-
 ReactDOM.render(
-  <Chat />,
+  <User />,
   document.getElementById('app')
 );
 
