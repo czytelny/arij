@@ -5,5 +5,5 @@
 ### Development
 - install all dependencies `npm install`
 - run MongoDB (mongod.exe) with default config
-- build app `gulp build`. as a result target directory is created
-- use `npm run dev` to start app
+- build client app: `npm run build:public`, and `npm run build:public:vendor`
+- use `npm run server` to start server app
