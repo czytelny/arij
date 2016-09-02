@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var ChatMessage = require('./ChatMessage');
+import ChatMessage from './ChatMessage';
 
 module.exports = React.createClass({
   getInitialState: function() {
