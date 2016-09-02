@@ -38,3 +38,5 @@ jspm_packages
 
 .idea
 /target/
+/public/dist/arij.js
+/public/dist/vendor.js

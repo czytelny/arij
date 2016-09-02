@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "server": "babel-node target/server.js",
+    "server": "babel-node app/server.js",
     "test:server": "mocha app/**/*.spec.js --compilers js:babel-core/register --require ./app/test_helper.js --recursive",
     "test:server:watch": "npm run test:server -- --watch",
-    "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o target/public/build/arij.js",
-    "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o target/public/build/arij.js"
+    "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o public/dist/arij.js -x=react-dom -x=react -x=socket.io-client",
+    "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o public/dist/arij.js",
+    "build:public:vendor": "browserify -o public/dist/vendor.js -r=react-dom -r=react -r=socket.io-client"
   },
   "repository": {
     "type": "git",
