@@ -6,9 +6,9 @@
     "server": "babel-node app/server.js",
     "test:server": "mocha app/**/*.spec.js --compilers js:babel-core/register --require ./app/test_helper.js --recursive",
     "test:server:watch": "npm run test:server -- --watch",
-    "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o public/dist/arij.js -x=react-dom -x=react -x=socket.io-client -d",
-    "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o public/dist/arij.js -x=react-dom -x=react -x=socket.io-client -d -v",
-    "build:public:vendor": "browserify -o public/dist/vendor.js -r=react-dom -r=react -r=socket.io-client"
+    "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o public/dist/arij.js -x=react-dom -x=react -x=react-router -x=socket.io-client -d",
+    "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o public/dist/arij.js -x=react-router -x=react-dom -x=react -x=socket.io-client -d -v",
+    "build:public:vendor": "browserify -o public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=socket.io-client"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "mongoose": "^4.5.9",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-router": "^2.7.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "socket.io": "^1.4.8",

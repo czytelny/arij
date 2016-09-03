@@ -10,8 +10,5 @@ const Header = () =>
     </nav>
   </div>;
 
-ReactDOM.render(
-  <Header />,
-  document.getElementById('header')
-);
+
 export default Header;

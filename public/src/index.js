@@ -1,9 +1,11 @@
-var ReactDOM = require('react-dom');
-var React = require('react');
-var socketIO = require('socket.io-client');
+import ReactDOM from 'react-dom';
+import React from 'react';
+import { Router, Route, hashHistory } from 'react-router'
 
-import Header from './app/header'
-import User from './user/user';
+import socketIO from 'socket.io-client';
+
+import MainView from './app/mainView';
+import UserView from './user/userView';
 
 // var socket = socketIO.connect('http://localhost:3030');
 // socket.emit("users:post", {name: 'czeslaw', email: 'czeslaw@wp.pl', password: 'aaa'});
@@ -12,7 +14,9 @@ import User from './user/user';
 // });
 
 ReactDOM.render(
-  <User />,
+  <Router history={hashHistory}>
+    <Route path="/" component={MainView}/>
+    <Route path="/user" component={UserView}/>
+  </Router>,
   document.getElementById('app')
 );
-
