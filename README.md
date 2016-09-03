@@ -5,6 +5,9 @@
 ### Development
 - install all dependencies `npm install`
 - run MongoDB (mongod.exe) with default config
+- backend side: node.js 6.2, express.js, socket.io, redux, mocha, chai, sinon
+- client side: react, redux 
+- use ES6 through Babel
 
 ##### npm scripts
 - `npm run server` starts nodejs server in development mode (through babel-node - to transpile ES6 in the fly)
