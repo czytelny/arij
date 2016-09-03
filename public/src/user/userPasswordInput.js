@@ -8,7 +8,7 @@ const UserPasswordInput = React.createClass({
           <label htmlFor="userPassword">Password</label>
           <div className="input-group">
             <div className="input-group-addon">
-              <span className="b"><strong>*</strong></span>
+              <i className="fa fa-asterisk" aria-hidden="true"/>
             </div>
             <input type="password" className="form-control" id="userPassword" placeholder="Password"/>
           </div>
@@ -17,9 +17,9 @@ const UserPasswordInput = React.createClass({
           <label htmlFor="userPasswordConfirm">Confirm password</label>
           <div className="input-group">
             <div className="input-group-addon">
-              <span className="b"><strong>*</strong></span>
+              <i className="fa fa-asterisk" aria-hidden="true"/>
             </div>
-            <input type="password" className="form-control" id="userPasswordConfirm" placeholder="Password"/>
+            <input type="password" className="form-control" id="userPasswordConfirm" placeholder="Confirm password"/>
           </div>
         </div>
 

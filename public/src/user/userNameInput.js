@@ -8,7 +8,7 @@ const UserNameInput = React.createClass({
           <label htmlFor="userName">User name</label>
           <div className="input-group">
             <div className="input-group-addon">
-              <span className="glyphicon glyphicon-user" aria-hidden="true"> </span>
+              <i className="fa fa-child" aria-hidden="true"/>
             </div>
             <input type="text" className="form-control" id="userName" placeholder="User name"/>
           </div>
