@@ -1,4 +1,4 @@
-import * as actions from './../actions/userActionTypes'
+import * as actions from '../shared/userActionTypes'
 import userService from './../services/userService';
 
 module.exports = function (io) {

@@ -9,7 +9,7 @@ mongoose.models = {};
 mongoose.modelSchemas = {};
 mongoose.connection.close();
 
-import * as actionsTypes from './userActionTypes';
+import * as actionsTypes from '../shared/userActionTypes';
 import actions from './usersActions';
 import userService from './../services/userService';
 

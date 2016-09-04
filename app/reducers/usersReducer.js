@@ -1,4 +1,4 @@
-import * as actionTypes from './../actions/userActionTypes'
+import * as actionTypes from '../shared/userActionTypes'
 
 const initialState = {
   selectedEntry: null,

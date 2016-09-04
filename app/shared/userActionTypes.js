@@ -1,4 +1,3 @@
-/* user action types */
 export const ADD_USER_REQUEST = "ADD_USER_REQUEST";
 export const ADD_USER_REQUEST_SUCCESS = "ADD_USER_REQUEST_SUCCESS";
 export const ADD_USER_REQUEST_FAILURE = "ADD_USER_REQUEST_FAILURE";

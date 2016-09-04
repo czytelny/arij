@@ -16,7 +16,6 @@ const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
 import makeStore from './store';
-import actions from './actions/usersActions';
 
 const store = makeStore();
 app.use(express.static(path.join(__dirname, 'public')));

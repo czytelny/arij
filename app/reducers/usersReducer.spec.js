@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import usersReducer from './usersReducer';
-import usersAction from './../actions/usersActions';
+import usersAction from '../actions/usersActions';
 
 
 describe("usersReducer", function () {

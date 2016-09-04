@@ -1,5 +1,10 @@
-import * as types from './userActionTypes'
-import userService from './../services/userService';
+import {
+  ADD_USER_REQUEST_SUCCESS,
+  ADD_USER_REQUEST_FAILURE,
+  GET_USER_REQUEST_SUCCESS,
+  GET_USER_REQUEST_FAILURE
+} from '../shared/userActionTypes'
+import userService from '../services/userService';
 
 function addUserRequest(user) {
   return function (dispatch) {
@@ -13,7 +18,7 @@ function addUserRequest(user) {
 
 function addUserRequestSuccess(body) {
   return {
-    type: types.ADD_USER_REQUEST_SUCCESS,
+    type: ADD_USER_REQUEST_SUCCESS,
     receivedAt: Date.now(),
     body
   }
@@ -21,7 +26,7 @@ function addUserRequestSuccess(body) {
 
 function addUserRequestFailure(err) {
   return {
-    type: types.ADD_USER_REQUEST_FAILURE,
+    type: ADD_USER_REQUEST_FAILURE,
     err
   }
 }
@@ -38,14 +43,14 @@ function getUserRequest(userId) {
 
 function getUserRequestSuccess(body) {
   return {
-    type: types.GET_USER_REQUEST_SUCCESS,
+    type: GET_USER_REQUEST_SUCCESS,
     body
   }
 }
 
 function getUserRequestFailure(err) {
   return {
-    type: types.GET_USER_REQUEST_FAILURE,
+    type: GET_USER_REQUEST_FAILURE,
     err
   }
 }
