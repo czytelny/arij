@@ -6,6 +6,7 @@ import socketIO from 'socket.io-client';
 
 import MainView from './app/mainView';
 import UserView from './user/userView';
+import UserListView from './user/userList/userListView';
 
 // var socket = socketIO.connect('http://localhost:3030');
 // socket.emit("users:post", {name: 'czeslaw', email: 'czeslaw@wp.pl', password: 'aaa'});
@@ -16,7 +17,8 @@ import UserView from './user/userView';
 render(
   <Router history={hashHistory}>
     <Route path="/" component={MainView}/>
-    <Route path="/user" component={UserView}/>
+    <Route path="/user" component={UserListView}/>
+    <Route path="/user/new" component={UserView}/>
   </Router>,
   document.getElementById('app')
 );

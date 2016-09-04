@@ -26,12 +26,6 @@ modelConfig.setConfig();
 mongoose.connect(database.url, function (err) {
   if (err) throw err;
   console.log('Connection to MongoDB established');
-  let testUser = {
-    name: 'staszek',
-    email: 'stasz3k@gmail.com',
-    password: '123'
-  };
-  store.dispatch(actions.addUserRequest(testUser));
 });
 
 // ------- controllers
