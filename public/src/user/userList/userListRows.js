@@ -7,7 +7,7 @@ const UserListRows = function (props) {
     <tbody>
     {props.users.map(function (user) {
       return (
-        <UserListRow key={user.id} user={user}/>
+        <UserListRow key={user._id} user={user}/>
       );
     })}
     </tbody>

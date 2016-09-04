@@ -4,7 +4,7 @@ var React = require('react');
 const UserListRow = function ({user}) {
   return (<tr>
       <td>
-        {user.id}
+        {user._id}
       </td>
       <td>
         {user.name}

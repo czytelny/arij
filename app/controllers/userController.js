@@ -1,11 +1,11 @@
+import * as actions from './../actions/userActionTypes'
+import userService from './../services/userService';
+
 module.exports = function (io) {
   "use strict";
 
   const express = require('express');
   const router = express.Router();
-  const userService = require('./../services/userService');
-  const httpStatus = require('http-status-codes');
-  const requests = require('../shared/requests');
 
   router.route('/')
     .get(function (req, res) {
@@ -14,11 +14,11 @@ module.exports = function (io) {
 
   // --------- websockets
   io.on('connection', function (socket) {
-    socket.on(requests.users.post, function (data) {
-      userService.save(data).then(
-        () => io.emit(requests.users.post_resp, httpStatus.OK),
-        () => io.emit(requests.users.post_resp, httpStatus.INTERNAL_SERVER_ERROR)
-      );
+    socket.on(actions.GET_ALL_USER_REQUEST, function () {
+      userService.find().then(
+        (data) => io.emit(actions.GET_ALL_USER_REQUEST_SUCCESS, data),
+        (err) => io.emit(actions.GET_ALL_USER_REQUEST_FAILURE, err)
+      )
     });
   });
 

@@ -8,8 +8,13 @@ function findById(userId){
   return User.findById(userId);
 }
 
+function find(){
+  return User.find()
+}
+
 
 export default {
   save,
-  findById
+  findById,
+  find
 };

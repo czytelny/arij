@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "server": "babel-node app/server.js",
+    "server": "babel-node app/server.js --presets es2015",
+    "server:watch": "nodemon app/server.js --exec babel-node --presets es2015",
     "test:server": "mocha app/**/*.spec.js --compilers js:babel-core/register --require ./app/test_helper.js --recursive",
     "test:server:watch": "npm run test:server -- --watch",
     "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] public/src/index.js -o public/dist/arij.js -x=react-dom -x=react -x=react-router -x=react-redux -x=socket.io-client -d",

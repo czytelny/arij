@@ -1,20 +1,21 @@
 var React = require('react');
 // var axios = require('axios');
 import UserList from './userList';
+import socketHandler from './../../app/socketHandler';
+
 
 var UserListContainer = React.createClass({
   getInitialState() {
     return {
-      users: [{id: 1, name: "staszek", email: 'staszek@wp.pl'},
-        {id: 2, name: "daszek", email: 'daszEk@o21.pl'}]
+      users: []
     }
   },
 
   componentDidMount() {
-    // var _this = this;
-    // axios.get('/path/to/user-api').then(function(response) {
-    //   _this.setState({users: response.data})
-    // });
+    socketHandler.emit("GET_ALL_USER_REQUEST");
+    socketHandler.on("GET_ALL_USER_REQUEST_SUCCESS", (response) => {
+      this.setState({users: response});
+    });
   },
 
   render() {
