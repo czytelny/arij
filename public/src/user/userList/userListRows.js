@@ -2,16 +2,15 @@ var React = require('react');
 
 import UserListRow from './userListRow'
 
-const UserListRows = function (props) {
-  return (
+const UserListRows = (props) =>
     <tbody>
     {props.users.map(function (user) {
       return (
         <UserListRow key={user._id} user={user}/>
       );
     })}
-    </tbody>
-  )
-};
+    </tbody>;
+
+
 
 export default UserListRows;
