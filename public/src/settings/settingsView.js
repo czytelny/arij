@@ -1,22 +1,20 @@
-var React = require('react');
-
+import React from 'react'
 import Header from './../app/header'
-import User from './user'
+import SettingsMenu from './settingsMenu'
 
-const UserView = () =>  <div>
+const settingsView = () =>
+<div>
   <div className="row">
     <Header/>
   </div>
   <div className="row content">
     <div className="col-sm-2">
+      <SettingsMenu/>
     </div>
     <div className="col-sm-9">
-      <div className="col-sm-12">
-        <User />
-      </div>
+      <p>This is settings view. use left menu</p>
     </div>
   </div>
 </div>;
 
-
-export default UserView;
+export default settingsView;

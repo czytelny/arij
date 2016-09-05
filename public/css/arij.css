@@ -1,0 +1,23 @@
+.navbar-brand{
+  font-size: 32px;
+  line-height: 34px;
+  height: 61px;
+}
+
+div.mainMenu {
+  background-color: #eeeeee;
+  min-height: 20px;
+  line-height: 29px;
+}
+
+.navbar.navbar-main {
+  margin-bottom: 0;
+}
+
+.link-unstyled {
+  color: #000;
+}
+
+.link-unstyled:hover {
+  text-decoration: none;
+}
