@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserNameInput = () =>
+const UserNameInput = ({handleNameChange}) =>
   <div className="row">
     <div className="col-sm-8">
       <label htmlFor="userName">User name</label>
@@ -8,7 +8,7 @@ const UserNameInput = () =>
         <div className="input-group-addon">
           <i className="fa fa-child" aria-hidden="true"/>
         </div>
-        <input type="text" className="form-control" id="userName" placeholder="User name"/>
+        <input onChange={handleNameChange} type="text" className="form-control" id="userName" placeholder="User name"/>
       </div>
     </div>
   </div>;

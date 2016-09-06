@@ -1,7 +1,7 @@
 var React = require('react');
 
 import Header from './../app/header'
-import User from './user'
+import UserContainer from './userContainer'
 
 const UserView = () =>  <div>
   <div className="row">
@@ -12,7 +12,7 @@ const UserView = () =>  <div>
     </div>
     <div className="col-sm-9">
       <div className="col-sm-12">
-        <User />
+        <UserContainer/>
       </div>
     </div>
   </div>

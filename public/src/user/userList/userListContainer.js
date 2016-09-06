@@ -8,7 +8,7 @@ import {
 } from './../../../../app/shared/userActionTypes'
 
 
-var UserListContainer = React.createClass({
+const UserListContainer = React.createClass({
   getInitialState() {
     return {
       users: []

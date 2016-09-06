@@ -5,19 +5,19 @@ import UserEmailInput from './userEmailInput'
 import UserPasswordInput from './userPasswordInput'
 import ActionButtons from './actionButtons'
 
-const user = () =>
+const user = ({passwordChangeHandler, nameChangeHandler, emailChangeHandler, submitHandler}) =>
   <div className="row">
     <div className="col-sm-6">
-      <form name="addNewUserForm">
+      <form name="addNewUserForm" onSubmit={submitHandler}>
         <div className="row">
           <div className="col-sm-12">
             <legend>Add new user</legend>
           </div>
         </div>
         <div className="form-group">
-          <UserNameInput/>
-          <UserEmailInput/>
-          <UserPasswordInput/>
+          <UserNameInput handleNameChange={nameChangeHandler}/>
+          <UserEmailInput handleEmailChange={emailChangeHandler}/>
+          <UserPasswordInput handlePasswordChange={passwordChangeHandler}/>
         </div>
         <div>
           <ActionButtons/>

@@ -20,6 +20,13 @@ module.exports = function (io) {
         (err) => io.emit(actions.GET_ALL_USER_REQUEST_FAILURE, err)
       )
     });
+
+    socket.on(actions.ADD_USER_REQUEST, function (user) {
+      userService.save(user).then(
+        (data) => io.emit(actions.ADD_USER_REQUEST_SUCCESS, data),
+        (err) => io.emit(actions.ADD_USER_REQUEST_FAILURE, err)
+      )
+    })
   });
 
   return router;
