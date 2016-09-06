@@ -17,10 +17,17 @@ var UserListContainer = React.createClass({
 
   componentDidMount() {
     socketHandler.emit(GET_ALL_USER_REQUEST);
-    socketHandler.on(GET_ALL_USER_REQUEST_SUCCESS, (response) => {
-      this.setState({users: response});
-    });
+    socketHandler.on(GET_ALL_USER_REQUEST_SUCCESS, this._getAllUserRequestHandler);
   },
+
+  componentWillUnmount() {
+    socketHandler.removeListener(GET_ALL_USER_REQUEST_SUCCESS, this._getAllUserRequestHandler);
+  },
+
+  _getAllUserRequestHandler(response) {
+    this.setState({users: response});
+  },
+
 
   render() {
     return (<UserList users={this.state.users}/>);
