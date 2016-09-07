@@ -7,9 +7,9 @@
     "server:watch": "nodemon app/server.js --exec babel-node --presets es2015",
     "test:server": "mocha app/**/*.spec.js --compilers js:babel-core/register --require ./app/test_helper.js --recursive",
     "test:server:watch": "npm run test:server -- --watch",
-    "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=react-redux -x=socket.io-client -d",
-    "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-router -x=react-dom -x=react -x=socket.io-client -d -v",
-    "build:public:vendor": "browserify -o app/public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=react-redux -r=socket.io-client"
+    "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -d",
+    "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -d -v",
+    "build:public:vendor": "browserify -o app/public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=redux -r=react-redux -r=socket.io-client"
   },
   "repository": {
     "type": "git",

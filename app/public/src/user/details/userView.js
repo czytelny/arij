@@ -1,25 +1,22 @@
-var ReactDOM = require('react-dom');
 var React = require('react');
 
 import Header from '../../app/header'
-import UserListContainer from './userListContainer'
-import UserListMenu from './userListMenu'
+import UserContainer from './userContainer'
 
-const UserListView = () =>  <div>
+const UserView = () =>  <div>
   <div className="row">
     <Header/>
   </div>
   <div className="row content">
     <div className="col-sm-2">
-      <UserListMenu/>
     </div>
     <div className="col-sm-9">
       <div className="col-sm-12">
-        <UserListContainer/>
+        <UserContainer/>
       </div>
     </div>
   </div>
 </div>;
 
 
-export default UserListView;
+export default UserView;

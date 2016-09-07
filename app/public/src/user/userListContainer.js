@@ -1,20 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import store from '../store'
 import UserList from './userList';
-import socketHandler from './../../app/socketHandler';
+import socketHandler from '../app/socketHandler';
 
 import {
   GET_ALL_USER_REQUEST,
   GET_ALL_USER_REQUEST_SUCCESS
-} from './../../../../shared/userActionTypes'
+} from '../../../shared/userActionTypes'
 
 
 const UserListContainer = React.createClass({
-  getInitialState() {
-    return {
-      users: []
-    }
-  },
-
   componentDidMount() {
     socketHandler.emit(GET_ALL_USER_REQUEST);
     socketHandler.on(GET_ALL_USER_REQUEST_SUCCESS, this._getAllUserRequestHandler);
@@ -25,13 +21,21 @@ const UserListContainer = React.createClass({
   },
 
   _getAllUserRequestHandler(response) {
-    this.setState({users: response});
+    store.dispatch({
+      type: GET_ALL_USER_REQUEST_SUCCESS,
+      users: response
+    });
   },
 
-
   render() {
-    return (<UserList users={this.state.users}/>);
+    return (<UserList users={this.props.users}/>);
   }
 });
 
-export default UserListContainer;
+const mapStateToProps = function (store) {
+  return {
+    users: store.userState.users
+  };
+};
+
+export default connect(mapStateToProps)(UserListContainer);

@@ -1,12 +1,12 @@
 import React from 'react';
 import User from './user';
-import socketHandler from './../app/socketHandler';
+import socketHandler from '../../app/socketHandler';
 
 import {
   ADD_USER_REQUEST,
   ADD_USER_REQUEST_SUCCESS,
   ADD_USER_REQUEST_FAILURE
-} from './../../../shared/userActionTypes'
+} from '../../../../shared/userActionTypes'
 
 
 const UserContainer = React.createClass({
