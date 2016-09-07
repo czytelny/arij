@@ -6,7 +6,7 @@ import {
   ADD_USER_REQUEST,
   ADD_USER_REQUEST_SUCCESS,
   ADD_USER_REQUEST_FAILURE
-} from './../../../app/shared/userActionTypes'
+} from './../../../shared/userActionTypes'
 
 
 const UserContainer = React.createClass({

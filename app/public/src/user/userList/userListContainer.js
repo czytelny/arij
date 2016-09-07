@@ -5,7 +5,7 @@ import socketHandler from './../../app/socketHandler';
 import {
   GET_ALL_USER_REQUEST,
   GET_ALL_USER_REQUEST_SUCCESS
-} from './../../../../app/shared/userActionTypes'
+} from './../../../../shared/userActionTypes'
 
 
 const UserListContainer = React.createClass({
