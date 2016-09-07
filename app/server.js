@@ -16,8 +16,10 @@ const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
 import makeStore from './store';
+import userController from './controllers/userController'
 
 const store = makeStore();
+const userCtrl = userController(io);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ------- database
@@ -29,11 +31,9 @@ mongoose.connect(database.url, function (err) {
 
 // ------- controllers
 const routes = require('./controllers/restController');
-const userRoutes = require('./controllers/userController')(io);
 app.use('/', routes);
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
-app.use('/users', userRoutes);
 
 
 server.listen(PORT, function () {

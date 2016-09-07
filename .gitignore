@@ -37,6 +37,5 @@ jspm_packages
 .node_repl_history
 
 .idea
-/target/
-/public/dist/arij.js
-/public/dist/vendor.js
+app/public/dist/arij.js
+app/public/dist/vendor.js
