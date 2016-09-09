@@ -1,9 +1,9 @@
 import {createStore, combineReducers} from 'redux';
-import userReducer from './settings/userList/userListReducer'
+import userListReducer from './settings/userList/userListReducer'
 
 // Combine Reducers
 const reducers = combineReducers({
-  userState: userReducer
+  userListState: userListReducer
 });
 
 // Create a store by passing in the reducer

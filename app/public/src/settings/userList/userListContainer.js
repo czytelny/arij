@@ -32,7 +32,7 @@ const UserListContainer = React.createClass({
 
 const mapStateToProps = function (store) {
   return {
-    users: store.userState.users
+    users: store.userListState
   };
 };
 
