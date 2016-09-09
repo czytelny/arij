@@ -1,6 +1,6 @@
 import {
   GET_ALL_USER_REQUEST_SUCCESS
-} from '../../../shared/userActionTypes'
+} from '../../../../shared/userActionTypes'
 
 const initialState = {
   users: []

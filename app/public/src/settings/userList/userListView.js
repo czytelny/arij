@@ -1,7 +1,6 @@
-var ReactDOM = require('react-dom');
-var React = require('react');
+import React from 'react';
 
-import Header from '../app/header'
+import Header from '../../app/header'
 import UserListContainer from './userListContainer'
 import UserListMenu from './userListMenu'
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import store from '../store'
+import store from '../../store'
 import UserList from './userList';
-import socketHandler from '../app/socketHandler';
+import socketHandler from '../../app/socketHandler';
 
 import {
   GET_ALL_USER_REQUEST,
   GET_ALL_USER_REQUEST_SUCCESS
-} from '../../../shared/userActionTypes'
+} from '../../../../shared/userActionTypes'
 
 
 const UserListContainer = React.createClass({

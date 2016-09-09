@@ -7,8 +7,8 @@ import { Router, Route, hashHistory } from 'react-router'
 
 import MainView from './app/mainView';
 import SettingsView from './settings/settingsView';
-import UserView from './user/details/userView';
-import UserListView from './user/userListView';
+import UserView from './settings/user/userView';
+import UserListView from './settings/userList/userListView';
 
 render(
   <Provider store={store}>
