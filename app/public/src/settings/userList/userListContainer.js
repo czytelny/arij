@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import store from '../../store'
 import UserList from './userList';
 import socketHandler from '../../app/socketHandler';
+import actions from './userListActions'
 
 import {
   GET_ALL_USER_REQUEST,
@@ -21,10 +22,7 @@ const UserListContainer = React.createClass({
   },
 
   _getAllUserRequestHandler(response) {
-    store.dispatch({
-      type: GET_ALL_USER_REQUEST_SUCCESS,
-      users: response
-    });
+    store.dispatch(actions.getAllUserRequestSuccess(response));
   },
 
   render() {
