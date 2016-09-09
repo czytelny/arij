@@ -1,6 +1,8 @@
 import React from 'react';
 import User from './user';
+import {connect} from 'react-redux';
 import socketHandler from '../../app/socketHandler';
+import actions from './userActions'
 
 import {
   ADD_USER_REQUEST,
@@ -10,17 +12,6 @@ import {
 
 
 const UserContainer = React.createClass({
-  getInitialState() {
-    return {
-      _id: null,
-      name: null,
-      email: null,
-      password: null,
-      created_at: null,
-      updated_at: null
-    }
-  },
-
   componentDidMount() {
     socketHandler.on(ADD_USER_REQUEST_SUCCESS, (response) =>
       console.log("user successfully added! " + JSON.stringify(response)));
@@ -38,26 +29,18 @@ const UserContainer = React.createClass({
     socketHandler.emit(ADD_USER_REQUEST, this.state);
   },
 
-  _nameChangeHandler(e){
-    e.preventDefault();
-    this.setState(Object.assign({}, this.state, {name: e.target.value.trim()}));
-  },
-
-  _emailChangeHandler(e){
-    e.preventDefault();
-    this.setState(Object.assign({}, this.state, {email: e.target.value.trim()}));
-  },
-
-  _passwordChangeHandler(e){
-    this.setState(Object.assign({}, this.state, {password: e.target.value.trim()}));
-  },
 
   render() {
-    return (<User passwordChangeHandler={this._passwordChangeHandler}
-                  nameChangeHandler={this._nameChangeHandler}
-                  emailChangeHandler={this._emailChangeHandler}
-                  submitHandler={this._handleSubmit}/>)
+    return (<User submitHandler={this._handleSubmit}/>)
   }
 });
 
-export default UserContainer;
+const mapDispatchToProps = function (dispatch, ownProps) {
+  return {
+    nameChangeHandler: (name)=> dispatch(action),
+    emailChangeHandler: (email)=> dispatch(actions.userEmailChanged(email)),
+    passwordChangeHandler: (password) => dispatch(actions.userPasswordChanged(password))
+  }
+};
+
+export default connect(null, mapDispatchToProps)(User);

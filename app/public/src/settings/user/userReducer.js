@@ -1,13 +1,31 @@
+import {
+  USER_NAME_CHANGED,
+  USER_PASSWORD_CHANGED,
+  USER_EMAIL_CHANGED
+} from '../../../../shared/userActionTypes'
+
+
 const initialState = {
-  state: []
+  _id: null,
+  name: null,
+  email: null,
+  password: null,
+  created_at: null,
+  updated_at: null
 };
-const userReducer = function(state, action) {
-  if (state === undefined) {
-    state = [];
+
+const userReducer = function (state = initialState, action) {
+  switch (action.type) {
+    case USER_NAME_CHANGED:
+      console.log("reducer: roger that");
+      var resultState = Object.assign({}, state, {name: action.name});
+      return resultState;
+    case USER_EMAIL_CHANGED:
+      return Object.assign({}, state, {email: action.email});
+    case USER_PASSWORD_CHANGED:
+      return Object.assign({}, state, {password: action.password});
   }
-  if (action.type === 'ADD_USER') {
-    state.concat(action.user);
-  }
+
   return state;
 };
 

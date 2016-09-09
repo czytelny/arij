@@ -5,7 +5,7 @@ import UserEmailInput from './userEmailInput'
 import UserPasswordInput from './userPasswordInput'
 import ActionButtons from './actionButtons'
 
-const user = ({passwordChangeHandler, nameChangeHandler, emailChangeHandler, submitHandler}) =>
+const user = ({nameChangeHandler, emailChangeHandler, passwordChangeHandler, submitHandler}) =>
   <div className="row">
     <div className="col-sm-6">
       <form name="addNewUserForm" onSubmit={submitHandler}>
@@ -15,9 +15,9 @@ const user = ({passwordChangeHandler, nameChangeHandler, emailChangeHandler, sub
           </div>
         </div>
         <div className="form-group">
-          <UserNameInput handleNameChange={nameChangeHandler}/>
-          <UserEmailInput handleEmailChange={emailChangeHandler}/>
-          <UserPasswordInput handlePasswordChange={passwordChangeHandler}/>
+          <UserNameInput nameChangeHandler={nameChangeHandler}/>
+          <UserEmailInput emailChangeHandler={emailChangeHandler}/>
+          <UserPasswordInput passwordChangeHandler={passwordChangeHandler}/>
         </div>
         <div>
           <ActionButtons/>

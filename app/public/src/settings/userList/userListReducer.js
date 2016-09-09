@@ -4,7 +4,7 @@ import {
 
 const initialState = [];
 
-const userReducer = function (state = initialState, action) {
+const userListReducer = function (state = initialState, action) {
   switch (action.type) {
     case GET_ALL_USER_REQUEST_SUCCESS:
       return state.concat(action.users);
@@ -13,4 +13,4 @@ const userReducer = function (state = initialState, action) {
   return state;
 };
 
-export default userReducer;
+export default userListReducer;
