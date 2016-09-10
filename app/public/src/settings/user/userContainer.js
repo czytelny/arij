@@ -29,7 +29,6 @@ const UserContainer = React.createClass({
     socketHandler.emit(ADD_USER_REQUEST, this.state);
   },
 
-
   render() {
     return (<User submitHandler={this._handleSubmit}/>)
   }
@@ -37,9 +36,9 @@ const UserContainer = React.createClass({
 
 const mapDispatchToProps = function (dispatch, ownProps) {
   return {
-    nameChangeHandler: (name)=> dispatch(action),
-    emailChangeHandler: (email)=> dispatch(actions.userEmailChanged(email)),
-    passwordChangeHandler: (password) => dispatch(actions.userPasswordChanged(password))
+    nameChangeHandler: (event)=> dispatch(actions.userNameChanged(event.target.value)),
+    emailChangeHandler: (event)=> dispatch(actions.userEmailChanged(event.target.value)),
+    passwordChangeHandler: (event) => dispatch(actions.userPasswordChanged(event.target.value))
   }
 };
 

@@ -17,9 +17,7 @@ const initialState = {
 const userReducer = function (state = initialState, action) {
   switch (action.type) {
     case USER_NAME_CHANGED:
-      console.log("reducer: roger that");
-      var resultState = Object.assign({}, state, {name: action.name});
-      return resultState;
+      return Object.assign({}, state, {name: action.name});
     case USER_EMAIL_CHANGED:
       return Object.assign({}, state, {email: action.email});
     case USER_PASSWORD_CHANGED:
