@@ -15,10 +15,8 @@ const server = http.createServer(app);
 const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
-import makeStore from './store';
 import userController from './controllers/userController'
 
-const store = makeStore();
 const userCtrl = userController(io);
 app.use(express.static(path.join(__dirname, 'public')));
 
