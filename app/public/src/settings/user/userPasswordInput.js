@@ -8,7 +8,7 @@ const UserPasswordInput = ({passwordChangeHandler}) =>
           <div className="input-group-addon">
             <i className="fa fa-asterisk" aria-hidden="true"/>
           </div>
-          <input onChange={passwordChangeHandler} type="password"  className="form-control" id="userPassword" placeholder="Password"/>
+          <input onBlur={passwordChangeHandler} type="password"  className="form-control" id="userPassword" placeholder="Password"/>
         </div>
       </div>
       <div className="col-sm-4">
