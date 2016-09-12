@@ -38,8 +38,15 @@ const mapDispatchToProps = function (dispatch, ownProps) {
   return {
     nameChangeHandler: (event)=> dispatch(actions.userNameChanged(event.target.value)),
     emailChangeHandler: (event)=> dispatch(actions.userEmailChanged(event.target.value)),
-    passwordChangeHandler: (event) => dispatch(actions.userPasswordChanged(event.target.value))
+    passwordChangeHandler: (event) => dispatch(actions.userPasswordChanged(event.target.value)),
+    passwordConfirmChangeHandler: (event) => dispatch(actions.userPasswordConfirmChanged(event.target.value))
   }
 };
 
-export default connect(null, mapDispatchToProps)(User);
+const mapStateToProps = function (store) {
+  return {
+    isValid: store.userState.get("isValid")
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(User);

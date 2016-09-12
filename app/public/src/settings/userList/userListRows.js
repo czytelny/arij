@@ -2,9 +2,9 @@ import React from 'react';
 
 import UserListRow from './userListRow'
 
-const UserListRows = (props) =>
+const UserListRows = ({users}) =>
     <tbody>
-    {props.users.map(function (user) {
+    {users.map(function (user) {
       return (
         <UserListRow key={user._id} user={user}/>
       );
