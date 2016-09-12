@@ -7,8 +7,8 @@ const ActionButtons = React.createClass({
       <div className="row">
         <div className="col-sm-8">
           <button type="submit" name="submit" value="Submit" className="btn btn-primary">Submit</button>
-          <Link to="/settings/user">
-            <button type="button" name="back" className="btn btn-default pull-right">Cancel</button>
+          <Link to="/settings/user" className="btn btn-default pull-right">
+            Back
           </Link>
         </div>
       </div>

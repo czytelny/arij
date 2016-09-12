@@ -11,7 +11,7 @@ const user = ({nameChangeHandler, emailChangeHandler, passwordChangeHandler, sub
       <form name="addNewUserForm" onSubmit={submitHandler}>
         <div className="row">
           <div className="col-sm-12">
-            <legend>Add new user</legend>
+            <h1>Add new user</h1>
           </div>
         </div>
         <div className="form-group">

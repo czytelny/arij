@@ -8,7 +8,7 @@ const UserEmailInput = ({emailChangeHandler}) =>
         <div className="input-group-addon">
           <span className="b"><strong>@</strong></span>
         </div>
-        <input onChange={emailChangeHandler} type="text" className="form-control" id="userEmail" placeholder="Email"/>
+        <input onBlur={emailChangeHandler} type="text" className="form-control" id="userEmail" placeholder="Email"/>
       </div>
     </div>
   </div>;
