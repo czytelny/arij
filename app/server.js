@@ -16,8 +16,10 @@ const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
 import userController from './controllers/userController'
+import projectController from './controllers/projectController'
 
 const userCtrl = userController(io);
+const projectCtrl = projectController(io);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ------- database
