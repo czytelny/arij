@@ -2,7 +2,8 @@ import {
   USER_NAME_CHANGED,
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
-  USER_PASSWORD_CONFIRM_CHANGED
+  USER_PASSWORD_CONFIRM_CHANGED,
+  ADD_USER_REQUEST
 } from '../../../../shared/userActionTypes'
 
 
@@ -34,9 +35,17 @@ function userEmailChanged(email) {
   }
 }
 
+function addUserRequest(user){
+  return {
+    type: ADD_USER_REQUEST,
+    user: user
+  }
+}
+
 export default {
   userNameChanged,
   userPasswordChanged,
   userEmailChanged,
-  userPasswordConfirmChanged
+  userPasswordConfirmChanged,
+  addUserRequest
 }
