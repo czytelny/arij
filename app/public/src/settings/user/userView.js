@@ -2,6 +2,7 @@ var React = require('react');
 
 import Header from '../../app/header'
 import UserContainer from './userContainer'
+import SettingsMenu from '../settingsMenu'
 
 const UserView = () =>  <div>
   <div className="row">
@@ -9,6 +10,7 @@ const UserView = () =>  <div>
   </div>
   <div className="row content">
     <div className="col-sm-2">
+      <SettingsMenu/>
     </div>
     <div className="col-sm-9">
       <div className="col-sm-12">

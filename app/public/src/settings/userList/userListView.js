@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from '../../app/header'
 import UserListContainer from './userListContainer'
-import UserListMenu from './userListMenu'
+import SettingsMenu from '../settingsMenu'
 import {Link} from 'react-router'
 
 const UserListView = () => <div>
@@ -11,7 +11,7 @@ const UserListView = () => <div>
   </div>
   <div className="row content">
     <div className="col-sm-2">
-      <UserListMenu/>
+      <SettingsMenu/>
     </div>
     <div className="col-sm-9">
       <div className="col-sm-12">
