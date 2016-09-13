@@ -19,7 +19,6 @@ const UserListView = () => <div>
           Users <Link to="/settings/user/new" className="badge">New user</Link>
         </h1>
         <UserListContainer/>
-        <Link to="/settings" className="btn btn-default">Back</Link>
       </div>
     </div>
   </div>
