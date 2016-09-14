@@ -4,17 +4,14 @@ import UserNameInput from './userNameInput'
 import UserEmailInput from './userEmailInput'
 import UserPasswordInput from './userPasswordInput'
 import ActionButtons from './actionButtons'
-import MessagesComponent from './../../app/messagesComponent'
 
 
 const user = ({
   nameChangeHandler, emailChangeHandler,
   passwordChangeHandler, passwordConfirmChangeHandler,
-  submitHandler, isValid, isErrorMessageVisible, errorMessage
+  submitHandler, isValid
 }) =>
   <div className="row">
-    <MessagesComponent isErrorMessageVisible={isErrorMessageVisible}
-                       errorMessage={errorMessage}/>
     <div className="col-sm-6">
       <form name="addNewUserForm" onSubmit={submitHandler}>
         <div className="row">

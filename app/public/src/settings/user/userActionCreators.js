@@ -4,8 +4,7 @@ import {
   USER_EMAIL_CHANGED,
   USER_PASSWORD_CONFIRM_CHANGED,
   ADD_USER_REQUEST,
-  ADD_USER_REQUEST_FAILURE,
-  HIDE_USER_ERROR_MESSAGE
+  ADD_USER_REQUEST_FAILURE
 } from '../../../../shared/userActionTypes'
 
 
@@ -44,25 +43,11 @@ function addUserRequest(user){
   }
 }
 
-function addUserRequestFailure(err) {
-  return {
-    type: ADD_USER_REQUEST_FAILURE,
-    error: err
-  }
-}
-
-function hideUserMessageError() {
-  return {
-    type: HIDE_USER_ERROR_MESSAGE
-  }
-}
 
 export default {
   userNameChanged,
   userPasswordChanged,
   userEmailChanged,
   userPasswordConfirmChanged,
-  addUserRequest,
-  addUserRequestFailure,
-  hideUserMessageError
+  addUserRequest
 }
