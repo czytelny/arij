@@ -6,11 +6,12 @@ const ActionButtons = ({isValid}) =>
     <div className="col-sm-8">
       <button type="submit" name="submit" value="Submit"
               className="btn btn-primary"
-              disabled={!isValid}>Submit
+              disabled={!isValid}>
+        Add
       </button>
 
-      <Link to="/settings/user" className="btn btn-default pull-right">
-        Back
+      <Link to="/settings/user" className="btn btn-link pull-right">
+        Cancel
       </Link>
     </div>
   </div>;

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import socketHandler from '../../app/socketHandler';
 import actions from './userActions'
 import store from '../../store'
+import { browserHistory } from 'react-router'
 
 import {
   ADD_USER_REQUEST,
@@ -14,8 +15,10 @@ import {
 
 const UserContainer = React.createClass({
   componentDidMount() {
-    socketHandler.on(ADD_USER_REQUEST_SUCCESS, (response) =>
-      console.log("user successfully added! " + JSON.stringify(response)));
+    socketHandler.on(ADD_USER_REQUEST_SUCCESS, (response) => {
+      console.log("user successfully added! " + JSON.stringify(response));
+      browserHistory.goBack();
+    });
     socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) =>
       console.log("user not added:( " + JSON.stringify(response)));
   },
