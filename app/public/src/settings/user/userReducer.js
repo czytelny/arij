@@ -21,7 +21,8 @@ const initialState = Map({
   }),
   passwordConfirm: null,
   isValid: false,
-  displayErrorMessage: false
+  displayErrorMessage: false,
+  errorMessage: ""
 });
 
 
@@ -44,7 +45,10 @@ const userReducer = function (state = initialState, action) {
       }
       return newState.set("isValid", false);
     case ADD_USER_REQUEST_FAILURE:
-      return state.set('displayErrorMessage', true);
+      return state.merge({
+        displayErrorMessage: true,
+        errorMessage: action.error
+      });
     case HIDE_USER_ERROR_MESSAGE:
       return state.set('displayErrorMessage', false);
   }

@@ -20,7 +20,7 @@ const UserContainer = React.createClass({
       browserHistory.goBack();
     });
     socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) => {
-      this.props.showErrorMessage(response);
+      this.props.showErrorMessage("Sorry, adding user failed ;(");
       setTimeout(() => {
         this.props.hideErrorMessage();
       }, 1500);
@@ -40,7 +40,8 @@ const UserContainer = React.createClass({
                   passwordConfirmChangeHandler={this.props.passwordConfirmChangeHandler}
                   submitHandler={this.props.submitHandler}
                   isValid={this.props.isValid}
-                  isErrorMessageVisible={this.props.isErrorMessageVisible}/>)
+                  isErrorMessageVisible={this.props.isErrorMessageVisible}
+                  errorMessage={this.props.errorMessage}/>)
   }
 });
 
@@ -62,8 +63,9 @@ const mapDispatchToProps = function (dispatch, ownProps) {
 const mapStateToProps = function (store) {
   return {
     isValid: store.userState.get("isValid"),
-    isErrorMessageVisible: store.userState.get("displayErrorMessage")
-  }
+    isErrorMessageVisible: store.userState.get("displayErrorMessage"),
+    errorMessage: store.userState.get("errorMessage")
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);

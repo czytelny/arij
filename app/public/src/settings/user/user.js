@@ -10,10 +10,11 @@ import MessagesComponent from './../../app/messagesComponent'
 const user = ({
   nameChangeHandler, emailChangeHandler,
   passwordChangeHandler, passwordConfirmChangeHandler,
-  submitHandler, isValid, isErrorMessageVisible
+  submitHandler, isValid, isErrorMessageVisible, errorMessage
 }) =>
   <div className="row">
-    <MessagesComponent isErrorMessageVisible={isErrorMessageVisible}/>
+    <MessagesComponent isErrorMessageVisible={isErrorMessageVisible}
+                       errorMessage={errorMessage}/>
     <div className="col-sm-6">
       <form name="addNewUserForm" onSubmit={submitHandler}>
         <div className="row">
