@@ -13,7 +13,7 @@ const UserListView = () => <div>
     <div className="col-sm-2">
       <SettingsMenu/>
     </div>
-    <div className="col-sm-9">
+    <div className="col-sm-9 mainView">
       <div className="col-sm-12">
         <h1>
           Users <Link to="/settings/user/new" className="badge">New user</Link>

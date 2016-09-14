@@ -4,13 +4,16 @@ import UserNameInput from './userNameInput'
 import UserEmailInput from './userEmailInput'
 import UserPasswordInput from './userPasswordInput'
 import ActionButtons from './actionButtons'
+import MessagesComponent from './../../app/messagesComponent'
+
 
 const user = ({
   nameChangeHandler, emailChangeHandler,
   passwordChangeHandler, passwordConfirmChangeHandler,
-  submitHandler, isValid
+  submitHandler, isValid, isErrorMessageVisible
 }) =>
   <div className="row">
+    <MessagesComponent isErrorMessageVisible={isErrorMessageVisible}/>
     <div className="col-sm-6">
       <form name="addNewUserForm" onSubmit={submitHandler}>
         <div className="row">
@@ -25,7 +28,7 @@ const user = ({
                              passwordChangeHandler={passwordChangeHandler}
                              passwordConfirmChangeHandler={passwordConfirmChangeHandler}/>
         </div>
-        <div>
+        <div className="form-group">
           <ActionButtons isValid={isValid}/>
         </div>
       </form>

@@ -4,7 +4,9 @@ import {
   USER_NAME_CHANGED,
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
-  USER_PASSWORD_CONFIRM_CHANGED
+  USER_PASSWORD_CONFIRM_CHANGED,
+  ADD_USER_REQUEST_FAILURE,
+  HIDE_USER_ERROR_MESSAGE
 } from '../../../../shared/userActionTypes'
 
 
@@ -18,7 +20,8 @@ const initialState = Map({
     updated_at: null,
   }),
   passwordConfirm: null,
-  isValid: false
+  isValid: false,
+  displayErrorMessage: false
 });
 
 
@@ -40,6 +43,10 @@ const userReducer = function (state = initialState, action) {
         return newState.set("isValid", true);
       }
       return newState.set("isValid", false);
+    case ADD_USER_REQUEST_FAILURE:
+      return state.set('displayErrorMessage', true);
+    case HIDE_USER_ERROR_MESSAGE:
+      return state.set('displayErrorMessage', false);
   }
 
   return state;

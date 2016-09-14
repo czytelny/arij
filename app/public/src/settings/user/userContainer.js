@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import socketHandler from '../../app/socketHandler';
 import actions from './userActions'
 import store from '../../store'
-import { browserHistory } from 'react-router'
+import {browserHistory} from 'react-router'
 
 import {
   ADD_USER_REQUEST,
@@ -19,8 +19,13 @@ const UserContainer = React.createClass({
       console.log("user successfully added! " + JSON.stringify(response));
       browserHistory.goBack();
     });
-    socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) =>
-      console.log("user not added:( " + JSON.stringify(response)));
+    socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) => {
+      this.props.showErrorMessage(response);
+      setTimeout(() => {
+        this.props.hideErrorMessage();
+      }, 1500);
+      console.log("user not added:( " + JSON.stringify(response))
+    });
   },
 
   componentWillUnmount(){
@@ -35,7 +40,7 @@ const UserContainer = React.createClass({
                   passwordConfirmChangeHandler={this.props.passwordConfirmChangeHandler}
                   submitHandler={this.props.submitHandler}
                   isValid={this.props.isValid}
-    />)
+                  isErrorMessageVisible={this.props.isErrorMessageVisible}/>)
   }
 });
 
@@ -48,13 +53,16 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     submitHandler: (event) => {
       event.preventDefault();
       socketHandler.emit(ADD_USER_REQUEST, store.getState().userState.get("user"));
-    }
+    },
+    showErrorMessage: (error) => dispatch(actions.addUserRequestFailure(error)),
+    hideErrorMessage: () => dispatch(actions.hideUserMessageError())
   }
 };
 
 const mapStateToProps = function (store) {
   return {
-    isValid: store.userState.get("isValid")
+    isValid: store.userState.get("isValid"),
+    isErrorMessageVisible: store.userState.get("displayErrorMessage")
   }
 };
 
