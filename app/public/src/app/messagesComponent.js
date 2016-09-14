@@ -9,13 +9,12 @@ const messagesComponent = React.createClass({
   },
   render() {
     return (
-      <div className={this.props.isErrorMessageVisible ? null : 'invisible'}>
-        <div className={"arij-messageContainer"}>
-          <div className="arij-message alert alert-danger">
-            {this.state.alertMessage}
-          </div>
+      <div className={"arij-messageContainer " + (this.props.isErrorMessageVisible ? null : 'invisible')}>
+        <div className="arij-message alert alert-danger">
+          {this.state.alertMessage}
         </div>
-      </div>)
+      </div>
+    )
   }
 });
 

@@ -31,12 +31,23 @@ div.mainMenu {
 
 .link-unstyled.chosen {
   color: #367da2;
+  font-weight: bold;
 }
 .arij-messageContainer {
   position: absolute;
   top:0;
   left: 50%;
   z-index:10000;
+  opacity: 1;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  transition: all .2s;
+}
+
+.arij-messageContainer.invisible {
+  opacity: 0;
 }
 .arij-message {
   position: relative;
