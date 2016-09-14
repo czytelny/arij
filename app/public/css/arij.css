@@ -39,11 +39,11 @@ div.mainMenu {
   left: 50%;
   z-index:10000;
   opacity: 1;
-  -webkit-transition: all .2s;
-  -moz-transition: all .2s;
-  -ms-transition: all .2s;
-  -o-transition: all .2s;
-  transition: all .2s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
 }
 
 .arij-messageContainer.invisible {

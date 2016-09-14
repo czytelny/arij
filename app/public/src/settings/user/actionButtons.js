@@ -11,7 +11,7 @@ const ActionButtons = ({isValid}) =>
       </button>
 
       <Link to="/settings/user" className="btn btn-link pull-right">
-        Cancel
+        Back
       </Link>
     </div>
   </div>;

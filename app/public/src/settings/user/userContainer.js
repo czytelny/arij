@@ -17,11 +17,12 @@ import {
 const UserContainer = React.createClass({
   componentDidMount() {
     socketHandler.on(ADD_USER_REQUEST_SUCCESS, (response) => {
+      store.dispatch(messageActions.showSuccessMessage("User added successfully!"));
       console.log("user successfully added! " + JSON.stringify(response));
-      browserHistory.goBack();
+       browserHistory.goBack();
     });
     socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) => {
-      store.dispatch(messageActions.showUserMessageError("Sorry, adding user failed ;("));
+      store.dispatch(messageActions.showErrorMessage("Sorry, adding user failed"));
       console.log("user not added:( " + JSON.stringify(response))
     });
   },

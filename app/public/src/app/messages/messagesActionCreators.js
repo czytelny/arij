@@ -1,21 +1,32 @@
 import {
-  HIDE_ERROR_MESSAGE,
+  SHOW_SUCCESS_MESSAGE,
+  HIDE_SUCCESS_MESSAGE,
+  HIDE_MESSAGE,
   SHOW_ERROR_MESSAGE
 } from './messagesActionTypes'
 
-function hideUserMessageError() {
+function showSuccessMessage(message) {
   return {
-    type: HIDE_ERROR_MESSAGE
+    type: SHOW_SUCCESS_MESSAGE,
+    message: message
   }
 }
-function showUserMessageError(message) {
+
+function showErrorMessage(message) {
   return {
     type: SHOW_ERROR_MESSAGE,
     message: message
   }
 }
 
+function hideMessage() {
+  return {
+    type: HIDE_MESSAGE
+  }
+}
+
 export default {
-  showUserMessageError,
-  hideUserMessageError
+  showSuccessMessage,
+  showErrorMessage,
+  hideMessage
 }
