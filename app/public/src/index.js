@@ -9,6 +9,7 @@ import MainView from './app/mainView';
 import SettingsView from './settings/settingsView';
 import UserView from './settings/user/userView';
 import UserListView from './settings/userList/userListView';
+import ProjectListView from './settings/projectList/projectListView';
 
 render(
   <Provider store={store}>
@@ -17,6 +18,7 @@ render(
       <Route path="/settings" component={SettingsView}/>
       <Route path="/settings/user" component={UserListView}/>
       <Route path="/settings/user/new" component={UserView}/>
+      <Route path="/settings/project" component={ProjectListView}/>
     </Router>
   </Provider>,
   document.getElementById('app')

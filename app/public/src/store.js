@@ -1,12 +1,14 @@
 import {createStore, combineReducers} from 'redux';
 import userListReducer from './settings/userList/userListReducer'
 import userReducer from './settings/user/userReducer'
+import projectListReducer from './settings/projectList/projectListReducer'
 import messagesReducer from './app/messages/messagesReducer'
 
 // Combine Reducers
 const reducers = combineReducers({
   userListState: userListReducer,
   userState: userReducer,
+  projectListState: projectListReducer,
   messagesState: messagesReducer
 });
 
