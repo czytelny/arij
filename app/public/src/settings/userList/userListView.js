@@ -4,13 +4,11 @@ import Header from '../../app/header'
 import UserListContainer from './userListContainer'
 import SettingsMenu from '../settingsMenu'
 import {Link} from 'react-router'
-import MessagesComponent from '../../app/messages/messagesComponent'
 
 
 const UserListView = () => <div>
   <div className="row">
     <Header/>
-    <MessagesComponent />
   </div>
   <div className="row content">
     <div className="col-sm-2">
