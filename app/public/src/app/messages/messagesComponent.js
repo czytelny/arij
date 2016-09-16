@@ -4,9 +4,7 @@ import actionCreators from './messagesActionCreators'
 
 const messagesComponent = React.createClass({
   componentDidUpdate() {
-    setTimeout(()=> {
-      this.props.hideComponent();
-    }, this.props.hidingDelay);
+    this.props.hideMessageWithDelay(this.props.hidingDelay);
   },
   render() {
     return (
@@ -41,7 +39,7 @@ const mapStateToProps = function (store) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    hideComponent: ()=> dispatch(actionCreators.hideMessage())
+    hideMessageWithDelay: (delay)=> dispatch(actionCreators.hideMessageWithDelay(delay))
   }
 };
 

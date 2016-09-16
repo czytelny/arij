@@ -1,8 +1,9 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import userListReducer from './settings/userList/userListReducer'
 import userReducer from './settings/user/userReducer'
 import projectListReducer from './settings/projectList/projectListReducer'
 import messagesReducer from './app/messages/messagesReducer'
+import thunk from 'redux-thunk';
 
 // Combine Reducers
 const reducers = combineReducers({
@@ -13,7 +14,10 @@ const reducers = combineReducers({
 });
 
 // Create a store by passing in the reducer
-const store = createStore(reducers);
+const store = createStore(
+  reducers,
+  applyMiddleware(thunk)
+);
 
 // Every time the state changes, log it
 // Note that subscribe() returns a function for unregistering the listener

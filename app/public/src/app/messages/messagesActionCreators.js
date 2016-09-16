@@ -25,8 +25,17 @@ function hideMessage() {
   }
 }
 
+function hideMessageWithDelay(delay) {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch(hideMessage());
+    }, delay)
+  };
+}
+
 export default {
   showSuccessMessage,
   showErrorMessage,
-  hideMessage
+  hideMessage,
+  hideMessageWithDelay
 }
