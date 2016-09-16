@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {Map, fromJS, List} from 'immutable';
+import {Map, fromJS} from 'immutable';
 import messagesReducer from './messagesReducer';
 import {
   SHOW_ERROR_MESSAGE,
@@ -7,7 +7,7 @@ import {
   SHOW_SUCCESS_MESSAGE
 } from './messagesActionTypes'
 
-describe("messagesRedcuer", function () {
+describe("messagesReducer", function () {
   it("has initial state", function () {
     const action = {type: "ANY"};
     const nextState = messagesReducer(undefined, action);

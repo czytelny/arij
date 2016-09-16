@@ -4,8 +4,7 @@ import {
   USER_NAME_CHANGED,
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
-  USER_PASSWORD_CONFIRM_CHANGED,
-  ADD_USER_REQUEST_FAILURE
+  USER_PASSWORD_CONFIRM_CHANGED
 } from '../../../../shared/userActionTypes'
 
 
@@ -16,7 +15,7 @@ const initialState = Map({
     email: null,
     password: null,
     created_at: null,
-    updated_at: null,
+    updated_at: null
   }),
   passwordConfirm: null,
   isValid: false
