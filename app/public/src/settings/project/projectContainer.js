@@ -34,15 +34,19 @@ const ProjectContainer = React.createClass({
 
   render() {
     return (<Project nameChangeHandler={this.props.nameChangeHandler}
-                  submitHandler={this.props.submitHandler}
-                  isValid={this.props.isValid}
-                  />)
+                     shortcutChangeHandler={this.props.shortcutChangeHandler}
+                     leaderChangeHandler={this.props.leaderChangeHandler}
+                    submitHandler={this.props.submitHandler}
+                    isValid={this.props.isValid}
+                    />)
   }
 });
 
 const mapDispatchToProps = function (dispatch, ownProps) {
   return {
     nameChangeHandler: (event)=> dispatch(actions.projectNameChanged(event.target.value)),
+    shortcutChangeHandler: (event)=> dispatch(actions.projectShortcutChanged(event.target.value)),
+    leaderChangeHandler: (event)=> dispatch(actions.projectLeaderChanged(event.target.value)),
     submitHandler: (event) => {
       event.preventDefault();
       socketHandler.emit(ADD_PROJECT_REQUEST, store.getState().projectState.get("project"));

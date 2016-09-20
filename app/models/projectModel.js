@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const projectSchema = new Schema({
   name: {type: String, required: true},
   shortcut: {type: String, required: true, unique: true},
-  leader: {type: String, required: false},
+  leader: {type: String, required: true},
   created_at: Date,
   updated_at: Date
 });
