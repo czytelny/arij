@@ -6,7 +6,7 @@ import {
   USER_EMAIL_CHANGED,
   USER_PASSWORD_CONFIRM_CHANGED
 } from '../../../../shared/userActionTypes'
-import {isRequiredError} from './../../app/validators'
+import {isRequiredError, isEmailFormatError} from './../../app/validators'
 
 const initialState = Map({
   user: Map({
@@ -22,7 +22,8 @@ const initialState = Map({
       required: false
     },
     email: {
-      required: false
+      required: false,
+      format: false
     },
     password: {
       required: false,
@@ -33,21 +34,37 @@ const initialState = Map({
   isValid: false
 });
 
-const stateValidatedName = function (state) {
+const getStateWithValidatedName = function (state) {
   if (isRequiredError(state.getIn(['user', 'name']))) {
     return state.updateIn(['errors', 'name', 'required'], ()=>true);
   }
   return state.updateIn(['errors', 'name', 'required'], ()=>false);
 };
 
+const getStateWithValidatedEmail = function (state) {
+  let resultState;
+  if (isRequiredError(state.getIn(['user', 'email']))) {
+    resultState = state.updateIn(['errors', 'email', 'required'], ()=>true);
+  } else {
+    resultState = state.updateIn(['errors', 'email', 'required'], ()=>false);
+  }
+  if (isEmailFormatError(state.getIn(['user', 'email']))) {
+    resultState = resultState.updateIn(['errors', 'email', 'format'], ()=>true);
+  } else {
+    resultState = resultState.updateIn(['errors', 'email', 'format'], ()=>false);
+  }
+  return resultState;
+};
+
 
 const userReducer = function (state = initialState, action) {
   switch (action.type) {
     case USER_NAME_CHANGED:
-      let changedUser = state.updateIn(['user', 'name'], ()=>action.name);
-      return stateValidatedName(changedUser);
+      return getStateWithValidatedName(state
+        .updateIn(['user', 'name'], ()=>action.name));
     case USER_EMAIL_CHANGED:
-      return state.updateIn(['user', 'email'], ()=>action.email);
+      return getStateWithValidatedEmail(state
+        .updateIn(['user', 'email'], ()=>action.email));
     case USER_PASSWORD_CHANGED:
       let modifiedState = state.updateIn(['user', 'password'], ()=>action.password);
       if (action.password === state.get("passwordConfirm")) {

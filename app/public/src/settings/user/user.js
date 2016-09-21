@@ -21,7 +21,7 @@ const user = ({
         </div>
         <div className="form-group">
           <UserNameInput nameChangeHandler={nameChangeHandler} errors={errors.get("name")}/>
-          <UserEmailInput emailChangeHandler={emailChangeHandler}/>
+          <UserEmailInput emailChangeHandler={emailChangeHandler} errors={errors.get("email")}/>
           <UserPasswordInput isValid={isValid}
                              passwordChangeHandler={passwordChangeHandler}
                              passwordConfirmChangeHandler={passwordConfirmChangeHandler}/>

@@ -25,14 +25,14 @@ describe("userReducer", function () {
     expect(nextState.getIn(["user", "name"])).to.eq("ddd");
   });
 
-  it("USER_NAME_CHANGED validation-on success", function () {
+  it("USER_NAME_CHANGED validation- require pass", function () {
     const initialState = Map();
     const action = {type: USER_NAME_CHANGED, name: "ddd"};
     const nextState = userReducer(initialState, action);
     expect(nextState.getIn(["errors", "name", "required"])).to.eq(false);
   });
 
-  it("USER_NAME_CHANGED validation-on error", function () {
+  it("USER_NAME_CHANGED validation- require error", function () {
     const initialState = Map();
     const action = {type: USER_NAME_CHANGED, name: ""};
     const nextState = userReducer(initialState, action);
@@ -44,6 +44,34 @@ describe("userReducer", function () {
     const action = {type: USER_EMAIL_CHANGED, email: "ddd"};
     const nextState = userReducer(initialState, action);
     expect(nextState.getIn(["user", "email"])).to.eq("ddd");
+  });
+
+  it("USER_EMAIL_CHANGED validation - on require pass", function () {
+    const initialState = Map();
+    const action = {type: USER_EMAIL_CHANGED, email: "ddd"};
+    const nextState = userReducer(initialState, action);
+    expect(nextState.getIn(["errors", "email", "required"])).to.eq(false);
+  });
+
+  it("USER_EMAIL_CHANGED validation - require error", function () {
+    const initialState = Map();
+    const action = {type: USER_EMAIL_CHANGED, email: ""};
+    const nextState = userReducer(initialState, action);
+    expect(nextState.getIn(["errors", "email", "required"])).to.eq(true);
+  });
+
+  it("USER_EMAIL_CHANGED validation- on format pass", function () {
+    const initialState = Map();
+    const action = {type: USER_EMAIL_CHANGED, email: "ddd@wp.pl"};
+    const nextState = userReducer(initialState, action);
+    expect(nextState.getIn(["errors", "email", "format"])).to.eq(false);
+  });
+
+  it("USER_EMAIL_CHANGED validation- on format pass", function () {
+    const initialState = Map();
+    const action = {type: USER_EMAIL_CHANGED, email: "ddd"};
+    const nextState = userReducer(initialState, action);
+    expect(nextState.getIn(["errors", "email", "format"])).to.eq(true);
   });
 
   it("handles USER_PASSWORD_CHANGED and is in sync with confirmation", function () {
