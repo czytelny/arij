@@ -1,4 +1,4 @@
-import {Map} from 'immutable'
+import {Map, fromJS} from 'immutable'
 
 import {
   USER_NAME_CHANGED,
@@ -6,7 +6,7 @@ import {
   USER_EMAIL_CHANGED,
   USER_PASSWORD_CONFIRM_CHANGED
 } from '../../../../shared/userActionTypes'
-
+import {isRequiredError} from './../../app/validators'
 
 const initialState = Map({
   user: Map({
@@ -17,15 +17,35 @@ const initialState = Map({
     created_at: null,
     updated_at: null
   }),
+  errors: fromJS({
+    name: {
+      required: false
+    },
+    email: {
+      required: false
+    },
+    password: {
+      required: false,
+      confirmed: false
+    }
+  }),
   passwordConfirm: null,
   isValid: false
 });
+
+const stateValidatedName = function (state) {
+  if (isRequiredError(state.getIn(['user', 'name']))) {
+    return state.updateIn(['errors', 'name', 'required'], ()=>true);
+  }
+  return state.updateIn(['errors', 'name', 'required'], ()=>false);
+};
 
 
 const userReducer = function (state = initialState, action) {
   switch (action.type) {
     case USER_NAME_CHANGED:
-      return state.updateIn(['user', 'name'], ()=>action.name);
+      let changedUser = state.updateIn(['user', 'name'], ()=>action.name);
+      return stateValidatedName(changedUser);
     case USER_EMAIL_CHANGED:
       return state.updateIn(['user', 'email'], ()=>action.email);
     case USER_PASSWORD_CHANGED:

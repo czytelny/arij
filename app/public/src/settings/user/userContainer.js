@@ -38,6 +38,7 @@ const UserContainer = React.createClass({
                   passwordConfirmChangeHandler={this.props.passwordConfirmChangeHandler}
                   submitHandler={this.props.submitHandler}
                   isValid={this.props.isValid}
+                  errors={this.props.errors}
     />)
   }
 });
@@ -57,7 +58,8 @@ const mapDispatchToProps = function (dispatch, ownProps) {
 
 const mapStateToProps = function (store) {
   return {
-    isValid: store.userState.get("isValid")
+    isValid: store.userState.get("isValid"),
+    errors: store.userState.get("errors")
   };
 };
 

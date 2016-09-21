@@ -25,6 +25,20 @@ describe("userReducer", function () {
     expect(nextState.getIn(["user", "name"])).to.eq("ddd");
   });
 
+  it("USER_NAME_CHANGED validation-on success", function () {
+    const initialState = Map();
+    const action = {type: USER_NAME_CHANGED, name: "ddd"};
+    const nextState = userReducer(initialState, action);
+    expect(nextState.getIn(["errors", "name", "required"])).to.eq(false);
+  });
+
+  it("USER_NAME_CHANGED validation-on error", function () {
+    const initialState = Map();
+    const action = {type: USER_NAME_CHANGED, name: ""};
+    const nextState = userReducer(initialState, action);
+    expect(nextState.getIn(["errors", "name", "required"])).to.eq(true);
+  });
+
   it("handles USER_EMAIL_CHANGED", function () {
     const initialState = Map();
     const action = {type: USER_EMAIL_CHANGED, email: "ddd"};
