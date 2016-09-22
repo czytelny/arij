@@ -1,12 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router'
 
-const ActionButtons = ({isValid}) =>
+const ActionButtons = ({errors}) =>
   <div className="row">
     <div className="col-sm-8">
       <button type="submit" name="submit" value="Submit"
               className="btn btn-primary"
-              disabled={!isValid}>
+              disabled={
+                errors.getIn(["name", "required"]) ||
+                errors.getIn(["email", "required"]) ||
+                errors.getIn(["password", "required"]) ||
+                errors.getIn(["password", "confirmed"])
+              }>
         Add
       </button>
 

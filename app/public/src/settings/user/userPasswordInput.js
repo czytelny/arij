@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserPasswordInput = ({passwordChangeHandler, passwordConfirmChangeHandler, isValid}) =>
+const UserPasswordInput = ({passwordChangeHandler, passwordConfirmChangeHandler, errors}) =>
   <div className="row">
     <div className="col-sm-4">
       <label htmlFor="userPassword">Password</label>
@@ -16,15 +16,13 @@ const UserPasswordInput = ({passwordChangeHandler, passwordConfirmChangeHandler,
       <div className="form-group has-feedback">
         <input onChange={passwordConfirmChangeHandler} type="password" className="form-control"
                id="userPasswordConfirm"/>
-        { isValid
+        { errors.get("required") || errors.get("confirmed")
           ?
-          <div className="has-success">
-            <span className="glyphicon glyphicon-ok form-control-feedback"/>
-          </div>
-          :
           <div className="has-error">
             <span className="glyphicon glyphicon-remove form-control-feedback"/>
           </div>
+          :
+          null
         }
 
       </div>

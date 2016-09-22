@@ -9,7 +9,7 @@ import ActionButtons from './actionButtons'
 const user = ({
   nameChangeHandler, emailChangeHandler,
   passwordChangeHandler, passwordConfirmChangeHandler,
-  submitHandler, isValid, errors
+  submitHandler, errors
 }) =>
   <div className="row">
     <div className="col-sm-6">
@@ -22,12 +22,12 @@ const user = ({
         <div className="form-group">
           <UserNameInput nameChangeHandler={nameChangeHandler} errors={errors.get("name")}/>
           <UserEmailInput emailChangeHandler={emailChangeHandler} errors={errors.get("email")}/>
-          <UserPasswordInput isValid={isValid}
+          <UserPasswordInput errors={errors.get("password")}
                              passwordChangeHandler={passwordChangeHandler}
                              passwordConfirmChangeHandler={passwordConfirmChangeHandler}/>
         </div>
         <div className="form-group">
-          <ActionButtons isValid={isValid}/>
+          <ActionButtons errors={errors}/>
         </div>
       </form>
     </div>

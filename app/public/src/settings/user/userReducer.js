@@ -30,8 +30,7 @@ const initialState = Map({
       confirmed: false
     }
   }),
-  passwordConfirm: null,
-  isValid: false
+  passwordConfirm: null
 });
 
 const getStateWithValidatedName = function (state) {
@@ -41,12 +40,19 @@ const getStateWithValidatedName = function (state) {
 
 const getStateWithValidatedEmail = function (state) {
   let resultState;
-
   resultState = state.updateIn(['errors', 'email', 'required'],
     ()=> isRequiredError(state.getIn(['user', 'email'])));
 
   resultState = resultState.updateIn(['errors', 'email', 'format'],
     ()=> isEmailFormatError(state.getIn(['user', 'email'])));
+  return resultState;
+};
+
+const getStateValidatedPassword = function (state) {
+  let resultState = state.updateIn(['errors', 'password', 'required'],
+    ()=> isRequiredError(state.getIn(['user', 'password'])));
+  resultState = resultState.updateIn(['errors', 'password', 'confirmed'],
+    ()=> (resultState.getIn(['user', 'password']) !== resultState.get('passwordConfirm')));
   return resultState;
 };
 
@@ -60,17 +66,11 @@ const userReducer = function (state = initialState, action) {
       return getStateWithValidatedEmail(state
         .updateIn(['user', 'email'], ()=>action.email));
     case USER_PASSWORD_CHANGED:
-      let modifiedState = state.updateIn(['user', 'password'], ()=>action.password);
-      if (action.password === state.get("passwordConfirm")) {
-        return modifiedState.set("isValid", true);
-      }
-      return modifiedState.set("isValid", false);
+      return getStateValidatedPassword(state
+        .updateIn(['user', 'password'], ()=>action.password));
     case USER_PASSWORD_CONFIRM_CHANGED:
-      let newState = state.set('passwordConfirm', action.password);
-      if (action.password === state.get("user").get("password")) {
-        return newState.set("isValid", true);
-      }
-      return newState.set("isValid", false);
+      return getStateValidatedPassword(state
+        .set('passwordConfirm', action.password));
   }
 
   return state;

@@ -37,13 +37,12 @@ const UserContainer = React.createClass({
                   passwordChangeHandler={this.props.passwordChangeHandler}
                   passwordConfirmChangeHandler={this.props.passwordConfirmChangeHandler}
                   submitHandler={this.props.submitHandler}
-                  isValid={this.props.isValid}
                   errors={this.props.errors}
     />)
   }
 });
 
-const mapDispatchToProps = function (dispatch, ownProps) {
+const mapDispatchToProps = function (dispatch) {
   return {
     nameChangeHandler: (event)=> dispatch(actions.userNameChanged(event.target.value)),
     emailChangeHandler: (event)=> dispatch(actions.userEmailChanged(event.target.value)),
@@ -58,7 +57,6 @@ const mapDispatchToProps = function (dispatch, ownProps) {
 
 const mapStateToProps = function (store) {
   return {
-    isValid: store.userState.get("isValid"),
     errors: store.userState.get("errors")
   };
 };
