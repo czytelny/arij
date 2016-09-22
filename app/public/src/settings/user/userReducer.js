@@ -35,24 +35,18 @@ const initialState = Map({
 });
 
 const getStateWithValidatedName = function (state) {
-  if (isRequiredError(state.getIn(['user', 'name']))) {
-    return state.updateIn(['errors', 'name', 'required'], ()=>true);
-  }
-  return state.updateIn(['errors', 'name', 'required'], ()=>false);
+  return state.updateIn(['errors', 'name', 'required'],
+    ()=> isRequiredError(state.getIn(['user', 'name'])));
 };
 
 const getStateWithValidatedEmail = function (state) {
   let resultState;
-  if (isRequiredError(state.getIn(['user', 'email']))) {
-    resultState = state.updateIn(['errors', 'email', 'required'], ()=>true);
-  } else {
-    resultState = state.updateIn(['errors', 'email', 'required'], ()=>false);
-  }
-  if (isEmailFormatError(state.getIn(['user', 'email']))) {
-    resultState = resultState.updateIn(['errors', 'email', 'format'], ()=>true);
-  } else {
-    resultState = resultState.updateIn(['errors', 'email', 'format'], ()=>false);
-  }
+
+  resultState = state.updateIn(['errors', 'email', 'required'],
+    ()=> isRequiredError(state.getIn(['user', 'email'])));
+
+  resultState = resultState.updateIn(['errors', 'email', 'format'],
+    ()=> isEmailFormatError(state.getIn(['user', 'email'])));
   return resultState;
 };
 
