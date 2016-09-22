@@ -3,7 +3,7 @@ import React from 'react';
 import UserNameInput from './userNameInput'
 import UserEmailInput from './userEmailInput'
 import UserPasswordInput from './userPasswordInput'
-import ActionButtons from './actionButtons'
+import ActionButtons from './userActionButtons'
 
 
 const user = ({
@@ -27,7 +27,7 @@ const user = ({
                              passwordConfirmChangeHandler={passwordConfirmChangeHandler}/>
         </div>
         <div className="form-group">
-          <ActionButtons errors={errors}/>
+          <ActionButtons/>
         </div>
       </form>
     </div>

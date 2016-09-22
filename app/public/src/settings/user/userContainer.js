@@ -50,7 +50,10 @@ const mapDispatchToProps = function (dispatch) {
     passwordConfirmChangeHandler: (event) => dispatch(actions.userPasswordConfirmChanged(event.target.value)),
     submitHandler: (event) => {
       event.preventDefault();
-      socketHandler.emit(ADD_USER_REQUEST, store.getState().userState.get("user"));
+      dispatch(actions.validateUser());
+      if(store.getState().userState.getIn(["errors", "isValid"])){
+        socketHandler.emit(ADD_USER_REQUEST, store.getState().userState.get("user"));
+      }
     }
   }
 };

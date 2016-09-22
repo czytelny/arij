@@ -4,9 +4,10 @@ import {
   USER_NAME_CHANGED,
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
-  USER_PASSWORD_CONFIRM_CHANGED
+  USER_PASSWORD_CONFIRM_CHANGED,
+  VALIDATE_USER
 } from '../../../../shared/userActionTypes'
-import {isRequiredError, isEmailFormatError} from './../../app/validators'
+import {isRequiredError, isEmailFormatError, isFormValid} from './../../app/validators'
 
 const initialState = Map({
   user: Map({
@@ -18,6 +19,7 @@ const initialState = Map({
     updated_at: null
   }),
   errors: fromJS({
+    isValid: false,
     name: {
       required: false
     },
@@ -32,6 +34,10 @@ const initialState = Map({
   }),
   passwordConfirm: null
 });
+
+const updateErrorValidity = function (state) {
+  return state.updateIn(["errors", "isValid"], () => isFormValid(state.get("errors")));
+};
 
 const getStateWithValidatedName = function (state) {
   return state.updateIn(['errors', 'name', 'required'],
@@ -71,6 +77,8 @@ const userReducer = function (state = initialState, action) {
     case USER_PASSWORD_CONFIRM_CHANGED:
       return getStateValidatedPassword(state
         .set('passwordConfirm', action.password));
+    case VALIDATE_USER:
+      return updateErrorValidity(state)
   }
 
   return state;
