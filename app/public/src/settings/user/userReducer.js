@@ -5,7 +5,9 @@ import {
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
   USER_PASSWORD_CONFIRM_CHANGED,
-  VALIDATE_USER
+  VALIDATE_USER,
+  SAVING_USER_IN_PROGRESS,
+  SAVING_USER_FINISHED
 } from '../../../../shared/userActionTypes'
 import {isRequiredError, isEmailFormatError, isFormValid} from './../../app/validators'
 
@@ -32,7 +34,8 @@ const initialState = Map({
       confirmed: false
     }
   }),
-  passwordConfirm: null
+  passwordConfirm: null,
+  savingInProgress: false
 });
 
 const updateFormValidity = function (state) {
@@ -83,7 +86,11 @@ const userReducer = function (state = initialState, action) {
       return validatedPassword(state
         .set('passwordConfirm', action.password));
     case VALIDATE_USER:
-      return updateFormValidity(state)
+      return updateFormValidity(state);
+    case SAVING_USER_IN_PROGRESS:
+      return state.set("savingInProgress", true);
+    case SAVING_USER_FINISHED:
+      return state.set("savingInProgress", false);
   }
 
   return state;

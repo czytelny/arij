@@ -1,11 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router'
 
-const ActionButtons = () =>
+const ActionButtons = ({savingInProgress}) =>
   <div className="row">
     <div className="col-sm-8">
       <button type="submit" name="submit" value="Submit"
-              className="btn btn-primary">
+              className="btn btn-primary"
+              disabled={savingInProgress}>
         Add
       </button>
 

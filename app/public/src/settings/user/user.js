@@ -9,7 +9,7 @@ import ActionButtons from './userActionButtons'
 const user = ({
   nameChangeHandler, emailChangeHandler,
   passwordChangeHandler, passwordConfirmChangeHandler,
-  submitHandler, errors
+  submitHandler, errors, savingInProgress
 }) =>
   <div className="row">
     <div className="col-sm-6">
@@ -27,7 +27,7 @@ const user = ({
                              passwordConfirmChangeHandler={passwordConfirmChangeHandler}/>
         </div>
         <div className="form-group">
-          <ActionButtons/>
+          <ActionButtons savingInProgress={savingInProgress}/>
         </div>
       </form>
     </div>

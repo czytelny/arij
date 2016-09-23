@@ -17,10 +17,12 @@ import {
 const UserContainer = React.createClass({
   componentDidMount() {
     socketHandler.on(ADD_USER_REQUEST_SUCCESS, () => {
+      store.dispatch(actions.savingFinished());
       store.dispatch(messageActions.showSuccessMessage("User added successfully!"));
       browserHistory.goBack();
     });
     socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) => {
+      store.dispatch(actions.savingFinished());
       store.dispatch(messageActions.showErrorMessage(`Sorry, adding user failed: ${response.errmsg}`));
       console.log("user not added: " + JSON.stringify(response))
     });
@@ -38,6 +40,7 @@ const UserContainer = React.createClass({
                   passwordConfirmChangeHandler={this.props.passwordConfirmChangeHandler}
                   submitHandler={this.props.submitHandler}
                   errors={this.props.errors}
+                  savingInProgress={this.props.savingInProgress}
     />)
   }
 });
@@ -52,6 +55,7 @@ const mapDispatchToProps = function (dispatch) {
       event.preventDefault();
       dispatch(actions.validateUser());
       if (store.getState().userState.getIn(["errors", "isValid"])) {
+        dispatch(actions.savingInProgress());
         socketHandler.emit(ADD_USER_REQUEST, store.getState().userState.get("user"));
       } else {
         store.dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
@@ -62,7 +66,8 @@ const mapDispatchToProps = function (dispatch) {
 
 const mapStateToProps = function (store) {
   return {
-    errors: store.userState.get("errors")
+    errors: store.userState.get("errors"),
+    savingInProgress: store.userState.get("savingInProgress")
   };
 };
 

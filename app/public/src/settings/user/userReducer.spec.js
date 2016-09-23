@@ -6,7 +6,9 @@ import {
   USER_NAME_CHANGED,
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
-  USER_PASSWORD_CONFIRM_CHANGED
+  USER_PASSWORD_CONFIRM_CHANGED,
+  SAVING_USER_IN_PROGRESS,
+  SAVING_USER_FINISHED
 } from '../../../../shared/userActionTypes'
 
 
@@ -139,6 +141,20 @@ describe("userReducer", function () {
     const action = {type: USER_PASSWORD_CONFIRM_CHANGED, password: "zzz"};
     const nextState = userReducer(initialState, action);
     expect(nextState.getIn(["errors", "password", "confirmed"])).to.eq(true);
+  });
+
+  it("handles SAVING_USER_IN_PROGRESS", function () {
+    const initialState = Map({});
+    const action = {type: SAVING_USER_IN_PROGRESS};
+    const nextState = userReducer(initialState, action);
+    expect(nextState.get("savingInProgress")).to.eq(true);
+  });
+
+  it("handles SAVING_USER_FINISHED", function () {
+    const initialState = Map({});
+    const action = {type: SAVING_USER_FINISHED};
+    const nextState = userReducer(initialState, action);
+    expect(nextState.get("savingInProgress")).to.eq(false);
   });
 
 });

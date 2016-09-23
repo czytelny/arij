@@ -3,8 +3,9 @@ import {
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
   USER_PASSWORD_CONFIRM_CHANGED,
-  ADD_USER_REQUEST,
-  VALIDATE_USER
+  VALIDATE_USER,
+  SAVING_USER_IN_PROGRESS,
+  SAVING_USER_FINISHED
 } from '../../../../shared/userActionTypes'
 
 
@@ -36,25 +37,30 @@ function userEmailChanged(email) {
   }
 }
 
-function addUserRequest(user){
-  return {
-    type: ADD_USER_REQUEST,
-    user: user
-  }
-}
-
 function validateUser() {
   return {
     type: VALIDATE_USER
   }
 }
 
+function savingInProgress() {
+  return {
+    type: SAVING_USER_IN_PROGRESS
+  }
+}
+
+function savingFinished() {
+  return {
+    type: SAVING_USER_FINISHED
+  }
+}
 
 export default {
   userNameChanged,
   userPasswordChanged,
   userEmailChanged,
   userPasswordConfirmChanged,
-  addUserRequest,
-  validateUser
+  validateUser,
+  savingInProgress,
+  savingFinished
 }
