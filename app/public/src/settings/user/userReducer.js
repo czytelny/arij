@@ -35,16 +35,21 @@ const initialState = Map({
   passwordConfirm: null
 });
 
-const updateErrorValidity = function (state) {
-  return state.updateIn(["errors", "isValid"], () => isFormValid(state.get("errors")));
+const updateFormValidity = function (state) {
+  const nameValidated = validatedName(state);
+  const emailValidated = validatedEmail(nameValidated);
+  const passwordValidated = validatedPassword(emailValidated);
+
+  return passwordValidated.updateIn(["errors", "isValid"],
+    () => isFormValid(passwordValidated.get("errors")));
 };
 
-const getStateWithValidatedName = function (state) {
+const validatedName = function (state) {
   return state.updateIn(['errors', 'name', 'required'],
     ()=> isRequiredError(state.getIn(['user', 'name'])));
 };
 
-const getStateWithValidatedEmail = function (state) {
+const validatedEmail = function (state) {
   let resultState;
   resultState = state.updateIn(['errors', 'email', 'required'],
     ()=> isRequiredError(state.getIn(['user', 'email'])));
@@ -54,7 +59,7 @@ const getStateWithValidatedEmail = function (state) {
   return resultState;
 };
 
-const getStateValidatedPassword = function (state) {
+const validatedPassword = function (state) {
   let resultState = state.updateIn(['errors', 'password', 'required'],
     ()=> isRequiredError(state.getIn(['user', 'password'])));
   resultState = resultState.updateIn(['errors', 'password', 'confirmed'],
@@ -66,19 +71,19 @@ const getStateValidatedPassword = function (state) {
 const userReducer = function (state = initialState, action) {
   switch (action.type) {
     case USER_NAME_CHANGED:
-      return getStateWithValidatedName(state
+      return validatedName(state
         .updateIn(['user', 'name'], ()=>action.name));
     case USER_EMAIL_CHANGED:
-      return getStateWithValidatedEmail(state
+      return validatedEmail(state
         .updateIn(['user', 'email'], ()=>action.email));
     case USER_PASSWORD_CHANGED:
-      return getStateValidatedPassword(state
+      return validatedPassword(state
         .updateIn(['user', 'password'], ()=>action.password));
     case USER_PASSWORD_CONFIRM_CHANGED:
-      return getStateValidatedPassword(state
+      return validatedPassword(state
         .set('passwordConfirm', action.password));
     case VALIDATE_USER:
-      return updateErrorValidity(state)
+      return updateFormValidity(state)
   }
 
   return state;

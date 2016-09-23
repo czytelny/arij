@@ -21,7 +21,7 @@ const UserContainer = React.createClass({
       browserHistory.goBack();
     });
     socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) => {
-      store.dispatch(messageActions.showErrorMessage("Sorry, adding user failed"));
+      store.dispatch(messageActions.showErrorMessage(`Sorry, adding user failed: ${response.errmsg}`));
       console.log("user not added: " + JSON.stringify(response))
     });
   },
@@ -51,8 +51,10 @@ const mapDispatchToProps = function (dispatch) {
     submitHandler: (event) => {
       event.preventDefault();
       dispatch(actions.validateUser());
-      if(store.getState().userState.getIn(["errors", "isValid"])){
+      if (store.getState().userState.getIn(["errors", "isValid"])) {
         socketHandler.emit(ADD_USER_REQUEST, store.getState().userState.get("user"));
+      } else {
+        store.dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
       }
     }
   }

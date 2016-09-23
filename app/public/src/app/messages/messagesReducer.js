@@ -6,7 +6,7 @@ import {
 } from './messagesActionTypes'
 
 const initialState = Map({
-  hidingDelay: 2500,
+  hidingDelay: 3500,
   defaultErrorMessage: "I don't know what happened, I beg your pardon.",
   errorMessage: null,
   successMessage: null,
