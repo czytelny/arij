@@ -53,3 +53,8 @@ div.mainMenu {
   position: relative;
   left: -50%;
 }
+
+.settingsMenu{
+  padding: 1em;
+  background-color: #d5d5d5;
+}

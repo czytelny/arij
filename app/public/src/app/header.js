@@ -11,7 +11,8 @@ const Header = () =>
     <div className="navbar mainMenu text-right">
       <div className="col-sm-12">
         <Link to="/settings">
-          <button className="btn fa fa-cogs fa-2x"/>
+          <button className="btn btn-default fa fa-cogs fa-2x">
+            </button>
         </Link>
       </div>
 

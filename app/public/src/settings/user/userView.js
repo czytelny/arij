@@ -10,7 +10,7 @@ const UserView = () =>  <div>
   </div>
   <div className="row content">
     <div className="col-sm-2">
-      <SettingsMenu/>
+
     </div>
     <div className="col-sm-9 mainView">
       <div className="col-sm-12">
