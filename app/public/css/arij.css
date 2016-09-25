@@ -1,10 +1,12 @@
 body {
-  background-color: #e8e8e8;
+  background-color: #f3f3f3;
 }
-.navbar-brand{
+.navbar-default > .navbar-brand{
   font-size: 32px;
   line-height: 34px;
   height: 61px;
+  color: #FFB400;
+  font-weight: 600;
 }
 
 div.mainMenu {
@@ -56,5 +58,4 @@ div.mainMenu {
 
 .settingsMenu{
   padding: 1em;
-  background-color: #d5d5d5;
 }

@@ -4,7 +4,7 @@ import Header from '../../app/header'
 import UserContainer from './userContainer'
 import SettingsMenu from '../settingsMenu'
 
-const UserView = () =>  <div>
+const UserView = ({params}) =>  <div>
   <div className="row">
     <Header/>
   </div>
@@ -12,9 +12,9 @@ const UserView = () =>  <div>
     <div className="col-sm-2">
 
     </div>
-    <div className="col-sm-9 mainView">
+    <div className="col-sm-10 mainView">
       <div className="col-sm-12">
-        <UserContainer/>
+        <UserContainer userId={params.userId}/>
       </div>
     </div>
   </div>

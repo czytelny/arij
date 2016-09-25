@@ -5,7 +5,7 @@ const Header = () =>
   <div>
     <div className="navbar navbar-main navbar-default">
       <div className="navbar-header navbar-brand">
-        ARIJ
+          ARIJ
       </div>
     </div>
     <div className="navbar mainMenu text-right">

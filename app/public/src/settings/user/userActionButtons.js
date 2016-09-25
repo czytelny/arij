@@ -10,7 +10,7 @@ const ActionButtons = ({savingInProgress}) =>
         Add
       </button>
 
-      <Link to="/settings/user" className="btn btn-link pull-right">
+      <Link to="/settings/users" className="btn btn-link pull-right">
         Back
       </Link>
     </div>

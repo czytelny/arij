@@ -11,7 +11,7 @@ const SettingsMenu = () =>
         </Link>
       </li>
       <li>
-        <Link to="/settings/user" activeClassName="chosen"
+        <Link to="/settings/users" activeClassName="chosen"
               className="btn btn-lg btn-block link-unstyled">
           Users
         </Link>

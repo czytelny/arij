@@ -19,8 +19,9 @@ render(
       <Router history={browserHistory}>
         <Route path="/" component={MainView}/>
         <Route path="/settings" component={SettingsView}/>
-        <Route path="/settings/user" component={UserListView}/>
-        <Route path="/settings/user/new" component={UserView}/>
+        <Route path="/settings/users" component={UserListView}/>
+        <Route path="/settings/user" component={UserView}/>
+        <Route path="/settings/user/:userId" component={UserView}/>
         <Route path="/settings/project" component={ProjectListView}/>
         <Route path="/settings/project/new" component={ProjectView}/>
       </Router>

@@ -14,10 +14,10 @@ const UserListView = () => <div>
     <div className="col-sm-2">
       <SettingsMenu/>
     </div>
-    <div className="col-sm-9 mainView">
+    <div className="col-sm-10 mainView">
       <div className="col-sm-12">
         <h1>
-          Users <Link to="/settings/user/new" className="badge">New user</Link>
+          Users <Link to="/settings/user" className="badge">New user</Link>
         </h1>
         <UserListContainer/>
       </div>

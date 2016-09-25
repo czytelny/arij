@@ -10,11 +10,15 @@ import {browserHistory} from 'react-router'
 import {
   ADD_USER_REQUEST,
   ADD_USER_REQUEST_SUCCESS,
-  ADD_USER_REQUEST_FAILURE
+  ADD_USER_REQUEST_FAILURE,
+  GET_USER_REQUEST
 } from '../../../../shared/userActionTypes'
 
 
 const UserContainer = React.createClass({
+  _fetchUser() {
+    socketHandler.emit(GET_USER_REQUEST, this.props.userId);
+  },
   componentDidMount() {
     socketHandler.on(ADD_USER_REQUEST_SUCCESS, () => {
       store.dispatch(actions.savingFinished());
@@ -24,8 +28,10 @@ const UserContainer = React.createClass({
     socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) => {
       store.dispatch(actions.savingFinished());
       store.dispatch(messageActions.showErrorMessage(`Sorry, adding user failed: ${response.errmsg}`));
-      console.log("user not added: " + JSON.stringify(response))
     });
+    if (this.props.userId){
+      this._fetchUser();
+    }
   },
 
   componentWillUnmount(){
@@ -64,8 +70,9 @@ const mapDispatchToProps = function (dispatch) {
   }
 };
 
-const mapStateToProps = function (store) {
+const mapStateToProps = function (store, ownProps) {
   return {
+    userId: ownProps.userId,
     errors: store.userState.get("errors"),
     savingInProgress: store.userState.get("savingInProgress")
   };
