@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {Map} from 'immutable';
+import {Map, fromJS} from 'immutable';
 
 import userReducer from './userReducer'
 import {
@@ -8,7 +8,11 @@ import {
   USER_EMAIL_CHANGED,
   USER_PASSWORD_CONFIRM_CHANGED,
   SAVING_USER_IN_PROGRESS,
-  SAVING_USER_FINISHED
+  SAVING_USER_FINISHED,
+  VALIDATE_USER,
+  VALIDATE_USER_EDIT,
+  GET_USER_REQUEST_SUCCESS,
+  INITIALIZE_NEW_USER
 } from '../../../../shared/userActionTypes'
 
 
@@ -118,7 +122,7 @@ describe("userReducer", function () {
 
   it("handles USER_PASSWORD_CONFIRM_CHANGED", function () {
     const initialState = Map({
-      user: Map({password:"ddd"})
+      user: Map({password: "ddd"})
     });
     const action = {type: USER_PASSWORD_CONFIRM_CHANGED, password: "ddd"};
     const nextState = userReducer(initialState, action);
@@ -127,7 +131,7 @@ describe("userReducer", function () {
 
   it("handles USER_PASSWORD_CONFIRM_CHANGED validation-confirmation pass", function () {
     const initialState = Map({
-      user: Map({password:"aaa"})
+      user: Map({password: "aaa"})
     });
     const action = {type: USER_PASSWORD_CONFIRM_CHANGED, password: "aaa"};
     const nextState = userReducer(initialState, action);
@@ -136,7 +140,7 @@ describe("userReducer", function () {
 
   it("handles USER_PASSWORD_CONFIRM_CHANGED validation-confirmation error", function () {
     const initialState = Map({
-      user: Map({password:"aaa"})
+      user: Map({password: "aaa"})
     });
     const action = {type: USER_PASSWORD_CONFIRM_CHANGED, password: "zzz"};
     const nextState = userReducer(initialState, action);
@@ -156,5 +160,54 @@ describe("userReducer", function () {
     const nextState = userReducer(initialState, action);
     expect(nextState.get("savingInProgress")).to.eq(false);
   });
+
+  it("handles VALIDATE_USER", function () {
+    const initialState = fromJS({
+      user: {
+        name: null,
+        email: null,
+        password: null
+      }
+    });
+    const action = {type: VALIDATE_USER};
+    const nextState = userReducer(initialState, action);
+
+    expect(nextState.getIn(["errors", "isValid"])).to.eq(false);
+  });
+
+  it("handles VALIDATE_USER_EDIT true", function () {
+    const initialState = fromJS({
+      user: {
+        name: "name"
+      }
+    });
+    const action = {type: VALIDATE_USER_EDIT};
+    const nextState = userReducer(initialState, action);
+
+    expect(nextState.getIn(["errors", "isValid"])).to.eq(true);
+  });
+
+  it("handles VALIDATE_USER_EDIT false", function () {
+    const initialState = fromJS({
+      user: {name: ""}
+    });
+    const action = {type: VALIDATE_USER_EDIT};
+    const nextState = userReducer(initialState, action);
+
+    expect(nextState.getIn(["errors", "isValid"])).to.eq(false);
+  });
+
+  it("handles GET_USER_REQUEST_SUCCESS", function () {
+    const initialState = Map({});
+    const action = {
+      type: GET_USER_REQUEST_SUCCESS,
+      user: {name: "czesiek"}
+    };
+    const nextState = userReducer(initialState, action);
+
+    expect(nextState.get("user"))
+      .to.eq(fromJS({name: "czesiek"}));
+  });
+
 
 });

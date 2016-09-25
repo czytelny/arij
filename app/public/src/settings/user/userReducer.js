@@ -41,7 +41,7 @@ const initialState = Map({
   savingInProgress: false
 });
 
-const updateFormValidity = function (state) {
+const validateUser = function (state) {
   const nameValidated = validatedName(state);
   const emailValidated = validatedEmail(nameValidated);
   const passwordValidated = validatedPassword(emailValidated);
@@ -50,7 +50,7 @@ const updateFormValidity = function (state) {
     () => isFormValid(passwordValidated.get("errors")));
 };
 
-const updateEditUserFormValidity = function (state) {
+const validateUserEdit = function (state) {
   const nameValidated = validatedName(state);
   return nameValidated.updateIn(["errors", "isValid"],
     () => isFormValid(nameValidated.get("errors")));
@@ -95,9 +95,9 @@ const userReducer = function (state = initialState, action) {
       return validatedPassword(state
         .set('passwordConfirm', action.password));
     case VALIDATE_USER:
-      return updateFormValidity(state);
+      return validateUser(state);
     case VALIDATE_USER_EDIT:
-      return updateEditUserFormValidity(state);
+      return validateUserEdit(state);
     case SAVING_USER_IN_PROGRESS:
       return state.set("savingInProgress", true);
     case SAVING_USER_FINISHED:
