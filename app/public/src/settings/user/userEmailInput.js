@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserEmailInput = ({emailChangeHandler, errors}) =>
+const UserEmailInput = ({emailChangeHandler, errors, emailValue}) =>
   <div className="row">
     <div className="col-sm-8">
       <label htmlFor="userEmail">Email</label>
@@ -8,7 +8,12 @@ const UserEmailInput = ({emailChangeHandler, errors}) =>
         <div className="input-group-addon">
           <span className="b"><strong>@</strong></span>
         </div>
-        <input onBlur={emailChangeHandler} type="text" className="form-control" id="userEmail" placeholder="Email"/>
+        <input type="text"
+               value={emailValue}
+               onBlur={emailChangeHandler}
+               className="form-control"
+               id="userEmail"
+               placeholder="Email"/>
 
         {errors.get("required") || errors.get("format") ?
           <div className="has-error">

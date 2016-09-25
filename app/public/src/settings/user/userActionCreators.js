@@ -5,7 +5,9 @@ import {
   USER_PASSWORD_CONFIRM_CHANGED,
   VALIDATE_USER,
   SAVING_USER_IN_PROGRESS,
-  SAVING_USER_FINISHED
+  SAVING_USER_FINISHED,
+  GET_USER_REQUEST_SUCCESS,
+  INITIALIZE_NEW_USER
 } from '../../../../shared/userActionTypes'
 
 
@@ -55,6 +57,19 @@ function savingFinished() {
   }
 }
 
+function getUserRequestSuccess(user) {
+  return {
+    type: GET_USER_REQUEST_SUCCESS,
+    user: user
+  }
+}
+
+function initializeNewUser() {
+  return {
+    type: INITIALIZE_NEW_USER
+  }
+}
+
 export default {
   userNameChanged,
   userPasswordChanged,
@@ -62,5 +77,7 @@ export default {
   userPasswordConfirmChanged,
   validateUser,
   savingInProgress,
-  savingFinished
+  savingFinished,
+  getUserRequestSuccess,
+  initializeNewUser
 }

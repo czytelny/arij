@@ -20,8 +20,10 @@ const user = ({
           </div>
         </div>
         <div className="form-group">
-          <UserNameInput nameChangeHandler={nameChangeHandler} errors={errors.get("name")}/>
-          <UserEmailInput emailChangeHandler={emailChangeHandler} errors={errors.get("email")}/>
+          <UserNameInput nameChangeHandler={nameChangeHandler}
+                         errors={errors.get("name")}/>
+          <UserEmailInput emailChangeHandler={emailChangeHandler}
+                          errors={errors.get("email")}/>
           <UserPasswordInput errors={errors.get("password")}
                              passwordChangeHandler={passwordChangeHandler}
                              passwordConfirmChangeHandler={passwordConfirmChangeHandler}/>

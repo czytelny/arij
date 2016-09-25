@@ -7,7 +7,9 @@ import {
   USER_PASSWORD_CONFIRM_CHANGED,
   VALIDATE_USER,
   SAVING_USER_IN_PROGRESS,
-  SAVING_USER_FINISHED
+  SAVING_USER_FINISHED,
+  GET_USER_REQUEST_SUCCESS,
+  INITIALIZE_NEW_USER
 } from '../../../../shared/userActionTypes'
 import {isRequiredError, isEmailFormatError, isFormValid} from './../../app/validators'
 
@@ -91,6 +93,13 @@ const userReducer = function (state = initialState, action) {
       return state.set("savingInProgress", true);
     case SAVING_USER_FINISHED:
       return state.set("savingInProgress", false);
+    case GET_USER_REQUEST_SUCCESS:
+      return state.set("user", fromJS(action.user));
+    case INITIALIZE_NEW_USER:
+      return state.merge({
+        user: initialState.get("user"),
+        errors: initialState.get("errors")
+      });
   }
 
   return state;
