@@ -8,10 +8,10 @@ const UserNameInput = ({nameChangeHandler, errors, nameValue}) =>
         <div className="input-group-addon">
           <i className="fa fa-child" aria-hidden="true"/>
         </div>
-        <input onBlur={nameChangeHandler}
-               value={nameValue}
+        <input type="text"
                id="userName"
-               type="text"
+               value={nameValue}
+               onChange={nameChangeHandler}
                className="form-control"
                placeholder="User name"/>
 

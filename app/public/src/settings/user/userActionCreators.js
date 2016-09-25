@@ -7,7 +7,8 @@ import {
   SAVING_USER_IN_PROGRESS,
   SAVING_USER_FINISHED,
   GET_USER_REQUEST_SUCCESS,
-  INITIALIZE_NEW_USER
+  INITIALIZE_NEW_USER ,
+  VALIDATE_USER_EDIT
 } from '../../../../shared/userActionTypes'
 
 
@@ -45,6 +46,12 @@ function validateUser() {
   }
 }
 
+function validateUserEdit() {
+  return {
+    type: VALIDATE_USER_EDIT
+  }
+}
+
 function savingInProgress() {
   return {
     type: SAVING_USER_IN_PROGRESS
@@ -79,5 +86,6 @@ export default {
   savingInProgress,
   savingFinished,
   getUserRequestSuccess,
-  initializeNewUser
+  initializeNewUser,
+  validateUserEdit
 }

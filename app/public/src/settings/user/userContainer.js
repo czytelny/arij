@@ -14,7 +14,11 @@ import {
   ADD_USER_REQUEST_SUCCESS,
   ADD_USER_REQUEST_FAILURE,
   GET_USER_REQUEST,
-  GET_USER_REQUEST_SUCCESS
+  GET_USER_REQUEST_SUCCESS,
+  MODIFY_USER_REQUEST,
+  MODIFY_USER_REQUEST_SUCCESS,
+  MODIFY_USER_REQUEST_FAILURE,
+  GET_USER_REQUEST_FAILURE
 } from '../../../../shared/userActionTypes'
 
 
@@ -25,7 +29,7 @@ const UserContainer = React.createClass({
   _initializeNewUser() {
     store.dispatch(actions.initializeNewUser());
   },
-  componentDidMount() {
+  _addSocketListeners() {
     socketHandler.on(ADD_USER_REQUEST_SUCCESS, () => {
       store.dispatch(actions.savingFinished());
       store.dispatch(messageActions.showSuccessMessage("User added successfully!"));
@@ -38,16 +42,34 @@ const UserContainer = React.createClass({
     socketHandler.on(GET_USER_REQUEST_SUCCESS, (user) => {
       store.dispatch(actions.getUserRequestSuccess(user));
     });
+    socketHandler.on(GET_USER_REQUEST_FAILURE, (user) => {
+      store.dispatch(actions.savingFinished());
+    });
+    socketHandler.on(MODIFY_USER_REQUEST_SUCCESS, () => {
+      store.dispatch(actions.savingFinished());
+      store.dispatch(messageActions.showSuccessMessage("User modified successfully!"));
+    });
+    socketHandler.on(MODIFY_USER_REQUEST_FAILURE, (err) => {
+      store.dispatch(actions.savingFinished());
+      store.dispatch(messageActions.showErrorMessage(`Sorry, user modification failed: ${response.errmsg}`));
+    });
+  },
+  componentDidMount() {
     if (this.props.userId) {
       this._fetchUser();
     } else {
       this._initializeNewUser();
     }
+    this._addSocketListeners();
   },
 
   componentWillUnmount(){
     socketHandler.removeAllListeners(ADD_USER_REQUEST_SUCCESS);
-    socketHandler.removeAllListeners(ADD_USER_REQUEST_FAILURE)
+    socketHandler.removeAllListeners(ADD_USER_REQUEST_FAILURE);
+    socketHandler.removeAllListeners(GET_USER_REQUEST_SUCCESS);
+    socketHandler.removeAllListeners(GET_USER_REQUEST_FAILURE);
+    socketHandler.removeAllListeners(MODIFY_USER_REQUEST_SUCCESS);
+    socketHandler.removeAllListeners(MODIFY_USER_REQUEST_FAILURE);
   },
 
   render() {
@@ -65,7 +87,7 @@ const UserContainer = React.createClass({
     } else {
       return (
         <UserEdit nameChangeHandler={this.props.nameChangeHandler}
-                  submitHandler={this.props.submitHandler}
+                  submitHandler={this.props.submitEditHandler}
                   errors={this.props.errors}
                   savingInProgress={this.props.savingInProgress}
                   user={this.props.user}
@@ -86,6 +108,16 @@ const mapDispatchToProps = function (dispatch) {
       if (store.getState().userState.getIn(["errors", "isValid"])) {
         dispatch(actions.savingInProgress());
         socketHandler.emit(ADD_USER_REQUEST, store.getState().userState.get("user"));
+      } else {
+        store.dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
+      }
+    },
+    submitEditHandler: (event) => {
+      event.preventDefault();
+      dispatch(actions.validateUserEdit());
+      if (store.getState().userState.getIn(["errors", "isValid"])) {
+        dispatch(actions.savingInProgress());
+        socketHandler.emit(MODIFY_USER_REQUEST, store.getState().userState.get("user"));
       } else {
         store.dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
       }

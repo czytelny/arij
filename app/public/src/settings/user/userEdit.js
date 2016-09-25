@@ -1,9 +1,7 @@
 import React from 'react';
 
 import UserNameInput from './userNameInput'
-import UserEmailInput from './userEmailInput'
-import UserPasswordInput from './userPasswordInput'
-import ActionButtons from './userActionButtons'
+import ActionButtons from './userEditActionButtons'
 
 
 const userEdit = ({
@@ -19,11 +17,12 @@ const userEdit = ({
           </div>
         </div>
         <div className="form-group">
-          {/*<UserNameInput nameValue={user.get("name")}*/}
-                         {/*nameChangeHandler={nameChangeHandler}*/}
-                         {/*errors={errors.get("name")}/>*/}
-          {/*<UserEmailInput emailValue={user.get("email")}/>*/}
-          {/*<UserPasswordInput />*/}
+          <UserNameInput nameValue={user.get("name") || ""}
+                         nameChangeHandler={nameChangeHandler}
+                         errors={errors.get("name")}/>
+
+          <h5>Email: {user.get("email")}</h5>
+          <h5>Password: *** <p className="btn btn-default btn-xs">reset</p></h5>
         </div>
         <div className="form-group">
           <ActionButtons savingInProgress={savingInProgress}/>

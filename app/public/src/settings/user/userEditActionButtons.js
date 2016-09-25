@@ -1,13 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router'
 
-const UserActionButtons = ({savingInProgress}) =>
+const UserEditActionButtons = ({savingInProgress}) =>
   <div className="row">
     <div className="col-sm-8">
-      <button type="submit" name="submit" value="Submit"
+      <button type="submit"
+              name="submit"
+              value="Submit"
               className="btn btn-primary"
               disabled={savingInProgress}>
-        Add
+        Update
       </button>
 
       <Link to="/settings/users" className="btn btn-link pull-right">
@@ -17,5 +19,5 @@ const UserActionButtons = ({savingInProgress}) =>
   </div>;
 
 
-export default UserActionButtons;
+export default UserEditActionButtons;
 

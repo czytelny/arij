@@ -9,7 +9,8 @@ import {
   SAVING_USER_IN_PROGRESS,
   SAVING_USER_FINISHED,
   GET_USER_REQUEST_SUCCESS,
-  INITIALIZE_NEW_USER
+  INITIALIZE_NEW_USER,
+  VALIDATE_USER_EDIT
 } from '../../../../shared/userActionTypes'
 import {isRequiredError, isEmailFormatError, isFormValid} from './../../app/validators'
 
@@ -47,6 +48,12 @@ const updateFormValidity = function (state) {
 
   return passwordValidated.updateIn(["errors", "isValid"],
     () => isFormValid(passwordValidated.get("errors")));
+};
+
+const updateEditUserFormValidity = function (state) {
+  const nameValidated = validatedName(state);
+  return nameValidated.updateIn(["errors", "isValid"],
+    () => isFormValid(nameValidated.get("errors")));
 };
 
 const validatedName = function (state) {
@@ -89,6 +96,8 @@ const userReducer = function (state = initialState, action) {
         .set('passwordConfirm', action.password));
     case VALIDATE_USER:
       return updateFormValidity(state);
+    case VALIDATE_USER_EDIT:
+      return updateEditUserFormValidity(state);
     case SAVING_USER_IN_PROGRESS:
       return state.set("savingInProgress", true);
     case SAVING_USER_FINISHED:

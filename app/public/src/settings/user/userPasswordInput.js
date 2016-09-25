@@ -8,14 +8,21 @@ const UserPasswordInput = ({passwordChangeHandler, passwordConfirmChangeHandler,
         <div className="input-group-addon">
           <i className="fa fa-asterisk" aria-hidden="true"/>
         </div>
-        <input onChange={passwordChangeHandler} type="password" className="form-control" id="userPassword"/>
+        <input type="password"
+               id="userPassword"
+               onChange={passwordChangeHandler}
+               className="form-control"
+               />
       </div>
     </div>
     <div className="col-sm-4">
       <label htmlFor="userPasswordConfirm">Confirm password</label>
       <div className="form-group has-feedback">
-        <input onChange={passwordConfirmChangeHandler} type="password" className="form-control"
-               id="userPasswordConfirm"/>
+        <input type="password"
+               id="userPasswordConfirm"
+               onChange={passwordConfirmChangeHandler}
+               className="form-control"
+               />
         { errors.get("required") || errors.get("confirmed")
           ?
           <div className="has-error">

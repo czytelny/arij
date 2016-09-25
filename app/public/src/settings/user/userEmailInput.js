@@ -9,17 +9,19 @@ const UserEmailInput = ({emailChangeHandler, errors, emailValue}) =>
           <span className="b"><strong>@</strong></span>
         </div>
         <input type="text"
-               value={emailValue}
-               onBlur={emailChangeHandler}
-               className="form-control"
                id="userEmail"
+               value={emailValue}
+               onChange={emailChangeHandler}
+               className="form-control"
                placeholder="Email"/>
 
-        {errors.get("required") || errors.get("format") ?
+        {
+         errors.get("required") || errors.get("format") ?
           <div className="has-error">
             <span className="glyphicon glyphicon-remove form-control-feedback"/>
           </div>
-          : null}
+          : null
+        }
       </div>
     </div>
   </div>;

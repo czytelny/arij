@@ -18,12 +18,17 @@ module.exports = function (io) {
       )
     });
 
-
-
     socket.on(actions.ADD_USER_REQUEST, function (user) {
       userService.save(user).then(
         (data) => io.emit(actions.ADD_USER_REQUEST_SUCCESS, data),
         (err) => io.emit(actions.ADD_USER_REQUEST_FAILURE, err)
+      )
+    });
+
+    socket.on(actions.MODIFY_USER_REQUEST, function (user) {
+      userService.update(user).then(
+        (data) => io.emit(actions.MODIFY_USER_REQUEST_SUCCESS, data),
+        (err) => io.emit(actions.MODIFY_USER_REQUEST_FAILURE, err)
       )
     })
   });
