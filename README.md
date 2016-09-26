@@ -25,9 +25,10 @@ Project is in early development (something like pre-alpha 0.0.1 phase), so if yo
 - `npm run server` starts nodejs server in development mode (through babel-node - to transpile ES6 in the fly)
 - `npm run test:server` starts mocha tests for *backend*
 - `npm run test:server:watch` like `test:server` but in watch mode
-- `npm run build:public` builds client side (through browserify with es2015 and react presets) and puts it in `public/dist/arij.js`
+- `npm run build:all` builds whole client app with dependencies and puts it in `public/dist/`
+- `npm run build:public` builds client app (through browserify with es2015 and react presets) and puts it in `public/dist/arij.js`
 - `npm run build:public:watch` like build:public but in watch mode
-- `npm run build:public:vendor` build vendor bundle for client side (react, redux, socket.io-client etc)
+- `npm run build:public:vendor` builds dependencies for client side (react, redux, socket.io-client etc) and put them in `public/dist/vendor.js`
 
 ##### other 
 - if using Webstorm turn off "safe save" option - npm's watch has problem with it. `ctrl+alt+s-> Appearance & Behaviour-> System settings-> uncheck "Use 'safe write'` 
