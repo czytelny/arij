@@ -23,8 +23,8 @@ Project is in early development (something like pre-alpha 0.0.1 phase), so if yo
 
 ##### npm scripts
 - `npm run server` starts nodejs server in development mode (through babel-node - to transpile ES6 in the fly)
-- `npm run test:server` starts mocha tests
-- `npm run test:server:watch` like `test:server` but in watch mode
+- `npm test` starts mocha tests
+- `npm run test:watch` run tests in watch mode
 - `npm run build:all` builds whole client app and it's dependencies and save everything to `public/dist/`
 - `npm run build:public` builds client app (through browserify with es2015 and react presets) and puts it in `public/dist/arij.js`
 - `npm run build:public:watch` like build:public but in watch mode
