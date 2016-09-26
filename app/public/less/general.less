@@ -1,39 +1,45 @@
 body {
   background-color: #f3f3f3;
 }
-.navbar-default > .navbar-brand {
+.navbar-default > .navbar-brand{
   font-size: 32px;
   line-height: 34px;
   height: 61px;
-  color: #FFB400;
+  color: @primary-color;
   font-weight: 600;
 }
+
 div.mainMenu {
   background-color: #eeeeee;
   min-height: 20px;
   line-height: 29px;
 }
+
 .mainView {
   background-color: #f8f8f8;
 }
+
 .navbar.navbar-main {
   margin-bottom: 0;
 }
+
 .link-unstyled {
   color: #6d6d6d;
 }
+
 .link-unstyled:hover {
   text-decoration: none;
 }
+
 .link-unstyled.chosen {
-  color: #367da2;
+  color: @secondary-color;
   font-weight: bold;
 }
 .arij-messageContainer {
   position: absolute;
-  top: 0;
+  top:0;
   left: 50%;
-  z-index: 10000;
+  z-index:10000;
   opacity: 1;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
@@ -41,6 +47,7 @@ div.mainMenu {
   -o-transition: all .3s;
   transition: all .3s;
 }
+
 .arij-messageContainer.invisible {
   opacity: 0;
 }
@@ -48,6 +55,7 @@ div.mainMenu {
   position: relative;
   left: -50%;
 }
-.settingsMenu {
+
+.settingsMenu{
   padding: 1em;
 }

@@ -7,10 +7,12 @@
     "server:watch": "nodemon app/server.js --exec babel-node --presets es2015",
     "test": "mocha \"./app/**/*.spec.js\" --compilers js:babel-core/register --require ./app/test_helper.js --recursive",
     "test:watch": "npm run test -- --watch",
-    "build:all": "npm run build:public:vendor & npm run build:public",
+    "build:all": "npm run build:public:vendor & npm run build:public & npm run build:css",
     "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -d",
     "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -d -v",
-    "build:public:vendor": "browserify -o app/public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=redux -r=react-redux -r=socket.io-client"
+    "build:public:vendor": "browserify -o app/public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=redux -r=react-redux -r=socket.io-client",
+    "build:css": "lessc app/public/less/arij.less > app/public/css/arij.css",
+    "build:css:watch": "nodemon --watch app/public/less/*.less --ext less --exec npm run build:css"
   },
   "repository": {
     "type": "git",
@@ -52,6 +54,7 @@
     "chai": "^3.5.0",
     "chai-immutable": "^1.6.0",
     "del": "^2.2.2",
+    "less": "^2.7.1",
     "mocha": "^3.0.2",
     "nodemon": "^1.10.0",
     "redux-mock-store": "^1.1.4",
