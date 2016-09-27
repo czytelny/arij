@@ -1,23 +1,9 @@
 body {
-  background-color: #f3f3f3;
-}
-.navbar-default > .navbar-brand {
-  font-size: 32px;
-  line-height: 34px;
-  height: 61px;
-  color: #FFB400;
-  font-weight: 600;
-}
-div.mainMenu {
-  background-color: #eeeeee;
-  min-height: 20px;
-  line-height: 29px;
+  background-color: #202020;
 }
 .mainView {
   background-color: #f8f8f8;
-}
-.navbar.navbar-main {
-  margin-bottom: 0;
+  min-height: 50%;
 }
 .link-unstyled {
   color: #6d6d6d;
@@ -48,6 +34,18 @@ div.mainMenu {
   position: relative;
   left: -50%;
 }
-.settingsMenu {
-  padding: 1em;
+#sidenav {
+  background-color: #202020;
+  color: #eeeeee;
+  height: calc(50%);
+}
+#sidenav .logo {
+  color: #FFB400;
+  font-weight: 600;
+  font-size: 2em;
+}
+#navbar {
+  line-height: 34px;
+  height: 61px;
+  background-color: #343434;
 }

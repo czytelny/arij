@@ -1,19 +1,18 @@
 var React = require('react');
 
-import Header from '../../app/header'
+import Navbar from '../../app/navbar'
 import UserContainer from './userContainer'
-import SettingsMenu from '../settingsMenu'
+import Logo from './../../app/logo'
 
 const UserView = ({params}) =>  <div>
-  <div className="row">
-    <Header/>
-  </div>
   <div className="row content">
     <div className="col-sm-2">
-
+      <Logo/>
     </div>
+
     <div className="col-sm-10 mainView">
-      <div className="col-sm-12">
+      <Navbar/>
+      <div className="col-sm-12 mainView">
         <UserContainer userId={params.userId}/>
       </div>
     </div>

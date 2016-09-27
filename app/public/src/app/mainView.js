@@ -1,17 +1,19 @@
 var React = require('react');
-import Header from './header'
+import Navbar from './navbar'
+import Sidenav from './sidenav'
+import MainViewContent from './mainViewContent'
 
-const MainView = () =>  <div>
-    <div className="row">
-      <Header/>
-    </div>
+const MainView = () =>
     <div className="row content">
-        <div className="col-sm-12">
-          <h1>Content on main page</h1>
-          <blockquote><p>Checkout settings, you can add and list users ;)</p></blockquote>
-        </div>
+      <div className="col-sm-2">
+        <Sidenav/>
+      </div>
+      <div className="col-sm-10">
+        <Navbar/>
+        <MainViewContent/>
+      </div>
     </div>
-  </div>;
+  ;
 
 
 export default MainView;

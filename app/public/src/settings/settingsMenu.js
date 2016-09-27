@@ -1,8 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router'
+import Logo from './../app/logo'
 
 const SettingsMenu = () =>
-  <div className="settingsMenu">
+  <div>
+    <Logo/>
+
     <ul className="list-unstyled">
       <li>
         <Link to="/settings/profile" activeClassName="chosen"

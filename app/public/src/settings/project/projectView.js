@@ -1,6 +1,6 @@
 var React = require('react');
 
-import Header from '../../app/header'
+import Header from '../../app/navbar'
 import ProjectContainer from './projectContainer'
 import SettingsMenu from '../settingsMenu'
 import MessagesComponent from '../../app/messages/messagesComponent'

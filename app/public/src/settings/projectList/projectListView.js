@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Header from '../../app/header'
+import Header from '../../app/navbar'
 import ProjectListContainer from './projectListContainer'
 import SettingsMenu from '../settingsMenu'
 import {Link} from 'react-router'
