@@ -1,20 +1,17 @@
 var React = require('react');
 
-import Header from '../../app/navbar/navbar'
+import Navbar from '../../app/navbar/navbar'
 import ProjectContainer from './projectContainer'
-import SettingsMenu from '../settingsSidenav'
-import MessagesComponent from '../../app/messages/messagesComponent'
+import Logo from './../../app/logo'
+
 
 const ProjectView = () =>  <div>
-  <div className="row">
-    <Header/>
-    <MessagesComponent />
-  </div>
-  <div className="row content">
+  <div className="row ">
     <div className="col-sm-2">
-      <SettingsMenu/>
+      <Logo/>
     </div>
-    <div className="col-sm-9 content">
+    <div className="col-sm-10 mainView">
+      <Navbar/>
       <div className="col-sm-12">
         <ProjectContainer/>
       </div>
