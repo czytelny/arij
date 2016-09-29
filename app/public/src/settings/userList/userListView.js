@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Navbar from '../../app/navbar'
+import Navbar from '../../app/navbar/navbar'
 import UserListContainer from './userListContainer'
 import Logo from './../../app/logo'
 import {Link} from 'react-router'

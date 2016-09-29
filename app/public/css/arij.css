@@ -3,7 +3,7 @@ body {
 }
 .mainView {
   background-color: #f8f8f8;
-  min-height: 50%;
+  height: 90vh;
 }
 .link-unstyled {
   color: #6d6d6d;
@@ -45,7 +45,32 @@ body {
   font-size: 2em;
 }
 #navbar {
-  line-height: 34px;
-  height: 61px;
   background-color: #343434;
+  padding: 3px 0;
+}
+#navbar .actionContainer {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+#navbar .actionContainer .actionBtn {
+  text-align: center;
+  padding: 0 10px;
+  border-bottom: 2px solid #343434;
+  -webkit-transition: border .3s;
+  -moz-transition: border .3s;
+  -ms-transition: border .3s;
+  -o-transition: border .3s;
+  transition: border .3s;
+}
+#navbar .actionContainer .actionBtn:hover {
+  border-bottom: 2px solid #FFB400;
+}
+#navbar .actionContainer .actionBtn a {
+  color: #cecece;
+}
+#navbar .actionContainer .actionBtn a:hover {
+  text-decoration: none;
+}
+#navbar .actionContainer .actionBtn .title {
+  line-height: 1.5em;
 }

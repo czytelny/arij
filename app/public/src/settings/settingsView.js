@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../app/navbar'
+import Navbar from '../app/navbar/navbar'
 import SettingsMenu from './settingsMenu'
 
 const settingsView = () =>

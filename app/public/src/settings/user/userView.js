@@ -1,6 +1,6 @@
 var React = require('react');
 
-import Navbar from '../../app/navbar'
+import Navbar from '../../app/navbar/navbar'
 import UserContainer from './userContainer'
 import Logo from './../../app/logo'
 

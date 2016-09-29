@@ -1,5 +1,5 @@
 var React = require('react');
-import Navbar from './navbar'
+import Navbar from './navbar/navbar'
 import Sidenav from './sidenav'
 import MainViewContent from './mainViewContent'
 

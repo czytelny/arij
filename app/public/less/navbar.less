@@ -1,5 +1,34 @@
-#navbar{
-  line-height: 34px;
-  height: 61px;
+#navbar {
   background-color: @background-grey;
+  padding: 3px 0;
+
+  .actionContainer {
+    display: inline-flex;
+    justify-content: flex-end;
+
+    .actionBtn {
+      text-align: center;
+      padding: 0 10px;
+      border-bottom: 2px solid @background-grey;
+      -webkit-transition: border .3s;
+      -moz-transition: border .3s;
+      -ms-transition: border .3s;
+      -o-transition: border .3s;
+      transition: border .3s;
+
+      &:hover{
+        border-bottom:2px solid @primary-color;
+      }
+      a {
+        color: @default-text-color;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+      .title {
+        line-height: 1.5em;
+      }
+    }
+
+  }
 }
