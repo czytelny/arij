@@ -1,4 +1,9 @@
+import messageActions from './../../app/messages/messagesActionCreators'
+import socketHandler from '../../app/socketHandler';
+
 import {
+  ADD_USER_REQUEST,
+  MODIFY_USER_REQUEST,
   USER_NAME_CHANGED,
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
@@ -77,6 +82,31 @@ function initializeNewUser() {
   }
 }
 
+function submitUser(){
+  return (dispatch, getState) => {
+    const {userState} = getState();
+    const user = userState.get("user");
+    if (userState.getIn(["errors", "isValid"])){
+      dispatch(savingInProgress());
+      socketHandler.emit(ADD_USER_REQUEST, user);
+    } else {
+      dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
+    }
+  }
+}
+function submitUserEdit(){
+  return (dispatch, getState) => {
+    const {userState} = getState();
+    const user = userState.get("user");
+    if (userState.getIn(["errors", "isValid"])){
+      dispatch(savingInProgress());
+      socketHandler.emit(MODIFY_USER_REQUEST, user);
+    } else {
+      dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
+    }
+  }
+}
+
 export default {
   userNameChanged,
   userPasswordChanged,
@@ -87,5 +117,7 @@ export default {
   savingFinished,
   getUserRequestSuccess,
   initializeNewUser,
-  validateUserEdit
+  validateUserEdit,
+  submitUser,
+  submitUserEdit
 }

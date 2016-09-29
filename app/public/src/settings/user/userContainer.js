@@ -5,17 +5,14 @@ import {connect} from 'react-redux';
 import socketHandler from '../../app/socketHandler';
 import actions from './userActionCreators'
 import messageActions from './../../app/messages/messagesActionCreators'
-import store from '../../store'
 import {browserHistory} from 'react-router'
 import _ from 'underscore'
 
 import {
-  ADD_USER_REQUEST,
   ADD_USER_REQUEST_SUCCESS,
   ADD_USER_REQUEST_FAILURE,
   GET_USER_REQUEST,
   GET_USER_REQUEST_SUCCESS,
-  MODIFY_USER_REQUEST,
   MODIFY_USER_REQUEST_SUCCESS,
   MODIFY_USER_REQUEST_FAILURE,
   GET_USER_REQUEST_FAILURE
@@ -34,7 +31,8 @@ const UserContainer = React.createClass({
     });
     socketHandler.on(ADD_USER_REQUEST_FAILURE, (err) => {
       this.props.savingFinished();
-      this.props.showErrorMessage(`Sorry, adding user failed: ${err}`);
+      this.props.showErrorMessage(`Sorry, adding user failed`);
+      console.log("Add user error: " + JSON.stringify(err));
     });
     socketHandler.on(GET_USER_REQUEST_SUCCESS, (user) => {
       this.props.getUserRequestSuccess(user);
@@ -49,6 +47,7 @@ const UserContainer = React.createClass({
     socketHandler.on(MODIFY_USER_REQUEST_FAILURE, (err) => {
       this.props.savingFinished();
       this.props.showErrorMessage(`Sorry, user modification failed: ${err}`);
+      console.log("Modify user error: " + JSON.stringify(err));
     });
   },
   componentDidMount() {
@@ -107,22 +106,12 @@ const mapDispatchToProps = function (dispatch) {
     submitHandler: (event) => {
       event.preventDefault();
       dispatch(actions.validateUser());
-      if (store.getState().userState.getIn(["errors", "isValid"])) {
-        dispatch(actions.savingInProgress());
-        socketHandler.emit(ADD_USER_REQUEST, store.getState().userState.get("user"));
-      } else {
-        store.dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
-      }
+      dispatch(actions.submitUser());
     },
     submitEditHandler: (event) => {
       event.preventDefault();
       dispatch(actions.validateUserEdit());
-      if (store.getState().userState.getIn(["errors", "isValid"])) {
-        dispatch(actions.savingInProgress());
-        socketHandler.emit(MODIFY_USER_REQUEST, store.getState().userState.get("user"));
-      } else {
-        store.dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
-      }
+      dispatch(actions.submitUserEdit());
     }
   };
 };
@@ -135,7 +124,5 @@ const mapStateToProps = function (store, ownProps) {
     savingInProgress: store.userState.get("savingInProgress")
   };
 };
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
