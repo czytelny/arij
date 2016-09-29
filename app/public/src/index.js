@@ -6,7 +6,6 @@ import {Router, Route, browserHistory} from 'react-router'
 
 
 import MainView from './app/mainView';
-import SettingsView from './settings/settingsView';
 import UserView from './settings/user/userView';
 import UserListView from './settings/userList/userListView';
 import ProjectListView from './settings/projectList/projectListView';
@@ -18,7 +17,6 @@ render(
     <div>
       <Router history={browserHistory}>
         <Route path="/" component={MainView}/>
-        <Route path="/settings" component={SettingsView}/>
         <Route path="/settings/users" component={UserListView}/>
         <Route path="/settings/user" component={UserView}/>
         <Route path="/settings/user/:userId" component={UserView}/>
