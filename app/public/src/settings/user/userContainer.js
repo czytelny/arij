@@ -26,39 +26,36 @@ const UserContainer = React.createClass({
   _fetchUser() {
     socketHandler.emit(GET_USER_REQUEST, this.props.userId);
   },
-  _initializeNewUser() {
-    store.dispatch(actions.initializeNewUser());
-  },
   _addSocketListeners() {
     socketHandler.on(ADD_USER_REQUEST_SUCCESS, () => {
-      store.dispatch(actions.savingFinished());
-      store.dispatch(messageActions.showSuccessMessage("User added successfully!"));
+      this.props.savingFinished();
+      this.props.showSuccessMessage("User added successfully!");
       browserHistory.goBack();
     });
-    socketHandler.on(ADD_USER_REQUEST_FAILURE, (response) => {
-      store.dispatch(actions.savingFinished());
-      store.dispatch(messageActions.showErrorMessage(`Sorry, adding user failed: ${response.errmsg}`));
+    socketHandler.on(ADD_USER_REQUEST_FAILURE, (err) => {
+      this.props.savingFinished();
+      this.props.showErrorMessage(`Sorry, adding user failed: ${err}`);
     });
     socketHandler.on(GET_USER_REQUEST_SUCCESS, (user) => {
-      store.dispatch(actions.getUserRequestSuccess(user));
+      this.props.getUserRequestSuccess(user);
     });
-    socketHandler.on(GET_USER_REQUEST_FAILURE, (user) => {
-      store.dispatch(actions.savingFinished());
+    socketHandler.on(GET_USER_REQUEST_FAILURE, () => {
+      this.props.savingFinished();
     });
     socketHandler.on(MODIFY_USER_REQUEST_SUCCESS, () => {
-      store.dispatch(actions.savingFinished());
-      store.dispatch(messageActions.showSuccessMessage("User modified successfully!"));
+      this.props.savingFinished();
+      this.props.showSuccessMessage("User modified successfully!");
     });
     socketHandler.on(MODIFY_USER_REQUEST_FAILURE, (err) => {
-      store.dispatch(actions.savingFinished());
-      store.dispatch(messageActions.showErrorMessage(`Sorry, user modification failed: ${response.errmsg}`));
+      this.props.savingFinished();
+      this.props.showErrorMessage(`Sorry, user modification failed: ${err}`);
     });
   },
   componentDidMount() {
     if (this.props.userId) {
       this._fetchUser();
     } else {
-      this._initializeNewUser();
+      this.props.initializeNewUser();
     }
     this._addSocketListeners();
   },
@@ -98,10 +95,15 @@ const UserContainer = React.createClass({
 
 const mapDispatchToProps = function (dispatch) {
   return {
+    initializeNewUser: ()=> dispatch(actions.initializeNewUser()),
+    savingFinished: () => dispatch(actions.savingFinished()),
+    showSuccessMessage: (message) => dispatch(messageActions.showSuccessMessage(message)),
+    showErrorMessage: (message) => dispatch(messageActions.showErrorMessage(message)),
     nameChangeHandler: (event)=> dispatch(actions.userNameChanged(event.target.value)),
     emailChangeHandler: (event)=> dispatch(actions.userEmailChanged(event.target.value)),
     passwordChangeHandler: (event) => dispatch(actions.userPasswordChanged(event.target.value)),
     passwordConfirmChangeHandler: (event) => dispatch(actions.userPasswordConfirmChanged(event.target.value)),
+    getUserRequestSuccess: (user) => dispatch(actions.getUserRequestSuccess(user)),
     submitHandler: (event) => {
       event.preventDefault();
       dispatch(actions.validateUser());
@@ -122,7 +124,7 @@ const mapDispatchToProps = function (dispatch) {
         store.dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
       }
     }
-  }
+  };
 };
 
 const mapStateToProps = function (store, ownProps) {
@@ -133,5 +135,7 @@ const mapStateToProps = function (store, ownProps) {
     savingInProgress: store.userState.get("savingInProgress")
   };
 };
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
