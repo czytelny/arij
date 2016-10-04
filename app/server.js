@@ -1,13 +1,11 @@
 "use strict";
 
 const express = require('express');
-const mongoose = require('mongoose');
 const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
 const bodyParser = require('body-parser');
-
-const database = require('./config/databaseConfig');
+const logger = require('winston');
 const modelConfig = require('./models/modelConfig');
 
 const app = express();
@@ -15,6 +13,7 @@ const server = http.createServer(app);
 const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
+import database from './database'
 import userController from './controllers/userController'
 import projectController from './controllers/projectController'
 
@@ -28,12 +27,7 @@ app.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
 });
 
-// ------- database
 modelConfig.setConfig();
-mongoose.connect(database.url, function (err) {
-  if (err) throw err;
-  console.log('Connection to MongoDB established');
-});
 
 // ------- controllers
 const routes = require('./controllers/restController');
@@ -43,8 +37,5 @@ app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 
 
 server.listen(PORT, function () {
-  console.log('Example app listening on port: ' + PORT);
+  logger.info('Arij served on port: ' + PORT);
 });
-
-
-
