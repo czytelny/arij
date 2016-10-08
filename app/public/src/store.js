@@ -5,6 +5,7 @@ import projectListReducer from './settings/projectList/projectListReducer'
 import projectReducer from './settings/project/projectReducer'
 import messagesReducer from './app/messages/messagesReducer'
 import thunk from 'redux-thunk';
+import wsMiddleware from './app/wsMiddleware'
 
 // Combine Reducers
 const reducers = combineReducers({
@@ -15,10 +16,9 @@ const reducers = combineReducers({
   messagesState: messagesReducer
 });
 
-// Create a store by passing in the reducer
 const store = createStore(
   reducers,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, wsMiddleware)
 );
 
 // Every time the state changes, log it

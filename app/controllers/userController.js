@@ -4,11 +4,13 @@ import userService from './../services/userService';
 module.exports = function (io) {
 
   io.on('connection', function (socket) {
-    socket.on(actions.GET_ALL_USER_REQUEST, function () {
-      userService.find().then(
-        (data) => io.emit(actions.GET_ALL_USER_REQUEST_SUCCESS, data),
-        (err) => io.emit(actions.GET_ALL_USER_REQUEST_FAILURE, err)
-      )
+    socket.on("action", function (action) {
+      if (action.type === actions.S_GET_ALL_USER_REQUEST) {
+        userService.find().then(
+          (users) => io.emit('action', {type: actions.GET_ALL_USER_REQUEST_SUCCESS, users}),
+          (err) => io.emit('action', {type: actions.GET_ALL_USER_REQUEST_FAILURE, err})
+        )
+      }
     });
 
     socket.on(actions.GET_USER_REQUEST, function (userId) {
