@@ -6,7 +6,7 @@ import {
 } from './messagesActionTypes'
 import {
   GET_ALL_USER_REQUEST_FAILURE
-} from '../../../../shared/userActionTypes'
+} from '../../../../shared/userListActionTypes'
 const initialState = Map({
   hidingDelay: 3500,
   defaultErrorMessage: "I don't know what happened, I beg your pardon.",

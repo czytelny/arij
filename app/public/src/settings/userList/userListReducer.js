@@ -2,7 +2,7 @@ import {Map, List} from 'immutable';
 
 import {
   GET_ALL_USER_REQUEST_SUCCESS
-} from '../../../../shared/userActionTypes'
+} from '../../../../shared/userListActionTypes'
 
 const initialState = Map({
   isLoading: false,

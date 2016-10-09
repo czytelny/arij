@@ -3,7 +3,7 @@ import {Map, fromJS, List} from 'immutable';
 import userListReducer from './userListReducer';
 import {
   GET_ALL_USER_REQUEST_SUCCESS
-} from '../../../../shared/userActionTypes'
+} from '../../../../shared/userListActionTypes'
 
 
 describe("userListReducer", function () {
