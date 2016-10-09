@@ -1,6 +1,5 @@
 import {
   SHOW_SUCCESS_MESSAGE,
-  HIDE_SUCCESS_MESSAGE,
   HIDE_MESSAGE,
   SHOW_ERROR_MESSAGE
 } from './messagesActionTypes'

@@ -3,7 +3,7 @@ import Project from './project';
 import {connect} from 'react-redux';
 import socketHandler from '../../app/socketHandler';
 import actions from './projectActionCreators'
-import messageActions from './../../app/messages/messagesActionCreators'
+import messageActions from '../../app/messages/messagesActionCreators'
 import store from '../../store'
 import {browserHistory} from 'react-router'
 

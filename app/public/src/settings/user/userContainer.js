@@ -3,8 +3,8 @@ import User from './user';
 import UserEdit from './userEdit';
 import {connect} from 'react-redux';
 import socketHandler from '../../app/socketHandler';
-import actions from './userActionCreators'
-import messageActions from './../../app/messages/messagesActionCreators'
+import actions from '../../../../shared/userActionCreators'
+import messageActions from '../../app/messages/messagesActionCreators'
 import {browserHistory} from 'react-router'
 import _ from 'underscore'
 

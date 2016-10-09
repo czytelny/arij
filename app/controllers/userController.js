@@ -1,15 +1,17 @@
 import * as actions from '../shared/userActionTypes'
 import userService from './../services/userService';
 
+import userListAction from './../shared/userListActionCreators'
+
 module.exports = function (io) {
 
   io.on('connection', function (socket) {
     socket.on("action", function (action) {
       if (action.type === actions.S_GET_ALL_USER_REQUEST) {
         userService.find().then(
-          (users) => io.emit('action', {type: actions.GET_ALL_USER_REQUEST_SUCCESS, users}),
-          (err) => io.emit('action', {type: actions.GET_ALL_USER_REQUEST_FAILURE, err})
-        )
+          (users) => io.emit('action', userListAction.getAllUserRequestFailure("Getting users failed")),
+          (err) => io.emit('action', userListAction.getAllUserRequestFailure())
+        );
       }
     });
 

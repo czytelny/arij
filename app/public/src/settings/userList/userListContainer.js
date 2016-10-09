@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import UserList from './userList';
-import actions from './userListActions'
-
+import actions from '../../../../shared/userListActionCreators'
 
 const UserListContainer = React.createClass({
   componentDidMount() {

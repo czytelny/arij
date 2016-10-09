@@ -1,5 +1,5 @@
-import messageActions from './../../app/messages/messagesActionCreators'
-import socketHandler from '../../app/socketHandler';
+import messageActions from '../public/src/app/messages/messagesActionCreators'
+import socketHandler from '../public/src/app/socketHandler';
 
 import {
   ADD_USER_REQUEST,
@@ -14,7 +14,7 @@ import {
   GET_USER_REQUEST_SUCCESS,
   INITIALIZE_NEW_USER ,
   VALIDATE_USER_EDIT
-} from '../../../../shared/userActionTypes'
+} from './userActionTypes'
 
 
 function userNameChanged(name) {

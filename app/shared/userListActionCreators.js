@@ -1,8 +1,8 @@
 import {
   S_GET_ALL_USER_REQUEST,
-  GET_ALL_USER_REQUEST_SUCCESS
-} from '../../../../shared/userActionTypes'
-
+  GET_ALL_USER_REQUEST_SUCCESS,
+  GET_ALL_USER_REQUEST_FAILURE
+} from './userActionTypes'
 
 function getAllUserRequest() {
   return {
@@ -17,7 +17,15 @@ function getAllUserRequestSuccess(usersList) {
   }
 }
 
+function getAllUserRequestFailure(message) {
+  return {
+    type: GET_ALL_USER_REQUEST_FAILURE,
+    message
+  }
+}
+
 export default {
+  getAllUserRequest,
   getAllUserRequestSuccess,
-  getAllUserRequest
+  getAllUserRequestFailure
 }
