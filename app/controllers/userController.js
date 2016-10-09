@@ -10,8 +10,8 @@ module.exports = function (io) {
     socket.on("action", function (action) {
       if (action.type === userListActions.S_GET_ALL_USER_REQUEST) {
         userService.find().then(
-          (users) => io.emit('action', userListAction.getAllUserRequestFailure("Getting users failed")),
-          (err) => io.emit('action', userListAction.getAllUserRequestFailure())
+          (users) => io.emit('action', userListAction.getAllUserRequestSuccess(users)),
+          (err) => io.emit('action', userListAction.getAllUserRequestFailure("Getting users failed"))
         );
       }
     });
