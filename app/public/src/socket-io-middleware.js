@@ -1,8 +1,10 @@
-export default socket => store => next => action => {
-  if (action.meta && action.meta.remote) {
-    socket.emit('action', action);
-  } else {
-    socket.on("action", store.dispatch)
+export default socket => store => {
+  socket.on("action", store.dispatch);
+
+  return next => action => {
+    if (action.meta && action.meta.remote) {
+      socket.emit('action', action);
+    }
+    return next(action);
   }
-  return next(action);
 }

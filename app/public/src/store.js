@@ -22,7 +22,8 @@ const store = createStore(
   reducers,
   applyMiddleware(
     thunk,
-    loggerMiddleware
+    loggerMiddleware,
+    socketIOMiddleware(socketIO)
   )
 );
 
