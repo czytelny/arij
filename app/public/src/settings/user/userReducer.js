@@ -6,8 +6,11 @@ import {
   USER_EMAIL_CHANGED,
   USER_PASSWORD_CONFIRM_CHANGED,
   VALIDATE_USER,
-  SAVING_USER_IN_PROGRESS,
-  SAVING_USER_FINISHED,
+
+  ADD_USER_REQUEST,
+  ADD_USER_REQUEST_SUCCESS,
+  ADD_USER_REQUEST_FAILURE,
+
   GET_USER_REQUEST_SUCCESS,
   INITIALIZE_NEW_USER,
   VALIDATE_USER_EDIT
@@ -98,9 +101,11 @@ const userReducer = function (state = initialState, action) {
       return validateUser(state);
     case VALIDATE_USER_EDIT:
       return validateUserEdit(state);
-    case SAVING_USER_IN_PROGRESS:
+    case ADD_USER_REQUEST:
       return state.set("savingInProgress", true);
-    case SAVING_USER_FINISHED:
+    case ADD_USER_REQUEST_SUCCESS:
+      return state.set("savingInProgress", false);
+    case ADD_USER_REQUEST_FAILURE:
       return state.set("savingInProgress", false);
     case GET_USER_REQUEST_SUCCESS:
       return state.set("user", fromJS(action.user));

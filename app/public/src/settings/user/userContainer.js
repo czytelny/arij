@@ -2,50 +2,23 @@ import React from 'react';
 import User from './user';
 import UserEdit from './userEdit';
 import {connect} from 'react-redux';
-import socketHandler from '../../socketHandler';
 import actions from '../../../../shared/userActionCreators'
 import messageActions from '../../app/messages/messagesActionCreators'
 import {browserHistory} from 'react-router'
 import _ from 'underscore'
 
-import {
-  ADD_USER_REQUEST_SUCCESS,
-  ADD_USER_REQUEST_FAILURE,
-  GET_USER_REQUEST,
-  GET_USER_REQUEST_SUCCESS,
-  MODIFY_USER_REQUEST_SUCCESS,
-  MODIFY_USER_REQUEST_FAILURE,
-  GET_USER_REQUEST_FAILURE
-} from '../../../../shared/userActionTypes'
-
 
 const UserContainer = React.createClass({
   _addSocketListeners() {
-    socketHandler.on(ADD_USER_REQUEST_SUCCESS, () => {
-      this.props.savingFinished();
-      this.props.showSuccessMessage("User added successfully!");
-      browserHistory.goBack();
-    });
-    socketHandler.on(ADD_USER_REQUEST_FAILURE, (err) => {
-      this.props.savingFinished();
-      this.props.showErrorMessage(`Sorry, adding user failed`);
-      console.log("Add user error: " + JSON.stringify(err));
-    });
-    socketHandler.on(GET_USER_REQUEST_SUCCESS, (user) => {
-      this.props.getUserRequestSuccess(user);
-    });
-    socketHandler.on(GET_USER_REQUEST_FAILURE, () => {
-      this.props.savingFinished();
-    });
-    socketHandler.on(MODIFY_USER_REQUEST_SUCCESS, () => {
-      this.props.savingFinished();
-      this.props.showSuccessMessage("User modified successfully!");
-    });
-    socketHandler.on(MODIFY_USER_REQUEST_FAILURE, (err) => {
-      this.props.savingFinished();
-      this.props.showErrorMessage(`Sorry, user modification failed: ${err}`);
-      console.log("Modify user error: " + JSON.stringify(err));
-    });
+    // socketHandler.on(MODIFY_USER_REQUEST_SUCCESS, () => {
+    //   this.props.savingFinished();
+    //   this.props.showSuccessMessage("User modified successfully!");
+    // });
+    // socketHandler.on(MODIFY_USER_REQUEST_FAILURE, (err) => {
+    //   this.props.savingFinished();
+    //   this.props.showErrorMessage(`Sorry, user modification failed: ${err}`);
+    //   console.log("Modify user error: " + JSON.stringify(err));
+    // });
   },
   componentDidMount() {
     if (this.props.userId) {
@@ -53,17 +26,8 @@ const UserContainer = React.createClass({
     } else {
       this.props.initializeNewUser();
     }
-    this._addSocketListeners();
   },
 
-  componentWillUnmount(){
-    socketHandler.removeAllListeners(ADD_USER_REQUEST_SUCCESS);
-    socketHandler.removeAllListeners(ADD_USER_REQUEST_FAILURE);
-    socketHandler.removeAllListeners(GET_USER_REQUEST_SUCCESS);
-    socketHandler.removeAllListeners(GET_USER_REQUEST_FAILURE);
-    socketHandler.removeAllListeners(MODIFY_USER_REQUEST_SUCCESS);
-    socketHandler.removeAllListeners(MODIFY_USER_REQUEST_FAILURE);
-  },
 
   render() {
     if (_.isUndefined(this.props.userId)) {
@@ -79,9 +43,7 @@ const UserContainer = React.createClass({
 const mapDispatchToProps = function (dispatch) {
   return {
     getUserRequest: (userId) => dispatch(actions.getUserRequest(userId)),
-    getUserRequestSuccess: (user) => dispatch(actions.getUserRequestSuccess(user)),
     initializeNewUser: ()=> dispatch(actions.initializeNewUser()),
-    savingFinished: () => dispatch(actions.savingFinished()),
     showSuccessMessage: (message) => dispatch(messageActions.showSuccessMessage(message)),
     showErrorMessage: (message) => dispatch(messageActions.showErrorMessage(message)),
     nameChangeHandler: (event)=> dispatch(actions.userNameChanged(event.target.value)),

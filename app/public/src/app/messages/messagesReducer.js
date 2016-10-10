@@ -7,6 +7,10 @@ import {
 import {
   GET_ALL_USER_REQUEST_FAILURE
 } from '../../../../shared/userListActionTypes'
+import {
+  ADD_USER_REQUEST_SUCCESS,
+  ADD_USER_REQUEST_FAILURE
+} from '../../../../shared/userActionTypes'
 const initialState = Map({
   hidingDelay: 3500,
   defaultErrorMessage: "I don't know what happened, I beg your pardon.",
@@ -19,6 +23,7 @@ const MessagesReducer = function (state = initialState, action) {
   switch (action.type) {
     case SHOW_ERROR_MESSAGE:
     case GET_ALL_USER_REQUEST_FAILURE:
+    case ADD_USER_REQUEST_FAILURE:
       if (action.message) {
         return state.merge({
           isVisible: true,
@@ -31,6 +36,7 @@ const MessagesReducer = function (state = initialState, action) {
         })
       }
     case SHOW_SUCCESS_MESSAGE:
+    case ADD_USER_REQUEST_SUCCESS:
       return state.merge({
         isVisible: true,
         successMessage: action.message

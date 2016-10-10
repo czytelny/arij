@@ -15,18 +15,16 @@ module.exports = function (io) {
             (err) => io.emit('action', userListAction.getAllUserRequestFailure("Getting users failed"))
           );
         case actions.GET_USER_REQUEST:
-          userService.findById(action.userId).then(
+          return userService.findById(action.userId).then(
             (data) => io.emit('action', userAction.getUserRequestSuccess(data)),
             (err) => io.emit('action', userAction.getUserRequestFailure(err))
+          );
+        case actions.ADD_USER_REQUEST:
+          return userService.save(action.user).then(
+            (data) => io.emit('action', userAction.addUserRequestSuccess("User added successfully")),
+            (err) => io.emit('action', userAction.addUserRequestFailure("Adding user failed"))
           )
       }
-    });
-
-    socket.on(actions.ADD_USER_REQUEST, function (user) {
-      userService.save(user).then(
-        (data) => io.emit(actions.ADD_USER_REQUEST_SUCCESS, data),
-        (err) => io.emit(actions.ADD_USER_REQUEST_FAILURE, err)
-      )
     });
 
     socket.on(actions.MODIFY_USER_REQUEST, function (user) {

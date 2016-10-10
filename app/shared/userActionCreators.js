@@ -44,18 +44,6 @@ function validateUserEdit() {
   }
 }
 
-function savingInProgress() {
-  return {
-    type: action.SAVING_USER_IN_PROGRESS
-  }
-}
-
-function savingFinished() {
-  return {
-    type: action.SAVING_USER_FINISHED
-  }
-}
-
 function getUserRequest(userId) {
   return {
     type: action.GET_USER_REQUEST,
@@ -84,13 +72,34 @@ function initializeNewUser() {
   }
 }
 
+function addUserRequest(user){
+  return {
+    type: action.ADD_USER_REQUEST,
+    meta: {remote: true},
+    user
+  }
+}
+
+function addUserRequestSuccess(message) {
+  return {
+    type: action.ADD_USER_REQUEST_SUCCESS,
+    message
+  }
+}
+
+function addUserRequestFailure(message) {
+  return {
+    type: action.ADD_USER_REQUEST_FAILURE,
+    message
+  }
+}
+
 function submitUser() {
   return (dispatch, getState) => {
     const {userState} = getState();
     const user = userState.get("user");
     if (userState.getIn(["errors", "isValid"])) {
-      dispatch(savingInProgress());
-      socketHandler.emit(action.ADD_USER_REQUEST, user);
+      dispatch(addUserRequest(user));
     } else {
       dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
     }
@@ -101,7 +110,6 @@ function submitUserEdit() {
     const {userState} = getState();
     const user = userState.get("user");
     if (userState.getIn(["errors", "isValid"])) {
-      dispatch(savingInProgress());
       socketHandler.emit(action.MODIFY_USER_REQUEST, user);
     } else {
       dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
@@ -115,12 +123,14 @@ export default {
   userEmailChanged,
   userPasswordConfirmChanged,
   validateUser,
-  savingInProgress,
-  savingFinished,
   initializeNewUser,
   validateUserEdit,
   submitUser,
   submitUserEdit,
+
+  addUserRequest,
+  addUserRequestSuccess,
+  addUserRequestFailure,
 
   getUserRequest,
   getUserRequestSuccess,
