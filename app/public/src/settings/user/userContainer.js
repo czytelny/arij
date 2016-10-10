@@ -20,9 +20,6 @@ import {
 
 
 const UserContainer = React.createClass({
-  _fetchUser() {
-    socketHandler.emit(GET_USER_REQUEST, this.props.userId);
-  },
   _addSocketListeners() {
     socketHandler.on(ADD_USER_REQUEST_SUCCESS, () => {
       this.props.savingFinished();
@@ -52,7 +49,7 @@ const UserContainer = React.createClass({
   },
   componentDidMount() {
     if (this.props.userId) {
-      this._fetchUser();
+      this.props.getUserRequest(this.props.userId);
     } else {
       this.props.initializeNewUser();
     }
@@ -71,29 +68,18 @@ const UserContainer = React.createClass({
   render() {
     if (_.isUndefined(this.props.userId)) {
       return (
-        <User nameChangeHandler={this.props.nameChangeHandler}
-              emailChangeHandler={this.props.emailChangeHandler}
-              passwordChangeHandler={this.props.passwordChangeHandler}
-              passwordConfirmChangeHandler={this.props.passwordConfirmChangeHandler}
-              submitHandler={this.props.submitHandler}
-              errors={this.props.errors}
-              savingInProgress={this.props.savingInProgress}
-              user={this.props.user}
-        />)
+        <User {...this.props}/>)
     } else {
       return (
-        <UserEdit nameChangeHandler={this.props.nameChangeHandler}
-                  submitHandler={this.props.submitEditHandler}
-                  errors={this.props.errors}
-                  savingInProgress={this.props.savingInProgress}
-                  user={this.props.user}
-        />)
+        <UserEdit {...this.props}/>)
     }
   }
 });
 
 const mapDispatchToProps = function (dispatch) {
   return {
+    getUserRequest: (userId) => dispatch(actions.getUserRequest(userId)),
+    getUserRequestSuccess: (user) => dispatch(actions.getUserRequestSuccess(user)),
     initializeNewUser: ()=> dispatch(actions.initializeNewUser()),
     savingFinished: () => dispatch(actions.savingFinished()),
     showSuccessMessage: (message) => dispatch(messageActions.showSuccessMessage(message)),
@@ -102,7 +88,6 @@ const mapDispatchToProps = function (dispatch) {
     emailChangeHandler: (event)=> dispatch(actions.userEmailChanged(event.target.value)),
     passwordChangeHandler: (event) => dispatch(actions.userPasswordChanged(event.target.value)),
     passwordConfirmChangeHandler: (event) => dispatch(actions.userPasswordConfirmChanged(event.target.value)),
-    getUserRequestSuccess: (user) => dispatch(actions.getUserRequestSuccess(user)),
     submitHandler: (event) => {
       event.preventDefault();
       dispatch(actions.validateUser());
