@@ -8,7 +8,7 @@ module.exports = function (io) {
 
   io.on('connection', function (socket) {
     socket.on("action", function (action) {
-      if (action.type === userListActions.S_GET_ALL_USER_REQUEST) {
+      if (action.type === userListActions.GET_ALL_USER_REQUEST) {
         userService.find().then(
           (users) => io.emit('action', userListAction.getAllUserRequestSuccess(users)),
           (err) => io.emit('action', userListAction.getAllUserRequestFailure("Getting users failed"))

@@ -1,5 +1,5 @@
 import messageActions from '../public/src/app/messages/messagesActionCreators'
-import socketHandler from '../public/src/app/socketHandler';
+import socketHandler from '../public/src/socketHandler';
 
 import {
   ADD_USER_REQUEST,

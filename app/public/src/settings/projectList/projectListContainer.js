@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import store from '../../store'
 import ProjectList from './projectList';
-import socketHandler from '../../app/socketHandler';
+import socketHandler from '../../socketHandler';
 import actions from './projectListActions'
 
 import {

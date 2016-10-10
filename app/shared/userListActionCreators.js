@@ -1,19 +1,20 @@
 import {
-  S_GET_ALL_USER_REQUEST,
+  GET_ALL_USER_REQUEST,
   GET_ALL_USER_REQUEST_SUCCESS,
   GET_ALL_USER_REQUEST_FAILURE
 } from './userListActionTypes'
 
 function getAllUserRequest() {
   return {
-    type: S_GET_ALL_USER_REQUEST
+    type: GET_ALL_USER_REQUEST,
+    meta: {remote: true},
   }
 }
 
-function getAllUserRequestSuccess(usersList) {
+function getAllUserRequestSuccess(users) {
   return {
     type: GET_ALL_USER_REQUEST_SUCCESS,
-    users: usersList
+    users
   }
 }
 
