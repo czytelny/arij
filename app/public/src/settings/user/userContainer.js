@@ -9,17 +9,6 @@ import _ from 'underscore'
 
 
 const UserContainer = React.createClass({
-  _addSocketListeners() {
-    // socketHandler.on(MODIFY_USER_REQUEST_SUCCESS, () => {
-    //   this.props.savingFinished();
-    //   this.props.showSuccessMessage("User modified successfully!");
-    // });
-    // socketHandler.on(MODIFY_USER_REQUEST_FAILURE, (err) => {
-    //   this.props.savingFinished();
-    //   this.props.showErrorMessage(`Sorry, user modification failed: ${err}`);
-    //   console.log("Modify user error: " + JSON.stringify(err));
-    // });
-  },
   componentDidMount() {
     if (this.props.userId) {
       this.props.getUserRequest(this.props.userId);
@@ -27,7 +16,6 @@ const UserContainer = React.createClass({
       this.props.initializeNewUser();
     }
   },
-
 
   render() {
     if (_.isUndefined(this.props.userId)) {

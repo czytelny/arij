@@ -94,6 +94,28 @@ function addUserRequestFailure(message) {
   }
 }
 
+function modifyUserRequest(user){
+  return {
+    type: action.MODIFY_USER_REQUEST,
+    meta: {remote: true},
+    user
+  }
+}
+
+function modifyUserRequestSuccess(message){
+  return {
+    type: action.MODIFY_USER_REQUEST_SUCCESS,
+    message
+  }
+}
+
+function modifyUserRequestFailure(message){
+  return {
+    type: action.MODIFY_USER_REQUEST_FAILURE,
+    message
+  }
+}
+
 function submitUser() {
   return (dispatch, getState) => {
     const {userState} = getState();
@@ -110,7 +132,7 @@ function submitUserEdit() {
     const {userState} = getState();
     const user = userState.get("user");
     if (userState.getIn(["errors", "isValid"])) {
-      socketHandler.emit(action.MODIFY_USER_REQUEST, user);
+      dispatch(modifyUserRequest(user))
     } else {
       dispatch(messageActions.showErrorMessage("Sorry, user form is invalid"));
     }
@@ -134,5 +156,9 @@ export default {
 
   getUserRequest,
   getUserRequestSuccess,
-  getUserRequestFailure
+  getUserRequestFailure,
+
+  modifyUserRequest,
+  modifyUserRequestSuccess,
+  modifyUserRequestFailure
 }

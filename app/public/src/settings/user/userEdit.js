@@ -5,12 +5,12 @@ import ActionButtons from './userEditActionButtons'
 
 
 const userEdit = ({
-  nameChangeHandler, submitHandler,
+  nameChangeHandler, submitEditHandler,
   errors, savingInProgress, user
 }) =>
   <div className="row">
     <div className="col-sm-6">
-      <form name="addNewUserForm" onSubmit={submitHandler}>
+      <form name="addNewUserForm" onSubmit={submitEditHandler}>
         <div className="row">
           <div className="col-sm-12">
             <h1>Editing user</h1>

@@ -23,15 +23,13 @@ module.exports = function (io) {
           return userService.save(action.user).then(
             (data) => io.emit('action', userAction.addUserRequestSuccess("User added successfully")),
             (err) => io.emit('action', userAction.addUserRequestFailure("Adding user failed"))
+          );
+        case actions.MODIFY_USER_REQUEST:
+          return userService.update(action.user).then(
+            (data) => io.emit('action', userAction.modifyUserRequestSuccess("User modified successfully")),
+            (err) => io.emit('action', userAction.modifyUserRequestFailure("Modifying user failed"))
           )
       }
     });
-
-    socket.on(actions.MODIFY_USER_REQUEST, function (user) {
-      userService.update(user).then(
-        (data) => io.emit(actions.MODIFY_USER_REQUEST_SUCCESS, data),
-        (err) => io.emit(actions.MODIFY_USER_REQUEST_FAILURE, err)
-      )
-    })
   });
 };

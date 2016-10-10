@@ -11,6 +11,10 @@ import {
   ADD_USER_REQUEST_SUCCESS,
   ADD_USER_REQUEST_FAILURE,
 
+  MODIFY_USER_REQUEST,
+  MODIFY_USER_REQUEST_SUCCESS,
+  MODIFY_USER_REQUEST_FAILURE,
+
   GET_USER_REQUEST_SUCCESS,
   INITIALIZE_NEW_USER,
   VALIDATE_USER_EDIT
@@ -106,6 +110,12 @@ const userReducer = function (state = initialState, action) {
     case ADD_USER_REQUEST_SUCCESS:
       return state.set("savingInProgress", false);
     case ADD_USER_REQUEST_FAILURE:
+      return state.set("savingInProgress", false);
+    case MODIFY_USER_REQUEST:
+      return state.set("savingInProgress", true);
+    case MODIFY_USER_REQUEST_SUCCESS:
+      return state.set("savingInProgress", false);
+    case MODIFY_USER_REQUEST_FAILURE:
       return state.set("savingInProgress", false);
     case GET_USER_REQUEST_SUCCESS:
       return state.set("user", fromJS(action.user));
