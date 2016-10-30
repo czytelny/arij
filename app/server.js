@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socketIO = require('socket.io');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const logger = require('winston');
 const modelConfig = require('./models/modelConfig');
@@ -19,6 +20,7 @@ import projectController from './controllers/projectController'
 
 const userCtrl = userController(io);
 const projectCtrl = projectController(io);
+app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // handle every other route with index.html, which will contain

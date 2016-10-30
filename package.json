@@ -28,6 +28,7 @@
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "helmet": "^3.0.0",
     "http-status-codes": "^1.0.6",
     "immutable": "^3.8.1",
     "mongoose": "^4.5.9",
