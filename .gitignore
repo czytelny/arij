@@ -40,3 +40,4 @@ jspm_packages
 app/public/dist/arij.js
 app/public/dist/vendor.js
 app/public/css/arij.css
+/yarn.lock

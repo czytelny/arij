@@ -11,6 +11,11 @@ function findById(userId) {
   return User.findById(userId);
 }
 
+function findByEmail(email) {
+  logger.info(`user: findByEmail: ${email}`);
+  return User.findOne({email});
+}
+
 function find() {
   logger.info("user: find all");
   return User.find()
@@ -30,7 +35,8 @@ function update(user) {
 
 export default {
   save,
-  findById,
   find,
+  findById,
+  findByEmail,
   update
 };

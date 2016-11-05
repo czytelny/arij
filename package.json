@@ -11,7 +11,7 @@
     "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -x=immutable -x=underscore -d",
     "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -x=immutable -x=underscore -d -v",
     "build:public:vendor": "browserify -o app/public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=redux -r=react-redux -r=socket.io-client -r=immutable -r=underscore",
-    "build:css": "lessc app/public/less/arij.less > app/public/css/arij.css",
+    "build:css": "lessc app/public/less/arij.less > app/public/css/arij.css & lessc app/public/less/login.less > app/public/css/login.css",
     "build:css:watch": "nodemon --watch app/public/less/*.less --ext less --exec npm run build:css"
   },
   "repository": {
@@ -27,11 +27,16 @@
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "express-session": "^1.14.1",
     "helmet": "^3.0.0",
     "http-status-codes": "^1.0.6",
     "immutable": "^3.8.1",
     "mongoose": "^4.5.9",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
