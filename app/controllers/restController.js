@@ -19,16 +19,20 @@ module.exports = function (app, passport) {
   app.get('/login', function (req, res) {
     res.sendFile(path.resolve("app/public/login.html"));
   });
-
-  app.get('/', isLoggedIn, function (req, res) {
+  app.get('/', function (req, res) {
     res.sendFile(path.resolve("app/public/index.html"));
   });
 
-  // app.post('/signup', passport.authenticate('local', {
-  //   successRedirect : '/index', // redirect to the secure profile section
-  //   failureRedirect : '/signup', // redirect back to the signup page if there is an error
-  //   failureFlash : true // allow flash messages
-  // }));
+
+  app.post('/signin', passport.authenticate('local', {
+    successRedirect: '/', // redirect to the secure profile section
+    failureRedirect: '/login' // redirect back to the signup page if there is an error
+
+  }));
+
+  // app.get('/', isLoggedIn, function (req, res) {
+  //   res.sendFile(path.resolve("app/public/index.html"));
+  // });
 
   app.get('/logout', function (req, res) {
     req.logout();

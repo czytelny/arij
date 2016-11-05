@@ -26,28 +26,24 @@ import userService from './services/userService'
 
 const userCtrl = userController(io);
 const projectCtrl = projectController(io);
+require('./config/passportConfig')(passport);
+
 app.use(helmet());
 app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(session({secret: "big fat cat", resave: true, saveUninitialized: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // use connect-flash for flash messages stored in session
+
 
 modelConfig.setConfig();
 
 // ------- controllers
 require('./controllers/restController')(app, passport);
 
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
-function isLoggedIn(req, res, next) {
-  // if user is authenticated in the session, carry on
-  if (req.isAuthenticated())
-    return next();
-
-  // if they aren't redirect them to the home page
-  res.redirect('/login');
-}
 
 server.listen(PORT, function () {
   logger.info('Arij served on port: ' + PORT);

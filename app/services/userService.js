@@ -33,7 +33,7 @@ function update(user) {
 }
 
 
-export default {
+module.exports = {
   save,
   find,
   findById,
