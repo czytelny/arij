@@ -53,17 +53,11 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// handle every other route with index.html, which will contain
-// a script tag to your application's JavaScript file(s).
-app.get('*', function (request, response) {
-  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-});
-
 modelConfig.setConfig();
 
 // ------- controllers
-const routes = require('./controllers/restController');
-app.use('/', routes);
+require('./controllers/restController')(app, passport);
+
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 
