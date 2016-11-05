@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const socketIO = require('socket.io');
 const helmet = require('helmet');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
 
 const bodyParser = require('body-parser');
@@ -34,25 +33,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-passport.use(new LocalStrategy(
-  function (email, password, done) {
-    userService.findByEmail(email).then(function (err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, {message: 'Incorrect username.'});
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, {message: 'Incorrect password.'});
-      }
-      return done(null, user);
-    });
-  }
-));
-
 modelConfig.setConfig();
 
 // ------- controllers
@@ -60,7 +40,14 @@ require('./controllers/restController')(app, passport);
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
+function isLoggedIn(req, res, next) {
+  // if user is authenticated in the session, carry on
+  if (req.isAuthenticated())
+    return next();
 
+  // if they aren't redirect them to the home page
+  res.redirect('/login');
+}
 
 server.listen(PORT, function () {
   logger.info('Arij served on port: ' + PORT);
