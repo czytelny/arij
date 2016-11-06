@@ -9,38 +9,34 @@ module.exports = function (passport) {
       passwordField: 'password',
       passReqToCallback: true // allows us to pass back the entire request to the callback
     },
-    function (email, password, done) {
-      console.log("KURA");
-
-      console.log(email);
-      userService.findByEmail(email).then(function (err, user) {
-        if (err) {
-          return done(err);
-        }
+    function (req, email, password, done) {
+      userService.findByEmail(email).then(function (user) {
         if (!user) {
           logger.info('incorrent username');
           return done(null, false, {message: 'Incorrect username.'});
         }
-        if (!user.validPassword(password)) {
+        if (!user.verifyPassword(password)) {
           logger.info('incorrent password');
           return done(null, false, {message: 'Incorrect password.'});
         }
         logger.info('everything fine!');
         return done(null, user);
+      }).catch(function (err) {
+        return done(err);
       });
     }
   ));
 
   // used to serialize the user for the session
   passport.serializeUser(function (user, done) {
-    logger.info('serializing user');
-    done(null, user.id);
+    done(null, user._id);
   });
 
-  passport.deserializeUser(function (email, done) {
-    logger.info('deserializing user user');
-    userService.findByEmail(email).then(function (err, user) {
-      done(err, user);
+  passport.deserializeUser(function (id, done) {
+    userService.findById(id).then(function (user) {
+      done(null, user);
+    }).catch(function (err) {
+      done(err, null);
     });
   });
 
