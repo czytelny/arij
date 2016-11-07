@@ -49,7 +49,8 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 modelConfig.setConfig();
 
 // ------- controllers
-require('./controllers/restController')(app, passport);
+require('./controllers/unauthorizedAreaController')(app, passport);
+require('./controllers/restController')(app);
 
 
 server.listen(PORT, function () {

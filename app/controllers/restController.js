@@ -1,42 +1,25 @@
 "use strict";
 
-const express = require('express');
 const path = require('path');
 const logger = require('winston');
 
 
-module.exports = function (app, passport) {
-  app.get('/css/*.css', function (req, res) {
+module.exports = function (app) {
+  app.get('/css/arij.css', isLoggedIn, function (req, res) {
     res.sendFile(path.resolve("app/public/" + req.path))
   });
-  app.get('/fonts/*', function (req, res) {
+  app.get('/css/font-awesome.min.css', isLoggedIn, function (req, res) {
     res.sendFile(path.resolve("app/public/" + req.path))
   });
-  app.get('/dist/*', function (req, res) {
+  app.get('/fonts/*', isLoggedIn, function (req, res) {
+    res.sendFile(path.resolve("app/public/" + req.path))
+  });
+  app.get('/dist/*', isLoggedIn, function (req, res) {
     res.sendFile(path.resolve("app/public/" + req.path))
   });
 
-  app.get('/login', function (req, res) {
-    res.sendFile(path.resolve("app/public/login.html"));
-  });
-  app.get('/', function (req, res) {
+  app.get('/', isLoggedIn, function (req, res) {
     res.sendFile(path.resolve("app/public/index.html"));
-  });
-
-
-  app.post('/signin', passport.authenticate('local', {
-    successRedirect: '/', // redirect to the secure profile section
-    failureRedirect: '/login' // redirect back to the signup page if there is an error
-
-  }));
-
-  // app.get('/', isLoggedIn, function (req, res) {
-  //   res.sendFile(path.resolve("app/public/index.html"));
-  // });
-
-  app.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/login');
   });
 };
 
