@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const cookieParser = require('cookie-parser');
 const socketIO = require('socket.io');
 const helmet = require('helmet');
@@ -19,7 +20,7 @@ const server = http.createServer(app);
 const io = socketIO.listen(server);
 const PORT = process.env.PORT || 3030;
 
-import database from './database'
+const database = require('./database');
 import userController from './controllers/userController'
 import projectController from './controllers/projectController'
 import userService from './services/userService'
@@ -33,7 +34,13 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(session({secret: "big fat cat", resave: true, saveUninitialized: true}));
+app.use(session({
+  secret: "big fat cat",
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({mongooseConnection: database.connection})
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash()); // use connect-flash for flash messages stored in session
