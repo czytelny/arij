@@ -9,7 +9,6 @@ const cookieParser = require('cookie-parser');
 const socketIO = require('socket.io');
 const helmet = require('helmet');
 const passport = require('passport');
-const flash = require('connect-flash');
 
 const bodyParser = require('body-parser');
 const logger = require('winston');
@@ -43,7 +42,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash()); // use connect-flash for flash messages stored in session
 
 
 modelConfig.setConfig();

@@ -10,7 +10,6 @@
 <body>
 <div class="container">
   <div class="card card-container">
-    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
     <div class="text-right">
       <div class="logotype">
         arij
@@ -18,6 +17,9 @@
     </div>
     <p id="profile-name" class="profile-name-card"></p>
     <form action="signin" method="post" class="form-signin">
+      <div id="errorMessage">
+        <small>Invalid username/password</small>
+      </div>
       <span id="reauth-email" class="reauth-email"></span>
       <input type="email" name="email" class="form-control" placeholder="Email address" required autofocus>
       <input type="password" name="password" class="form-control" placeholder="Password" required>
@@ -25,5 +27,11 @@
     </form>
   </div>
 </div>
+<script>
+  var error = location.search;
+  if (error.indexOf('error') != -1) {
+    document.getElementById('errorMessage').style.display = "block";
+  }
+</script>
 </body>
 </html>

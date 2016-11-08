@@ -11,8 +11,8 @@ module.exports = function (app, passport) {
   });
 
   app.post('/signin', passport.authenticate('local', {
-    successRedirect: '/', // redirect to the secure profile section
-    failureRedirect: '/login' // redirect back to the signup page if there is an error
+    successRedirect: '/',
+    failureRedirect: '/login?error=true'
   }));
 
   app.get('/logout', function (req, res) {

@@ -11,10 +11,10 @@ module.exports = function (passport) {
     function (req, email, password, done) {
       userService.findByEmail(email).then(function (user) {
         if (!user) {
-          return done(null, false, {message: 'Incorrect username.'});
+          return done(null, false);
         }
         if (!user.verifyPassword(password)) {
-          return done(null, false, {message: 'Incorrect password.'});
+          return done(null, false);
         }
         return done(null, user);
       }).catch(function (err) {
