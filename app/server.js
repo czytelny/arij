@@ -6,7 +6,6 @@ const http = require('http');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cookieParser = require('cookie-parser');
-const socketIO = require('socket.io');
 const helmet = require('helmet');
 const passport = require('passport');
 
@@ -16,37 +15,41 @@ const modelConfig = require('./models/modelConfig');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIO.listen(server);
+const socketIO = require('socket.io')(server);
 const PORT = process.env.PORT || 3030;
 
 const database = require('./database');
-import userController from './controllers/userController'
-import projectController from './controllers/projectController'
 import userService from './services/userService'
 
-const userCtrl = userController(io);
-const projectCtrl = projectController(io);
 require('./config/passportConfig')(passport);
 
 app.use(helmet());
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(session({
+const sessionConfig = {
+  key: 'express.sid',       // the name of the cookie where express/connect stores its session_id
   secret: "big fat cat",
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 },
-  store: new MongoStore({mongooseConnection: database.connection})
-}));
+  cookie: {maxAge: 0.5 * 60 * 1000}, //session timeout in ms = 30s
+  store: new MongoStore({mongooseConnection: database.connection}),
+  cookieParser: cookieParser,
+
+};
+app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
+const passportSocketIo = require("passport.socketio");
+socketIO.use(passportSocketIo.authorize(sessionConfig));
 
 modelConfig.setConfig();
 
 // ------- controllers
+require('./controllers/userController')(socketIO);
+require('./controllers/projectController')(socketIO);
 require('./controllers/unauthorizedAreaController')(app, passport);
 require('./controllers/restController')(app);
 
