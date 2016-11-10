@@ -5,15 +5,15 @@
   "scripts": {
     "start": "babel-node app/server.js --presets es2015",
     "start:debug": "babel-node %NODE_DEBUG_OPTION% app/server.js --presets es2015",
-    "server:watch": "nodemon app/server.js --exec babel-node --presets es2015",
+    "start:watch": "nodemon app/server.js --exec babel-node --presets es2015",
     "test": "mocha \"./app/**/*.spec.js\" --compilers js:babel-core/register --require ./app/test_helper.js --recursive",
     "test:watch": "npm run test -- --watch",
-    "build": "npm run build:public:vendor & npm run build:public & npm run build:css",
-    "build:public": "browserify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -x=immutable -x=underscore -d",
-    "build:public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -x=immutable -x=underscore -d -v",
-    "build:public:vendor": "browserify -o app/public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=redux -r=react-redux -r=socket.io-client -r=immutable -r=underscore",
-    "build:css": "lessc app/public/less/arij.less > app/public/css/arij.css & lessc app/public/less/login.less > app/public/unauthorized/css/login.css",
-    "build:css:watch": "nodemon --watch app/public/less/*.less --ext less --exec npm run build:css"
+    "build": "npm run public:vendor & npm run public & npm run css",
+    "public": "browserify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -x=immutable -x=underscore -d",
+    "public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -x=immutable -x=underscore -d -v",
+    "public:vendor": "browserify -o app/public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=redux -r=react-redux -r=socket.io-client -r=immutable -r=underscore",
+    "css": "lessc app/public/less/arij.less > app/public/css/arij.css & lessc app/public/less/login.less > app/public/unauthorized/css/login.css",
+    "css:watch": "nodemon --watch app/public/less/*.less --ext less --exec npm run css"
   },
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
-    "react-router": "^2.7.0",
+    "react-router": "^3.0.0",
     "redux": "^3.5.2",
     "redux-socket.io-middleware": "^1.0.2",
     "redux-thunk": "^2.1.0",
