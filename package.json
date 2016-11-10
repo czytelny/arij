@@ -44,7 +44,6 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",
     "redux": "^3.5.2",
-    "redux-socket.io": "^1.2.0",
     "redux-socket.io-middleware": "^1.0.2",
     "redux-thunk": "^2.1.0",
     "socket.io": "^1.4.8",

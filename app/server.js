@@ -33,11 +33,10 @@ const sessionConfig = {
   secret: "big fat cat",
   resave: true,
   saveUninitialized: true,
-  cookie: {maxAge: 0.5 * 60 * 1000}, //session timeout in ms = 30s
   store: new MongoStore({mongooseConnection: database.connection}),
   cookieParser: cookieParser,
-
 };
+
 app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
