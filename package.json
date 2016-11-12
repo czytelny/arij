@@ -13,7 +13,8 @@
     "public:watch": "watchify -t [ babelify --presets [ es2015 react ] ] app/public/src/index.js -o app/public/dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -x=immutable -x=underscore -d -v",
     "public:vendor": "browserify -o app/public/dist/vendor.js -r=react-dom -r=react -r=react-router -r=redux -r=react-redux -r=socket.io-client -r=immutable -r=underscore",
     "css": "lessc app/public/less/arij.less > app/public/css/arij.css & lessc app/public/less/login.less > app/public/unauthorized/css/login.css",
-    "css:watch": "nodemon --watch app/public/less/*.less --ext less --exec npm run css"
+    "css:watch": "nodemon --watch app/public/less/*.less --ext less --exec npm run css",
+    "init:users": "node app/scripts/initDbUsers.js"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "helmet": "^3.0.0",
     "http-status-codes": "^1.0.6",
     "immutable": "^3.8.1",
+    "mongodb": "^2.2.11",
     "mongoose": "^4.5.9",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
