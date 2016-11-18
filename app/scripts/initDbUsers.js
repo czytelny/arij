@@ -15,22 +15,23 @@ MongoClient.connect(dbConfig.url, function (err, db) {
   logger.info("Successfully connected to MongoDb");
   const adminUser = makeAdminUser();
   db.collection("users").drop()
-    .then(()=> {
+    .then(() => {
       logger.info("'users' collection dropped");
       db.collection("users").insertOne(adminUser)
     })
-    .then(()=> {
+    .then(() => {
       logger.info(`${adminUser.email} user added`);
       db.close();
     });
 });
 
 function makeAdminUser() {
-  var name = "admin";
-  var email = "admin@a.pl";
-  var created_at = new Date();
-  var updated_at = created_at;
-  var password = bcrypt.hashSync("admin");
+  const name = "admin";
+  const email = "admin@a.pl";
+  const created_at = new Date();
+  const updated_at = created_at;
+  const password = bcrypt.hashSync("admin");
+  const roles = ["read-all", "write-all", "update-all", "delete-all"];
 
-  return {name, email, password, created_at, updated_at};
+  return {name, email, password, created_at, updated_at, roles};
 }
