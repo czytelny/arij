@@ -14,15 +14,22 @@ MongoClient.connect(dbConfig.url, function (err, db) {
   if (err) throw err;
   logger.info("Successfully connected to MongoDb");
   const adminUser = makeAdminUser();
-  db.collection("users").drop()
+  const userCollection = db.collection("users");
+  userCollection.drop()
     .then(() => {
-      logger.info("'users' collection dropped");
-      db.collection("users").insertOne(adminUser)
-    })
+        logger.info("'users' collection dropped");
+        return db.collection("users").insertOne(adminUser)
+      }, () => {
+        logger.warn("can't drop collection users");
+        return db.collection("users").insertOne(adminUser)
+      }
+    )
     .then(() => {
       logger.info(`${adminUser.email} user added`);
       db.close();
-    });
+    }).catch(() => {
+    logger.error("can't add admin user");
+  });
 });
 
 function makeAdminUser() {
