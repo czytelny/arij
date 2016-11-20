@@ -1,7 +1,5 @@
-import messageActions from '../public/src/app/messages/messagesActionCreators'
-import socketHandler from '../public/src/socketHandler';
-
-import * as action from './userActionTypes'
+const messageActions = require('../public/src/app/messages/messagesActionCreators');
+const action = require('./userActionTypes');
 
 
 function userNameChanged(name) {
@@ -72,7 +70,7 @@ function initializeNewUser() {
   }
 }
 
-function addUserRequest(user){
+function addUserRequest(user) {
   return {
     type: action.ADD_USER_REQUEST,
     meta: {remote: true},
@@ -94,7 +92,7 @@ function addUserRequestFailure(message) {
   }
 }
 
-function modifyUserRequest(user){
+function modifyUserRequest(user) {
   return {
     type: action.MODIFY_USER_REQUEST,
     meta: {remote: true},
@@ -102,14 +100,14 @@ function modifyUserRequest(user){
   }
 }
 
-function modifyUserRequestSuccess(message){
+function modifyUserRequestSuccess(message) {
   return {
     type: action.MODIFY_USER_REQUEST_SUCCESS,
     message
   }
 }
 
-function modifyUserRequestFailure(message){
+function modifyUserRequestFailure(message) {
   return {
     type: action.MODIFY_USER_REQUEST_FAILURE,
     message
@@ -139,7 +137,7 @@ function submitUserEdit() {
   }
 }
 
-export default {
+module.exports = {
   userNameChanged,
   userPasswordChanged,
   userEmailChanged,

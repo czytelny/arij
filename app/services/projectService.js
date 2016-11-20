@@ -1,19 +1,19 @@
-import Project from '../models/projectModel';
+const Project = require('../models/projectModel');
 
 function save(objectToSave) {
   return new Project(objectToSave).save();
 }
 
-function findById(projectId){
+function findById(projectId) {
   return Project.findById(projectId);
 }
 
-function find(){
+function find() {
   return Project.find()
 }
 
 
-export default {
+module.exports = {
   save,
   findById,
   find

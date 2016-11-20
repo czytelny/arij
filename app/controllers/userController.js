@@ -1,9 +1,9 @@
-import * as actions from '../shared/userActionTypes'
-import * as userListActions from '../shared/userListActionTypes'
-import userService from './../services/userService';
+const actions = require('../shared/userActionTypes');
+const userListActions = require('../shared/userListActionTypes');
+const userService = require('./../services/userService');
 
-import userListAction from './../shared/userListActionCreators'
-import userAction from './../shared/userActionCreators'
+const userListAction = require('./../shared/userListActionCreators');
+const userAction = require('./../shared/userActionCreators');
 
 module.exports = function (io) {
   io.on('connection', function (socket) {

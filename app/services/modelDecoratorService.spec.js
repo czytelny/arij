@@ -1,9 +1,8 @@
+const {expect} = require('chai');
+const modelDecoratorService = require('./modelDecoratorService');
 
-import {expect} from 'chai';
-import modelDecoratorService from './modelDecoratorService';
-
-describe("modelDecoratorService", function () {
-  describe("addTimestamp()", function () {
+describe("modelDecoratorService", function() {
+  describe("addTimestamp()", function() {
     it("should add created_at property to model if it's not exist", () => {
       //given
       let modelObj = {};

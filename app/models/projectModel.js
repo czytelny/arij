@@ -1,7 +1,7 @@
 "use strict";
 
-import mongoose from 'mongoose';
-import modelDecoratorService from './../services/modelDecoratorService';
+const mongoose = require('mongoose');
+const modelDecoratorService = require('./../services/modelDecoratorService');
 
 const Schema = mongoose.Schema;
 
@@ -13,9 +13,9 @@ const projectSchema = new Schema({
   updated_at: Date
 });
 
-projectSchema.pre('save', function (next) {
+projectSchema.pre('save', function(next) {
   modelDecoratorService.addTimestamp.call(this);
   next();
 });
 
-export default mongoose.model('Project', projectSchema);
+module.exports = mongoose.model('Project', projectSchema);

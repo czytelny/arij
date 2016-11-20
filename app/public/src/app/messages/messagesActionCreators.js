@@ -1,8 +1,8 @@
-import {
+const {
   SHOW_SUCCESS_MESSAGE,
   HIDE_MESSAGE,
   SHOW_ERROR_MESSAGE
-} from './messagesActionTypes'
+} = require('./messagesActionTypes');
 
 function showSuccessMessage(message) {
   return {
@@ -32,7 +32,7 @@ function hideMessageWithDelay(delay) {
   };
 }
 
-export default {
+module.exports = {
   showSuccessMessage,
   showErrorMessage,
   hideMessage,

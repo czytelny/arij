@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import dbConfig from './config/databaseConfig';
-import logger from 'winston';
+const mongoose = require('mongoose');
+const dbConfig = require('./config/databaseConfig');
+const logger = require('winston');
 
 
 module.exports = mongoose.connect(dbConfig.url, function (err) {

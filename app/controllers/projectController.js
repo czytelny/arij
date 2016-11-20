@@ -1,5 +1,5 @@
-import * as actions from '../shared/projectActionTypes'
-import projectService from './../services/projectService';
+const actions = require('../shared/projectActionTypes');
+const projectService = require('./../services/projectService');
 
 module.exports = function (io) {
 

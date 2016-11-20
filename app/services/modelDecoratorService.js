@@ -9,6 +9,6 @@ function addTimestamp() {
   return this;
 }
 
-export default {
+module.exports =  {
   addTimestamp
 };

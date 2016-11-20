@@ -1,8 +1,8 @@
 "use strict";
 
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
-import modelDecoratorService from './../services/modelDecoratorService';
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const modelDecoratorService = require('./../services/modelDecoratorService');
 
 const Schema = mongoose.Schema;
 
@@ -35,4 +35,4 @@ userSchema.methods.verifyPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-export default mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

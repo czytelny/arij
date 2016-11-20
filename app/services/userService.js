@@ -1,5 +1,5 @@
-import User from '../models/userModel';
-import logger from 'winston'
+const User = require('../models/userModel');
+const logger = require('winston');
 
 function save(objectToSave) {
   logger.info(`user: saving: ${JSON.stringify(objectToSave)}`);

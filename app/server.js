@@ -19,7 +19,7 @@ const socketIO = require('socket.io')(server);
 const PORT = process.env.PORT || 3030;
 
 const database = require('./database');
-import userService from './services/userService'
+const userService = require('./services/userService');
 
 require('./config/passportConfig')(passport);
 

@@ -1,8 +1,8 @@
-import {
+const {
   GET_ALL_USER_REQUEST,
   GET_ALL_USER_REQUEST_SUCCESS,
   GET_ALL_USER_REQUEST_FAILURE
-} from './userListActionTypes'
+} = require("./userListActionTypes");
 
 function getAllUserRequest() {
   return {
@@ -25,8 +25,8 @@ function getAllUserRequestFailure(message) {
   }
 }
 
-export default {
+module.exports = {
   getAllUserRequest,
   getAllUserRequestSuccess,
   getAllUserRequestFailure
-}
+};
