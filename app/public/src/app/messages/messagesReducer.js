@@ -1,18 +1,18 @@
-import {Map} from 'immutable'
-import {
+const {Map} = require('immutable');
+
+const {
   SHOW_SUCCESS_MESSAGE,
   SHOW_ERROR_MESSAGE,
   HIDE_MESSAGE
-} from './messagesActionTypes'
-import {
-  GET_ALL_USER_REQUEST_FAILURE
-} from '../../../../shared/userListActionTypes'
-import {
+} = require('./messagesActionTypes');
+
+const {GET_ALL_USER_REQUEST_FAILURE} = require('../../../../shared/userListActionTypes');
+const {
   ADD_USER_REQUEST_SUCCESS,
   ADD_USER_REQUEST_FAILURE,
   MODIFY_USER_REQUEST_SUCCESS,
   MODIFY_USER_REQUEST_FAILURE
-} from '../../../../shared/userActionTypes'
+} = require('../../../../shared/userActionTypes');
 
 const initialState = Map({
   hidingDelay: 3500,
@@ -22,7 +22,7 @@ const initialState = Map({
   isVisible: false
 });
 
-const MessagesReducer = function (state = initialState, action) {
+const MessagesReducer = function(state = initialState, action) {
   switch (action.type) {
     case SHOW_ERROR_MESSAGE:
     case GET_ALL_USER_REQUEST_FAILURE:
@@ -56,4 +56,4 @@ const MessagesReducer = function (state = initialState, action) {
   return state;
 };
 
-export default MessagesReducer;
+module.exports =  MessagesReducer;

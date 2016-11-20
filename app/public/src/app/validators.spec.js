@@ -1,11 +1,11 @@
-import {expect} from 'chai';
-import {Map, fromJS} from 'immutable';
+const {expect} = require('chai');
+const {Map, fromJS} = require('immutable');
 
-import {isFormValid} from './validators'
+const {isFormValid} = require('./validators');
 
-describe("validators", function () {
-  describe("isFormValid()", function () {
-    it("should be false", function () {
+describe("validators", function() {
+  describe("isFormValid()", function() {
+    it("should be false", function() {
       const objToValidate = fromJS({
         isValid: false,
         name: {
@@ -19,7 +19,7 @@ describe("validators", function () {
       expect(isFormValid(objToValidate)).to.eq(false);
     });
 
-    it("should be true", function () {
+    it("should be true", function() {
       const objToValidate = fromJS({
         isValid: false,
         name: {

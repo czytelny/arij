@@ -1,5 +1,4 @@
-import {Map} from 'immutable'
-import _ from 'underscore'
+const _ = require('underscore');
 
 function isRequiredError(objToTest) {
   return !(objToTest);
@@ -15,8 +14,8 @@ function isFormValid(formObj) {
   return JSON.stringify(errors).indexOf("true") === -1;
 }
 
-export {
+module.exports = {
   isRequiredError,
   isEmailFormatError,
   isFormValid
-}
+};

@@ -1,19 +1,17 @@
-import {expect} from 'chai';
-import {Map, fromJS, List} from 'immutable';
-import userListReducer from './userListReducer';
-import {
-  GET_ALL_USER_REQUEST_SUCCESS
-} from '../../../../shared/userListActionTypes'
+const {expect} = require('chai');
+const {Map, fromJS, List} = require('immutable');
+const userListReducer = require('./userListReducer');
+const {GET_ALL_USER_REQUEST_SUCCESS} = require('../../../../shared/userListActionTypes');
 
 
-describe("userListReducer", function () {
-  it("has initial state", function () {
+describe("userListReducer", function() {
+  it("has initial state", function() {
     const action = {type: "RANDOM"};
     const nextState = userListReducer(undefined, action);
     expect(nextState.get("users")).to.equal(List());
   });
 
-  it("handles GET_ALL_USER_REQUEST_SUCCESS", function () {
+  it("handles GET_ALL_USER_REQUEST_SUCCESS", function() {
     const initialState = Map();
     const action = {
       type: GET_ALL_USER_REQUEST_SUCCESS,

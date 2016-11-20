@@ -1,14 +1,14 @@
-import {expect} from 'chai';
-import {Map, fromJS} from 'immutable';
-import messagesReducer from './messagesReducer';
-import {
+const {expect} = require('chai');
+const {Map, fromJS} = require('immutable');
+const messagesReducer = require('./messagesReducer');
+const {
   SHOW_ERROR_MESSAGE,
   HIDE_MESSAGE,
   SHOW_SUCCESS_MESSAGE
-} from './messagesActionTypes'
+} = require('./messagesActionTypes');
 
-describe("messagesReducer", function () {
-  it("has initial state", function () {
+describe("messagesReducer", function() {
+  it("has initial state", function() {
     const action = {type: "ANY"};
     const nextState = messagesReducer(undefined, action);
     expect(nextState.get("isVisible")).to.equal(false);
@@ -16,7 +16,7 @@ describe("messagesReducer", function () {
     expect(nextState.get("successMessage")).to.equal(null);
   });
 
-  it("handles SHOW_ERROR_MESSAGE with message", function () {
+  it("handles SHOW_ERROR_MESSAGE with message", function() {
     const initState = Map();
     const action = {type: SHOW_ERROR_MESSAGE, message: "ddd"};
     const nextState = messagesReducer(initState, action);
@@ -26,7 +26,7 @@ describe("messagesReducer", function () {
     }))
   });
 
-  it("handles SHOW_ERROR_MESSAGE without message", function () {
+  it("handles SHOW_ERROR_MESSAGE without message", function() {
     const initState = Map({
       defaultErrorMessage: "defaultErrorMessage"
     });
@@ -39,7 +39,7 @@ describe("messagesReducer", function () {
     }))
   });
 
-  it("should handle SHOW_SUCCESS_MESSAGE", function () {
+  it("should handle SHOW_SUCCESS_MESSAGE", function() {
     const initState = Map();
     const action = {type: SHOW_SUCCESS_MESSAGE, message: "ddd"};
     const nextState = messagesReducer(initState, action);
@@ -49,7 +49,7 @@ describe("messagesReducer", function () {
     }))
   });
 
-  it("should handle HIDE_MESSAGE", function () {
+  it("should handle HIDE_MESSAGE", function() {
     const initState = Map();
     const action = {type: HIDE_MESSAGE, message: "ddd"};
     const nextState = messagesReducer(initState, action);

@@ -1,6 +1,6 @@
-import {Map, fromJS} from 'immutable'
+const {Map, fromJS} = require('immutable');
 
-import {
+const {
   USER_NAME_CHANGED,
   USER_PASSWORD_CHANGED,
   USER_EMAIL_CHANGED,
@@ -18,8 +18,8 @@ import {
   GET_USER_REQUEST_SUCCESS,
   INITIALIZE_NEW_USER,
   VALIDATE_USER_EDIT
-} from '../../../../shared/userActionTypes'
-import {isRequiredError, isEmailFormatError, isFormValid} from './../../app/validators'
+} = require('../../../../shared/userActionTypes');
+const {isRequiredError, isEmailFormatError, isFormValid} = require('./../../app/validators');
 
 const initialState = Map({
   user: Map({
@@ -48,7 +48,7 @@ const initialState = Map({
   savingInProgress: false
 });
 
-const validateUser = function (state) {
+const validateUser = function(state) {
   const nameValidated = validatedName(state);
   const emailValidated = validatedEmail(nameValidated);
   const passwordValidated = validatedPassword(emailValidated);
@@ -57,47 +57,47 @@ const validateUser = function (state) {
     () => isFormValid(passwordValidated.get("errors")));
 };
 
-const validateUserEdit = function (state) {
+const validateUserEdit = function(state) {
   const nameValidated = validatedName(state);
   return nameValidated.updateIn(["errors", "isValid"],
     () => isFormValid(nameValidated.get("errors")));
 };
 
-const validatedName = function (state) {
+const validatedName = function(state) {
   return state.updateIn(['errors', 'name', 'required'],
-    ()=> isRequiredError(state.getIn(['user', 'name'])));
+    () => isRequiredError(state.getIn(['user', 'name'])));
 };
 
-const validatedEmail = function (state) {
+const validatedEmail = function(state) {
   let resultState;
   resultState = state.updateIn(['errors', 'email', 'required'],
-    ()=> isRequiredError(state.getIn(['user', 'email'])));
+    () => isRequiredError(state.getIn(['user', 'email'])));
 
   resultState = resultState.updateIn(['errors', 'email', 'format'],
-    ()=> isEmailFormatError(state.getIn(['user', 'email'])));
+    () => isEmailFormatError(state.getIn(['user', 'email'])));
   return resultState;
 };
 
-const validatedPassword = function (state) {
+const validatedPassword = function(state) {
   let resultState = state.updateIn(['errors', 'password', 'required'],
-    ()=> isRequiredError(state.getIn(['user', 'password'])));
+    () => isRequiredError(state.getIn(['user', 'password'])));
   resultState = resultState.updateIn(['errors', 'password', 'confirmed'],
-    ()=> (resultState.getIn(['user', 'password']) !== resultState.get('passwordConfirm')));
+    () => (resultState.getIn(['user', 'password']) !== resultState.get('passwordConfirm')));
   return resultState;
 };
 
 
-const userReducer = function (state = initialState, action) {
+const userReducer = function(state = initialState, action) {
   switch (action.type) {
     case USER_NAME_CHANGED:
       return validatedName(state
-        .updateIn(['user', 'name'], ()=>action.name));
+        .updateIn(['user', 'name'], () => action.name));
     case USER_EMAIL_CHANGED:
       return validatedEmail(state
-        .updateIn(['user', 'email'], ()=>action.email));
+        .updateIn(['user', 'email'], () => action.email));
     case USER_PASSWORD_CHANGED:
       return validatedPassword(state
-        .updateIn(['user', 'password'], ()=>action.password));
+        .updateIn(['user', 'password'], () => action.password));
     case USER_PASSWORD_CONFIRM_CHANGED:
       return validatedPassword(state
         .set('passwordConfirm', action.password));
@@ -129,4 +129,4 @@ const userReducer = function (state = initialState, action) {
   return state;
 };
 
-export default userReducer;
+module.exports = userReducer;

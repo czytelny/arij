@@ -1,8 +1,8 @@
-import {expect} from 'chai';
-import {Map, fromJS} from 'immutable';
+const {expect} = require('chai');
+const {Map, fromJS} = require('immutable');
 
-import userReducer from './userReducer'
-import * as act from '../../../../shared/userActionTypes'
+const userReducer = require('./userReducer');
+const act = require('../../../../shared/userActionTypes');
 
 
 describe("userReducer", function () {
