@@ -8,7 +8,6 @@ import userAction from './../shared/userActionCreators'
 module.exports = function (io) {
   io.on('connection', function (socket) {
     socket.on("action", function (action) {
-      console.log(`user socketio controller - ${socket.request.user.logged_in}`);
       switch (action.type) {
         case userListActions.GET_ALL_USER_REQUEST:
           return userService.find().then(

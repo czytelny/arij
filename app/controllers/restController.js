@@ -18,7 +18,11 @@ module.exports = function (app) {
     res.sendFile(path.resolve("app/public/" + req.path))
   });
 
-  app.get('/', isLoggedIn, function (req, res) {
+  app.head('/head', isLoggedIn, function (req, res) {
+    res.sendStatus(200);
+  });
+
+  app.get('*', isLoggedIn, function (req, res) {
     res.sendFile(path.resolve("app/public/index.html"));
   });
 };
@@ -29,8 +33,10 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
 
-  logger.info('user not authenticated');
-  // if they aren't redirect them to the home page
-  res.redirect('/login');
+  if (req.xhr) {
+    res.sendStatus(401); //Unauthorized
+  } else {
+    res.redirect('/login');
+  }
 }
 

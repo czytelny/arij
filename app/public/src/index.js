@@ -3,6 +3,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import store from './store'
 import {Router, Route, browserHistory} from 'react-router'
+import 'whatwg-fetch'
 
 
 import MainView from './app/mainView';

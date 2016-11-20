@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import socketIO from './socketHandler'
 import socketIoMiddleware from 'redux-socket.io-middleware'
 import loggerMiddleware from './loggerMiddleware'
+import fetchMiddleware from './fetchMiddleware';
 
 // Combine Reducers
 const reducers = combineReducers({
@@ -23,6 +24,7 @@ const store = createStore(
   applyMiddleware(
     thunk,
     loggerMiddleware,
+    fetchMiddleware,
     socketIoMiddleware(socketIO)
   )
 );
