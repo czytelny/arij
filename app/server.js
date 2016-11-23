@@ -19,9 +19,10 @@ const socketIO = require('socket.io')(server);
 const PORT = process.env.PORT || 3030;
 
 const database = require('./database');
-const userService = require('./services/userService');
 
+require('./services/userService');
 require('./config/passportConfig')(passport);
+
 
 app.use(helmet());
 app.use(cookieParser()); // read cookies (needed for auth)

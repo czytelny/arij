@@ -38,7 +38,7 @@ function makeAdminUser() {
   const created_at = new Date();
   const updated_at = created_at;
   const password = bcrypt.hashSync("admin");
-  const roles = ["read-all", "write-all", "update-all", "delete-all"];
+  const roles = ["admin"];
 
   return {name, email, password, created_at, updated_at, roles};
 }

@@ -7,7 +7,8 @@
     "start:watch": "nodemon app/server.js --exec node",
     "test": "mocha \"./app/**/*.spec.js\" --require ./app/test_helper.js --recursive",
     "test:watch": "npm run test -- --watch",
-    "init:users": "node app/scripts/initDbUsers.js"
+    "init:users": "node app/scripts/initDbUsers.js",
+    "standard": "standard"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "nodemon": "^1.10.0",
     "run-sequence": "^1.2.2",
     "sinon": "^1.17.5",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "standard": "^8.5.0"
   }
 }
