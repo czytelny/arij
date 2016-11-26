@@ -1,4 +1,4 @@
-const messageActions = require('../public/src/app/messages/messagesActionCreators');
+const messageActions = require('../../app/messages/messagesActionCreators');
 const action = require('./userActionTypes');
 
 

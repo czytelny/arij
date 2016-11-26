@@ -6,9 +6,13 @@ const {
 function getAllUserRequest() {
   return function (dispatch) {
     return fetch("/api/users")
-      .then(resp => resp.json())
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        }
+        dispatch(getAllUserRequestFailure(resp.statusText))
+      }, err => dispatch(getAllUserRequestFailure(err)))
       .then(data => dispatch(getAllUserRequestSuccess(data)))
-      .catch(err => dispatch(getAllUserRequestSuccess(data)));
   }
 }
 

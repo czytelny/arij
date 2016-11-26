@@ -2,7 +2,7 @@ const {expect} = require('chai');
 const {Map, fromJS} = require('immutable');
 
 const userReducer = require('./userReducer');
-const act = require('../../../../shared/userActionTypes');
+const act = require('./userActionTypes');
 
 
 describe("userReducer", function () {

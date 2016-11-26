@@ -6,13 +6,13 @@ const {
   HIDE_MESSAGE
 } = require('./messagesActionTypes');
 
-const {GET_ALL_USER_REQUEST_FAILURE} = require('../../../../shared/userListActionTypes');
+const {GET_ALL_USER_REQUEST_FAILURE} = require('../../settings/userList/userListActionTypes');
 const {
   ADD_USER_REQUEST_SUCCESS,
   ADD_USER_REQUEST_FAILURE,
   MODIFY_USER_REQUEST_SUCCESS,
   MODIFY_USER_REQUEST_FAILURE
-} = require('../../../../shared/userActionTypes');
+} = require('../../settings/user/userActionTypes');
 
 const initialState = Map({
   hidingDelay: 3500,

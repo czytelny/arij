@@ -18,7 +18,7 @@ const {
   GET_USER_REQUEST_SUCCESS,
   INITIALIZE_NEW_USER,
   VALIDATE_USER_EDIT
-} = require('../../../../shared/userActionTypes');
+} = require('./userActionTypes');
 const {isRequiredError, isEmailFormatError, isFormValid} = require('./../../app/validators');
 
 const initialState = Map({
