@@ -6,15 +6,24 @@ const accessControl = require('./../services/accessControl')
 const userListAction = require('./../shared/userListActionCreators')
 const userAction = require('./../shared/userActionCreators')
 
-module.exports = function (io) {
-  io.on('connection', function (socket) {
-    const user = socket.request.user
-    registerAccessControl();
+module.exports = function (io, app) {
+   // WEBSOCKETs
+  // io.on('connection', function (socket) {
+  //   const user = socket.request.user
+  //   registerAccessControl();
+  //
+  //   socket.on("action", (action) => {
+  //     handleAction(io, user, action)
+  //   })
+  // })
 
-    socket.on("action", (action) => {
-      handleAction(io, user, action)
-    })
+  //REST
+  app.get('/api/users', function (req, res) {
+    userService.find()
+      .then((users) => res.json(users))
+      .catch((err) => res.status(500).send({error: "Getting users failed"}))
   })
+
 }
 
 function handleAction (io, user, action) {

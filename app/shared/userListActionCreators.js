@@ -1,13 +1,14 @@
 const {
-  GET_ALL_USER_REQUEST,
   GET_ALL_USER_REQUEST_SUCCESS,
   GET_ALL_USER_REQUEST_FAILURE
 } = require("./userListActionTypes");
 
 function getAllUserRequest() {
-  return {
-    type: GET_ALL_USER_REQUEST,
-    meta: {remote: true},
+  return function (dispatch) {
+    return fetch("/api/users")
+      .then(resp => resp.json())
+      .then(data => dispatch(getAllUserRequestSuccess(data)))
+      .catch(err => dispatch(getAllUserRequestSuccess(data)));
   }
 }
 

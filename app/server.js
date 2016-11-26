@@ -48,7 +48,7 @@ socketIO.use(passportSocketIo.authorize(sessionConfig));
 modelConfig.setConfig();
 
 // ------- controllers
-require('./controllers/userController')(socketIO);
+require('./controllers/userController')(socketIO, app);
 require('./controllers/projectController')(socketIO);
 require('./controllers/unauthorizedAreaController')(app, passport);
 require('./controllers/restController')(app);
