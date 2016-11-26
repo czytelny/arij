@@ -1,5 +1,5 @@
 const messageActions = require('../../app/messages/messagesActionCreators');
-const action = require('./userActionTypes');
+const action = require('./usersActionTypes');
 
 
 function userNameChanged(name) {
@@ -137,6 +137,33 @@ function submitUserEdit() {
   }
 }
 
+function getAllUserRequest() {
+  return function (dispatch) {
+    return fetch("/api/users")
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        }
+        dispatch(getAllUserRequestFailure(resp.statusText))
+      }, err => dispatch(getAllUserRequestFailure(err)))
+      .then(data => dispatch(getAllUserRequestSuccess(data)))
+  }
+}
+
+function getAllUserRequestSuccess(users) {
+  return {
+    type: action.GET_ALL_USER_REQUEST_SUCCESS,
+    users
+  }
+}
+
+function getAllUserRequestFailure(message) {
+  return {
+    type: action.GET_ALL_USER_REQUEST_FAILURE,
+    message
+  }
+}
+
 module.exports = {
   userNameChanged,
   userPasswordChanged,
@@ -158,5 +185,9 @@ module.exports = {
 
   modifyUserRequest,
   modifyUserRequestSuccess,
-  modifyUserRequestFailure
+  modifyUserRequestFailure,
+
+  getAllUserRequest,
+  getAllUserRequestSuccess,
+  getAllUserRequestFailure
 }

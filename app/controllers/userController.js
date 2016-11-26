@@ -1,13 +1,10 @@
-const actions = require('../public/src/settings/user/userActionTypes')
 const userService = require('./../services/userService')
 const accessControl = require('./../services/accessControl')
 
-const userAction = require('./../public/src/settings/user/userActionCreators')
-
-module.exports = function (io, app) {
+module.exports = function (app) {
   app.get('/api/users', function (req, res) {
     userService.find()
-      .then((users) => res.status(500).json(users))
+      .then((users) => res.json(users))
       .catch((err) => res.status(500).send({error: "Getting users failed"}))
   })
 }

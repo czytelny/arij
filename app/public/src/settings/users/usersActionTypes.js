@@ -17,5 +17,8 @@ module.exports = {
   USER_PASSWORD_CONFIRM_CHANGED: "user_password_confirm_changed",
   INITIALIZE_NEW_USER: "initialize_new_user",
   VALIDATE_USER: "validate_user",
-  VALIDATE_USER_EDIT: "validate_user_edit"
+  VALIDATE_USER_EDIT: "validate_user_edit",
+
+  GET_ALL_USER_REQUEST_SUCCESS: "GET_ALL_USER_REQUEST_SUCCESS",
+  GET_ALL_USER_REQUEST_FAILURE: "GET_ALL_USER_REQUEST_FAILURE"
 };

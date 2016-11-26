@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Navbar from '../../app/navbar/navbar'
+import Navbar from './../../../app/navbar/navbar'
 import UserListContainer from './userListContainer'
 import {Link} from 'react-router'
-import SettingsMenu from '../settingsSidenav'
+import SettingsMenu from './../../settingsSidenav'
 
 
 const UserListView = () => <div>

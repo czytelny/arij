@@ -1,8 +1,8 @@
 var React = require('react');
 
-import Navbar from '../../app/navbar/navbar'
+import Navbar from '../../../app/navbar/navbar'
 import UserContainer from './userContainer'
-import Logo from './../../app/logo'
+import Logo from './../../../app/logo'
 
 const UserView = ({params}) =>  <div>
   <div className="row">

@@ -1,4 +1,3 @@
-const userListActionTypes = require('./../public/src/settings/userList/userListActionTypes');
 
 const ROLES = {
   ADMIN: "admin",

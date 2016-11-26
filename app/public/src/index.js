@@ -8,8 +8,8 @@ import {Router, Route, browserHistory} from 'react-router'
 
 
 import MainView from './app/mainView';
-import UserView from './settings/user/userView';
-import UserListView from './settings/userList/userListView';
+import UserView from './settings/users/user/userView';
+import UserListView from './settings/users/userList/userListView';
 import ProjectListView from './settings/projectList/projectListView';
 import ProjectView from './settings/project/projectView';
 import MessagesComponent from './app/messages/messagesComponent';

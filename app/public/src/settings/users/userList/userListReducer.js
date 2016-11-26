@@ -1,6 +1,6 @@
 const {Map, List} = require('immutable');
 
-const {GET_ALL_USER_REQUEST_SUCCESS} = require('./userListActionTypes');
+const {GET_ALL_USER_REQUEST_SUCCESS} = require('./../usersActionTypes');
 
 const initialState = Map({
   isLoading: false,

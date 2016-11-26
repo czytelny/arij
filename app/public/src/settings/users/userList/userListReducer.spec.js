@@ -1,7 +1,7 @@
 const {expect} = require('chai');
 const {Map, fromJS, List} = require('immutable');
 const userListReducer = require('./userListReducer');
-const {GET_ALL_USER_REQUEST_SUCCESS} = require('./userListActionTypes');
+const {GET_ALL_USER_REQUEST_SUCCESS} = require('./../usersActionTypes');
 
 
 describe("userListReducer", function() {

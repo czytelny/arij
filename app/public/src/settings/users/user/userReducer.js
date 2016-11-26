@@ -18,8 +18,8 @@ const {
   GET_USER_REQUEST_SUCCESS,
   INITIALIZE_NEW_USER,
   VALIDATE_USER_EDIT
-} = require('./userActionTypes');
-const {isRequiredError, isEmailFormatError, isFormValid} = require('./../../app/validators');
+} = require('./../usersActionTypes');
+const {isRequiredError, isEmailFormatError, isFormValid} = require('./../../../app/validators');
 
 const initialState = Map({
   user: Map({
