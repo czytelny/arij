@@ -44,7 +44,12 @@ function validateUserEdit() {
 
 function getUserRequest(userId) {
   return function (dispatch) {
-    return fetch(`/api/users/${userId}`)
+    return fetch(`/api/users/${userId}`, {
+      credentials: 'same-origin',
+      headers: {
+        "X-Requested-With": "XMLHttpRequest"
+      }
+    })
       .then(resp => {
         if (resp.ok) {
           return resp.json()
@@ -81,7 +86,8 @@ function addUserRequest(user) {
       method: "POST",
       credentials: 'same-origin',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        "X-Requested-With": "XMLHttpRequest"
       },
       body: JSON.stringify(user)
     })
@@ -158,7 +164,12 @@ function submitUserEdit() {
 
 function getAllUserRequest() {
   return function (dispatch) {
-    return fetch("/api/users")
+    return fetch("/api/users", {
+      credentials: 'same-origin',
+      headers: {
+        "X-Requested-With": "XMLHttpRequest"
+      }
+    })
       .then(resp => {
         if (resp.ok) {
           return resp.json()
