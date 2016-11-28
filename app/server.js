@@ -48,10 +48,9 @@ socketIO.use(passportSocketIo.authorize(sessionConfig));
 modelConfig.setConfig();
 
 // ------- controllers
-app.use('/api/users', require('./controllers/userController'))
+require('./controllers/controllers')(app, passport)
 require('./controllers/projectController')(socketIO);
-require('./controllers/unauthorizedAreaController')(app, passport);
-require('./controllers/restController')(app);
+
 
 
 server.listen(PORT, function () {

@@ -9,39 +9,21 @@ router.get('/', function (req, res) {
 })
 
 router.get('/:userId', function (req, res) {
-  return userService.findById(req.params.userId)
+  userService.findById(req.params.userId)
     .then((data) => res.json(data))
     .catch((err) => res.status(500).send({error: "Getting user failed"}))
 })
 
+router.post('/', function (req, res) {
+  userService.save(req.body)
+    .then((data) => res.send("User added successfully"))
+    .catch((err) => res.status(500).send("Adding user failed"))
+})
+
+router.put('/:userId', function (req, res) {
+  userService.update(req.params.userId)
+    .then((data) => res.send("User modified successfully"))
+    .catch((err) => res.status(500).send("Modifying user failed"))
+})
+
 module.exports = router;
-
-
-// function handleAction (io, user, action) {
-//   accessControl.isAllowed(user, action)
-//
-//   switch (action.type) {
-//     case userListActions.GET_ALL_USER_REQUEST:
-//       return userService.find().then(
-//         (users) => io.emit('action', userListAction.getAllUserRequestSuccess(users)),
-//         (err) => io.emit('action', userListAction.getAllUserRequestFailure("Getting users failed"))
-//       )
-//     case actions.GET_USER_REQUEST:
-//       return userService.findById(action.userId).then(
-//         (data) => io.emit('action', userAction.getUserRequestSuccess(data)),
-//         (err) => io.emit('action', userAction.getUserRequestFailure(err))
-//       )
-//     case actions.ADD_USER_REQUEST:
-//       return userService.save(action.user).then(
-//         (data) => io.emit('action', userAction.addUserRequestSuccess("User added successfully")),
-//         (err) => io.emit('action', userAction.addUserRequestFailure("Adding user failed"))
-//       )
-//     case actions.MODIFY_USER_REQUEST:
-//       return userService.update(action.user).then(
-//         (data) => io.emit('action', userAction.modifyUserRequestSuccess("User modified successfully")),
-//         (err) => io.emit('action', userAction.modifyUserRequestFailure("Modifying user failed"))
-//       )
-//   }
-// }
-
-

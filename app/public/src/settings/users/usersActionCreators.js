@@ -76,10 +76,24 @@ function initializeNewUser() {
 }
 
 function addUserRequest(user) {
-  return {
-    type: action.ADD_USER_REQUEST,
-    meta: {remote: true},
-    user
+  return function (dispatch) {
+    return fetch("/api/users", {
+      method: "POST",
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+      .then(resp => {
+        if (resp.ok) {
+          return resp.text()
+        }
+        dispatch(addUserRequestFailure(resp.statusText))
+      }, err => dispatch(addUserRequestFailure(err)))
+      .then((text) => {
+        dispatch(addUserRequestSuccess(text))
+      })
   }
 }
 
