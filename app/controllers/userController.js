@@ -1,13 +1,21 @@
+const router = require('express').Router()
 const userService = require('./../services/userService')
 const accessControl = require('./../services/accessControl')
 
-module.exports = function (app) {
-  app.get('/api/users', function (req, res) {
-    userService.find()
-      .then((users) => res.json(users))
-      .catch((err) => res.status(500).send({error: "Getting users failed"}))
-  })
-}
+router.get('/', function (req, res) {
+  userService.find()
+    .then((users) => res.json(users))
+    .catch((err) => res.status(500).send({error: "Getting users failed"}))
+})
+
+router.get('/:userId', function (req, res) {
+  return userService.findById(req.params.userId)
+    .then((data) => res.json(data))
+    .catch((err) => res.status(500).send({error: "Getting user failed"}))
+})
+
+module.exports = router;
+
 
 // function handleAction (io, user, action) {
 //   accessControl.isAllowed(user, action)

@@ -43,10 +43,15 @@ function validateUserEdit() {
 }
 
 function getUserRequest(userId) {
-  return {
-    type: action.GET_USER_REQUEST,
-    meta: {remote: true},
-    userId
+  return function (dispatch) {
+    return fetch(`/api/users/${userId}`)
+      .then(resp => {
+        if (resp.ok) {
+          return resp.json()
+        }
+        dispatch(getUserRequestFailure(resp.statusText))
+      }, err => dispatch(getUserRequestFailure(err)))
+      .then(data => dispatch(getUserRequestSuccess(data)))
   }
 }
 
