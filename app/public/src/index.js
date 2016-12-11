@@ -12,6 +12,7 @@ import UserView from './settings/users/user/userView';
 import UserListView from './settings/users/userList/userListView';
 import ProjectListView from './settings/projectList/projectListView';
 import ProjectView from './settings/project/projectView';
+import ProjectRestListView from './settings/projects/projectList/ProjectRestListView';
 import MessagesComponent from './app/messages/messagesComponent';
 
 render(
@@ -24,6 +25,7 @@ render(
         <Route path="/settings/user/:userId" component={UserView}/>
         <Route path="/settings/project" component={ProjectListView}/>
         <Route path="/settings/project/new" component={ProjectView}/>
+        <Route path="/settings/projects" component={ProjectRestListView}/>
       </Router>
       <MessagesComponent />
     </div>

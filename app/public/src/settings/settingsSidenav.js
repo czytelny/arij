@@ -32,6 +32,12 @@ const settingsSidenav = () =>
             Projects
           </Link>
         </li>
+        <li>
+          <Link to="/settings/projects" activeClassName="chosen"
+                className="btn btn-lg link-unstyled">
+            Projects (REST)
+          </Link>
+        </li>
       </ul>
     </div>
   </div>;
