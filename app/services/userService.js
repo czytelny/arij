@@ -21,15 +21,16 @@ function find() {
   return User.find()
 }
 
-function update(user) {
-  logger.info(`modifying user with id: ${user._id}`);
+function update(userId, user) {
+  logger.info(`modifying user with id: ${userId}`);
 
-  return User.findById(user._id, function (err, foundUser) {
-    if (err) logger.exception(err);
-
-    foundUser.name = user.name;
-    return foundUser.save();
-  })
+  return User.findById(userId)
+    .then((foundUser) => {
+      if (foundUser) {
+        Object.assign(foundUser, user);
+        return foundUser.save();
+      }
+    });
 }
 
 

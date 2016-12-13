@@ -23,7 +23,7 @@ router.post('/', isLoggedIn, function (req, res) {
 })
 
 router.put('/:userId', isLoggedIn, function (req, res) {
-  userService.update(req.params.userId)
+  userService.update(req.params.userId, req.body)
     .then((data) => res.send("User modified successfully"))
     .catch((err) => res.status(500).send("Modifying user failed"))
 })
