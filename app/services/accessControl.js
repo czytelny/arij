@@ -1,11 +1,7 @@
 
-const ROLES = {
-  ADMIN: "admin",
-  PROJECT_OWNER: "p_owner",
-  DEVELOPER: "developer",
-  TESTER: "tester",
-  ANAL: "analytics",
-  SPECTATOR: "spectator"
+const roles = {
+  admin: "admin",
+  user: "user"
 }
 
 function isAllowed(user, action){
@@ -20,7 +16,7 @@ function registerPaths(path, role){
 
 
 module.exports = {
-  ROLES,
+  roles,
   isAllowed,
   registerPaths
 }

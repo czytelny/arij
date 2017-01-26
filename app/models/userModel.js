@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const modelDecoratorService = require('./../services/modelDecoratorService');
+const {roles} = require('./../services/accessControl')
 
 const Schema = mongoose.Schema;
 
@@ -11,7 +12,7 @@ const userSchema = new Schema({
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   active: {type: Boolean, default: true},
-  roles: ["developer"],
+  roles: [roles.user], //temporary :)
   created_at: Date,
   updated_at: Date
 });

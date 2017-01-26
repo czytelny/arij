@@ -9,6 +9,7 @@ const dbConfig = require('./../config/databaseConfig');
 const MongoClient = require('mongodb').MongoClient;
 const logger = require('winston');
 const bcrypt = require("bcryptjs");
+const {roles} = require("./../services/accessControl");
 
 MongoClient.connect(dbConfig.url, function (err, db) {
   if (err) throw err;
@@ -38,7 +39,7 @@ function makeAdminUser() {
   const created_at = new Date();
   const updated_at = created_at;
   const password = bcrypt.hashSync("admin");
-  const roles = ["admin"];
+  const roles = [roles.admin];
 
   return {name, email, password, created_at, updated_at, roles};
 }
