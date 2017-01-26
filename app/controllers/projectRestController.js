@@ -1,15 +1,12 @@
 const router = require('express').Router();
 const projectService = require('./../services/projectService');
-const accessControl = require('./../services/accessControl');
+const {isAuthorized} = require('./../services/accessControl');
 const {isLoggedIn} = require('./authChecker');
 const logger = require('winston');
 
 
 router.use(isLoggedIn)
-
-router.use(function(req, res, next){
-  next();
-})
+router.use(isAuthorized)
 
 
 router.get('/', function (req, res) {

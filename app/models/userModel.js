@@ -12,7 +12,7 @@ const userSchema = new Schema({
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
   active: {type: Boolean, default: true},
-  roles: [roles.user], //temporary :)
+  roles: [],
   created_at: Date,
   updated_at: Date
 });
