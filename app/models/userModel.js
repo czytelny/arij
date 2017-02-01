@@ -3,7 +3,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const modelDecoratorService = require('./../services/modelDecoratorService');
-const {roles} = require('./../services/accessControl')
 
 const Schema = mongoose.Schema;
 
