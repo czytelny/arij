@@ -23,6 +23,7 @@ const database = require('./database');
 require('./services/userService');
 require('./config/passportConfig')(passport);
 
+app.set('permission', {role: 'roles'});
 
 app.use(helmet());
 app.use(cookieParser()); // read cookies (needed for auth)
