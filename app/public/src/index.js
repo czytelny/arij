@@ -7,6 +7,8 @@ import store from './store'
 import {Router, Route, browserHistory} from 'react-router'
 
 
+import router from './router';
+
 import MainView from './app/mainView';
 import UserView from './settings/users/user/userView';
 import UserListView from './settings/users/userList/userListView';
@@ -32,3 +34,5 @@ render(
   </Provider>,
   document.getElementById('app')
 );
+
+// render(router, document.getElementById('app'));
