@@ -46,6 +46,7 @@
     "chai": "^3.5.0",
     "chai-immutable": "^1.6.0",
     "del": "^2.2.2",
+    "immutable": "^3.8.1",
     "less": "^2.7.2",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
