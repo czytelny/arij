@@ -1,4 +1,3 @@
-const logger = require('winston')
 const checkPermissions = require('permission')
 
 const roles = {

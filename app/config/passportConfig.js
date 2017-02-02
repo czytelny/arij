@@ -1,6 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy
 const userService = require('../services/userService')
-const logger = require('winston')
 
 module.exports = function (passport) {
   passport.use(new LocalStrategy({
