@@ -39,6 +39,19 @@ body {
   position: relative;
   left: -50%;
 }
+.title-bar-container {
+  background-color: #367da2;
+  color: #cecece;
+}
+.actions-bar-container {
+  background-color: #6891a2;
+}
+.side-navigation-container {
+  background-color: #404040;
+}
+.breadcrumbs-container {
+  background-color: #FFB400;
+}
 #sidenav {
   background-color: #202020;
   color: #eeeeee;

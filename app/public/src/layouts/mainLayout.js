@@ -1,23 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import Navbar from './navbar/navbar'
-import Sidenav from './sideNavigation/sidenav'
+import TitleBar from './titleBar/titleBar'
+import ActionsBar from './actionsBar/actionsBar'
+import Breadcrumbs from './breadcrumbs/breadcrumbs'
+import SideNavigation from './sideNavigation/sideNavigation'
 
 const MainLayout = React.createClass({
     render() {
         return (
+          <div className="main-layout-container">
+            <TitleBar />
+            <ActionsBar />
             <div className="row">
-                <div className="col-sm-2">
-                    <Sidenav/>
-                </div>
+                <SideNavigation />
                 <div className="col-sm-10 mainView">
-                    <Navbar/>
+                    <Breadcrumbs />
                     <main>
                         {this.props.children}
                     </main>
                 </div>
             </div>
+          </div>
         );
     }
 });
