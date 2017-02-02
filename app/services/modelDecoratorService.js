@@ -1,14 +1,14 @@
-"use strict";
+'use strict'
 
-function addTimestamp() {
-  let currentDate = new Date();
-  this.updated_at = currentDate;
+function addTimestamp () {
+  let currentDate = new Date()
+  this.updated_at = currentDate
   if (!this.created_at) {
-    this.created_at = currentDate;
+    this.created_at = currentDate
   }
-  return this;
+  return this
 }
 
-module.exports =  {
+module.exports = {
   addTimestamp
-};
+}

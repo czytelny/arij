@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app/server.js",
     "start:watch": "nodemon app/server.js --exec node",
-    "test": "mocha \"./app/**/*.spec.js\" --require ./app/test_helper.js --recursive",
+    "test": "mocha \"./app/**/*.spec.js\" --require ./app/config/testsConfig.js --recursive",
     "test:watch": "npm run test -- --watch",
     "init:users": "node app/scripts/initDbUsers.js",
     "standard": "standard"
@@ -54,5 +54,10 @@
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "standard": "^8.6.0"
+  },
+  "standard": {
+    "ignore": [
+      "/app/public"
+    ]
   }
 }

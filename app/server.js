@@ -1,57 +1,56 @@
-"use strict";
+'use strict'
 
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-const cookieParser = require('cookie-parser');
-const helmet = require('helmet');
-const passport = require('passport');
+const express = require('express')
+const path = require('path')
+const http = require('http')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const cookieParser = require('cookie-parser')
+const helmet = require('helmet')
+const passport = require('passport')
 
-const bodyParser = require('body-parser');
-const logger = require('winston');
-const modelConfig = require('./models/modelConfig');
+const bodyParser = require('body-parser')
+const logger = require('winston')
+const modelConfig = require('./models/modelConfig')
 
-const app = express();
-const server = http.createServer(app);
-const socketIO = require('socket.io')(server);
-const PORT = process.env.PORT || 3030;
+const app = express()
+const server = http.createServer(app)
+const socketIO = require('socket.io')(server)
+const PORT = process.env.PORT || 3030
 
-const database = require('./database');
+const database = require('./database')
 
-require('./services/userService');
-require('./config/passportConfig')(passport);
+require('./services/userService')
+require('./config/passportConfig')(passport)
 
-app.set('permission', {role: 'roles'});
+app.set('permission', {role: 'roles'})
 
-app.use(helmet());
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(helmet())
+app.use(cookieParser()) // read cookies (needed for auth)
+app.use(bodyParser.json()) // support json encoded bodies
+app.use(bodyParser.urlencoded({extended: true}))
 
 const sessionConfig = {
   key: 'express.sid',       // the name of the cookie where express/connect stores its session_id
-  secret: "big fat cat",
+  secret: 'big fat cat',
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({mongooseConnection: database.connection}),
-  cookieParser: cookieParser,
-};
+  cookieParser: cookieParser
+}
 
-app.use(session(sessionConfig));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(session(sessionConfig))
+app.use(passport.initialize())
+app.use(passport.session())
 
-const passportSocketIo = require("passport.socketio");
-socketIO.use(passportSocketIo.authorize(sessionConfig));
+const passportSocketIo = require('passport.socketio')
+socketIO.use(passportSocketIo.authorize(sessionConfig))
 
-modelConfig.setConfig();
+modelConfig.setConfig()
 
 // ------- controllers
 require('./controllers/controllers')(app, passport)
 
-
 server.listen(PORT, function () {
-  logger.info('Arij served on port: ' + PORT);
-});
+  logger.info('Arij served on port: ' + PORT)
+})

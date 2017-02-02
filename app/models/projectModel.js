@@ -1,9 +1,9 @@
-"use strict";
+'use strict'
 
-const mongoose = require('mongoose');
-const modelDecoratorService = require('./../services/modelDecoratorService');
+const mongoose = require('mongoose')
+const modelDecoratorService = require('./../services/modelDecoratorService')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const projectSchema = new Schema({
   name: {type: String, required: true},
@@ -11,11 +11,11 @@ const projectSchema = new Schema({
   leader: {type: String, required: true},
   created_at: Date,
   updated_at: Date
-});
+})
 
-projectSchema.pre('save', function(next) {
-  modelDecoratorService.addTimestamp.call(this);
-  next();
-});
+projectSchema.pre('save', function (next) {
+  modelDecoratorService.addTimestamp.call(this)
+  next()
+})
 
-module.exports = mongoose.model('Project', projectSchema);
+module.exports = mongoose.model('Project', projectSchema)

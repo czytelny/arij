@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 module.exports = {
   setConfig: function () {
-    mongoose.Promise = global.Promise;
+    mongoose.Promise = global.Promise
   }
-};
+}

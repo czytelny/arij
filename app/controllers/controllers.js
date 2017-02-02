@@ -1,4 +1,4 @@
-const api = "/api"
+const api = '/api'
 
 module.exports = function (app, passport) {
   // ///////////
@@ -6,10 +6,8 @@ module.exports = function (app, passport) {
   app.use(`${api}/users`, require('./userController'))
   app.use(`${api}/projects`, require('./projectController'))
 
-
   // ///////////
   // // Other resources
   app.use(require('./authorizationController')(passport))
   app.use(require('./staticController'))
-
 }
