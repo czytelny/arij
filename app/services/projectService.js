@@ -2,22 +2,22 @@ const Project = require('../models/projectModel');
 const logger = require('winston');
 
 function save(objectToSave) {
-  logger.info(`project: saving: ${JSON.stringify(objectToSave)}`);
+  logger.debug(`project: saving: ${JSON.stringify(objectToSave)}`);
   return new Project(objectToSave).save();
 }
 
 function findById(projectId) {
-  logger.info(`project: findById: ${projectId}`);
+  logger.debug(`project: findById: ${projectId}`);
   return Project.findById(projectId);
 }
 
 function find() {
-  logger.info("project: find all");
+  logger.debug("project: find all");
   return Project.find()
 }
 
 function update(projectId, project) {
-  logger.info(`modifying project with id: ${projectId}`);
+  logger.debug(`modifying project with id: ${projectId}`);
   return Project.findById(projectId)
     .then((foundProject) => {
       if (foundProject) {

@@ -50,8 +50,6 @@ modelConfig.setConfig();
 
 // ------- controllers
 require('./controllers/controllers')(app, passport)
-require('./controllers/projectController')(socketIO)
-
 
 
 server.listen(PORT, function () {
