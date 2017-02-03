@@ -8,7 +8,7 @@
     "public:watch": "watchify -t [ babelify ] src/index.js -o dist/arij.js -x=react-dom -x=react -x=react-router -x=redux -x=react-redux -x=socket.io-client -x=immutable -x=underscore -d -v",
     "public:vendor": "browserify -o dist/vendor.js -r=react-dom -r=react -r=react-router -r=redux -r=react-redux -r=socket.io-client -r=immutable -r=underscore",
     "css": "lessc less/arij.less > css/arij.css & lessc less/login.less > unauthorized/css/login.css",
-    "css:watch": "nodemon --watch less/*.less --ext less --exec npm run css"
+    "css:watch": "nodemon --watch less --watch src --ext less --exec npm run css"
   },
   "repository": {
     "type": "git",
