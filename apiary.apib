@@ -13,33 +13,78 @@ Arij's project API
 
         [
             {
-                "_id":"1",
-                "name":"admin",
-                "email":"admin@a.pl",
-                "password":"9Rq2COxIx5Y2FUGd",
-                "created_at":"2016-11-26T09:36:50.655Z",
-                "updated_at":"2016-11-26T09:36:50.655Z",
-                "roles":["admin"],
-                "active":true
+                "_id": "5895adafa179991ac84e7793",
+                "nickName": "azaliasz",
+                "name": "admin",
+                "email": "admin@a.pl",
+                "created_at": "2017-02-04T10:59:43.684Z",
+                "updated_at": "2017-02-04T10:59:43.684Z",
+                "roles": [
+                  "admin",
+                  "user"
+                ]
+              }
+        ]
+
+## User [/api/users/{user_id}]        
++ Parameters
+    + user_id (number) - ID of the User in the form of an ObjectID
+    
+### Get User Details [GET]
+
++ Response 200 (application/json)
+
+        [
+           {
+              "_id": "5895adafa179991ac84e7793",
+              "nickName": "azaliasz",
+              "name": "admin",
+              "email": "admin@a.pl",
+              "password": "$2a$10$iPCNqDB16yAZjx5fd/N3suBWgeAV3sRYF7cddRMoqZVgO4a.uIXeu",
+              "created_at": "2017-02-04T10:59:43.684Z",
+              "updated_at": "2017-02-04T10:59:43.684Z",
+              "roles": [
+                "admin",
+                "user"
+              ],
+              "active": true
             }
         ]
 
-### Create a New User [POST]
+### Edit User Details [PUT]
 
 + Request (application/json)
-
+        
         {
-         
+          "_id": "5895adafa179991ac84e7793",
+          "nickName": "azaliasz",
+          "name": "admin 2",
+          "email": "admin@a.pl",
+          "password": "$2a$10$iPCNqDB16yAZjx5fd/N3suBWgeAV3sRYF7cddRMoqZVgO4a.uIXeu",
+          "created_at": "2017-02-04T10:59:43.684Z",
+          "updated_at": "2017-02-04T10:59:43.684Z",
+          "roles": [
+            "admin",
+            "user"
+          ],
+          "active": true
         }
 
-+ Response 201 (application/json)
++ Response 200 (application/json)
 
-    + Headers
-
-            Location: /questions/2
-
-    + Body
-
-            {
-               
+        [
+           {
+              "_id": "5895adafa179991ac84e7793",
+              "nickName": "azaliasz",
+              "name": "admin",
+              "email": "admin@a.pl",
+              "password": "$2a$10$iPCNqDB16yAZjx5fd/N3suBWgeAV3sRYF7cddRMoqZVgO4a.uIXeu",
+              "created_at": "2017-02-04T10:59:43.684Z",
+              "updated_at": "2017-02-04T10:59:43.684Z",
+              "roles": [
+                "admin",
+                "user"
+              ],
+              "active": true
             }
+        ]
