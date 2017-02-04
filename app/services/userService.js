@@ -18,7 +18,7 @@ function findByEmail (email) {
 
 function find () {
   logger.debug('user: find all')
-  return User.find()
+  return User.find({active: true}, '-password')
 }
 
 function update (userId, user) {
