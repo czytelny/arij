@@ -8,7 +8,11 @@ const Schema = mongoose.Schema
 const projectSchema = new Schema({
   name: {type: String, required: true},
   shortcut: {type: String, required: true, unique: true},
-  leader: {type: String, required: true},
+  users_id: [],
+  tasks: [],
+  activeBoard:[],
+  draftBoards:[],
+  backlog:[],
   created_at: Date,
   updated_at: Date
 })

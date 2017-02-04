@@ -17,7 +17,9 @@ MongoClient.connect(dbConfig.url, function (err, db) {
   const adminUser = makeAdminUser()
   const user = makeUser()
   const userCollection = db.collection('users')
-  userCollection.drop()
+
+  userCollection
+    .drop()
     .then(() => {
       logger.info("'users' collection dropped")
       return db.collection('users').insert([adminUser, user])
@@ -40,7 +42,7 @@ function makeAdminUser () {
   const created_at = new Date()
   const updated_at = created_at
   const password = bcrypt.hashSync('admin')
-  const roles = [accessControl.roles.admin]
+  const roles = [accessControl.roles.admin, accessControl.roles.user]
 
   return {name, email, password, created_at, updated_at, roles}
 }
