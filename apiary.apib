@@ -26,9 +26,59 @@ Arij's project API
               }
         ]
 
++ Response 500 (application/json)
+    
+        {
+            "errorMsg": "Getting users failed"
+        }
+
+
 ## User [/api/users/{user_id}]        
 + Parameters
-    + user_id (number) - ID of the User in the form of an ObjectID
+    + user_id (String) - ID of the User in the form of an ObjectID
+    
+
+### Add New User [POST]
+
++ Request (application/json)
+
+        {
+          "nickName": "testUser",
+          "name": "test user",
+          "email": "test@a.pl",
+          "password": "$2a$10$iPCNqDB16yAZjx5fd/N3suBWgeAV3sRYF7cddRMoqZVgO4a.uIXeu",
+          "created_at": "2017-02-04T10:59:43.684Z",
+          "updated_at": "2017-02-04T10:59:43.684Z",
+          "roles": [
+            "user"
+          ],
+          "active": true
+        }
+
++ Response 200 (application/json)
+
+        {
+          "__v": 0,
+          "_id": "589753f61f379020cabe634c",
+          "nickName": "testUser",
+          "name": "test user",
+          "email": "ttttt@a.pl",
+          "password": "$2a$10$wqZ0M4H7TgIyEKChVZRxQO.HR.43goYF3EutP6OAcV93mw6JQwJTG",
+          "created_at": "2017-02-04T10:59:43.684Z",
+          "updated_at": "2017-02-05T16:33:58.129Z",
+          "roles": [
+            "user"
+          ],
+          "active": true
+        }
+        
+        
++ Response 500 (application/json)
+    
+        {
+            "errorMsg": "Adding user failed"
+        }
+
     
 ### Get User Details [GET]
 
@@ -50,6 +100,14 @@ Arij's project API
               "active": true
             }
         ]
+        
++ Response 500 (application/json)
+    
+        {
+            "errorMsg": "Getting user failed"
+        }
+
+    
 
 ### Edit User Details [PUT]
 
@@ -88,3 +146,9 @@ Arij's project API
               "active": true
             }
         ]
+        
++ Response 500 (application/json)
+    
+        {
+            "errorMsg": "Modifying user failed"
+        }
