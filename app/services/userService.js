@@ -26,6 +26,7 @@ function deactivate (userId) {
 
   return User.findById(userId)
     .then((user) => {
+    //TODO do we need this check ?
       if (user) {
         user.active = false;
         return user.save();
@@ -33,16 +34,17 @@ function deactivate (userId) {
     })
 }
 
-function update (userId, user) {
-  logger.debug(`modifying user with id: ${userId}`)
-
+function changeNickName (userId, changeNickNameObject) {
+  logger.debug(`changing user nickName to ${JSON.stringify(changeNickNameObject)} UserId: ${userId}`)
   return User.findById(userId)
-    .then((foundUser) => {
-      if (foundUser) {
-        Object.assign(foundUser, user)
-        return foundUser.save()
+    .then((user) => {
+      if (user) {
+        //TODO perform validation of changeNickNameObject
+        Object.assign(user, changeNickNameObject)
+        return user.save();
       }
     })
+
 }
 
 module.exports = {
@@ -50,5 +52,6 @@ module.exports = {
   find,
   findById,
   findByEmail,
-  deactivate
+  deactivate,
+  changeNickName
 }

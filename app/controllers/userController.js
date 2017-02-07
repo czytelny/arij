@@ -39,7 +39,10 @@ router.patch('/:userId/roles', checkPermissions(adminRoles), function (req, res)
 })
 
 router.patch('/:userId/nickname', checkPermissions([roles.user]), checkIdPrivilege, function (req, res) {
-
+   userService
+     .changeNickName(req.params.userId, req.body)
+     .then((data) => res.json(data))
+     .catch((err) => handleError(res, err, 'Modifying user nick name user failed'))
 })
 
 router.patch('/:userId/name', checkPermissions([roles.user]), checkIdPrivilege, function (req, res) {
