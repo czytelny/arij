@@ -17,8 +17,20 @@ function findByEmail (email) {
 }
 
 function find () {
-  logger.debug('user: find all')
+  logger.debug('user: find all active users')
   return User.find({active: true}, '-password')
+}
+
+function deactivate (userId) {
+  logger.debug(`deactivating user with id: ${userId}`)
+
+  return User.findById(userId)
+    .then((user) => {
+      if (user) {
+        user.active = false;
+        return user.save();
+      }
+    })
 }
 
 function update (userId, user) {
@@ -38,5 +50,5 @@ module.exports = {
   find,
   findById,
   findByEmail,
-  update
+  deactivate
 }

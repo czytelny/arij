@@ -1,8 +1,10 @@
 const logger = require('winston')
+const httpStatus = require('http-status-codes')
+
 
 function handleError (res, error, errorMsg) {
   logger.info(error);
-  return res.status(500).send({errorMsg})
+  return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({errorMsg})
 }
 
 module.exports = {
