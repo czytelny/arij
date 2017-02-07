@@ -107,48 +107,16 @@ Arij's project API
             "errorMsg": "Getting user failed"
         }
 
-    
+### Deactivate User [DELETE]
 
-### Edit User Details [PUT]
++ Response 200
 
-+ Request (application/json)
-        
-        {
-          "_id": "5895adafa179991ac84e7793",
-          "nickName": "azaliasz",
-          "name": "admin 2",
-          "email": "admin@a.pl",
-          "password": "$2a$10$iPCNqDB16yAZjx5fd/N3suBWgeAV3sRYF7cddRMoqZVgO4a.uIXeu",
-          "created_at": "2017-02-04T10:59:43.684Z",
-          "updated_at": "2017-02-04T10:59:43.684Z",
-          "roles": [
-            "admin",
-            "user"
-          ],
-          "active": true
+### Change User Nickname [PATCH]
+
++ Request (application/merge-patch+json)
+
+        { 
+          "nickName": "New Nickname Value" 
         }
-
-+ Response 200 (application/json)
-
-        [
-           {
-              "_id": "5895adafa179991ac84e7793",
-              "nickName": "azaliasz",
-              "name": "admin",
-              "email": "admin@a.pl",
-              "password": "$2a$10$iPCNqDB16yAZjx5fd/N3suBWgeAV3sRYF7cddRMoqZVgO4a.uIXeu",
-              "created_at": "2017-02-04T10:59:43.684Z",
-              "updated_at": "2017-02-04T10:59:43.684Z",
-              "roles": [
-                "admin",
-                "user"
-              ],
-              "active": true
-            }
-        ]
         
-+ Response 500 (application/json)
-    
-        {
-            "errorMsg": "Modifying user failed"
-        }
++ Response 200
