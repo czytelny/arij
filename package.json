@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node app/server.js",
+    "start:debug": "node $NODE_DEBUG_OPTION app/server.js",
     "start:watch": "nodemon app/server.js --exec node",
     "test": "mocha \"./app/**/*.spec.js\" --require ./app/config/testsConfig.js --recursive",
     "test:watch": "npm run test -- --watch",

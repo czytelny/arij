@@ -31,7 +31,7 @@ router.delete('/:userId', checkPermissions(adminRoles), function (req, res) {
   userService
     .deactivate(req.params.userId)
     .then((data) => res.status(httpCodes.OK).send())
-    .catch((err) => handleError(res, err, 'Deleting user failed'))
+    .catch((err) => handleError(res, err, 'Deactivating user failed'))
 })
 
 router.patch('/:userId/roles', checkPermissions(adminRoles), function (req, res) {
