@@ -37,7 +37,7 @@ router.patch('/:userId/roles', checkPermissions([roles.admin]), function (req, r
   userService
     .changeUserRoles(req.params.userId, req.body)
     .then((user) => res.json(user))
-    .catch((err) => handleError(res, err, 'Changing user roles failed'))
+    .catch((err) => handleError(res, err, 'Modifying user roles failed'))
 })
 
 router.patch('/:userId/nickName', checkPermissions([roles.user]), checkIdPrivilege, function (req, res) {

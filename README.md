@@ -21,6 +21,9 @@ Project is in early development (something like pre-alpha 0.0.1 phase), so if yo
 - use ES6 through Babel
 - testing: mocha, chai, sinon
 
+### API Documentation
+[Apiary.io](http://docs.arij.apiary.io/#)
+
 ##### npm scripts
 - `npm run server` starts nodejs server in development mode (through babel-node - to transpile ES6 in the fly)
 - `npm test` starts mocha tests
