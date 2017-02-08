@@ -8,7 +8,7 @@ const {roles} = require('./../services/accessControl')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-  nickName: {type: String, required: false},
+  nickName: {type: String, required: false, maxlength: 30, minLength: 2},
   name: {type: String, required: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},

@@ -10,7 +10,7 @@ const roles = {
  * Check whether user wants to change his own data
  */
 function checkIdPrivilege (req, res, next) {
-  if (req.user["_id"] === req.params.userId) {
+  if (req.user["_id"].toString() === req.params.userId) {
     next();
   } else {
     res.status(httpStatus.FORBIDDEN).send(null);

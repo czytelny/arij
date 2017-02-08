@@ -9,7 +9,7 @@ function save (objectToSave) {
 
 function findById (userId) {
   logger.debug(`user: findById: ${userId}`)
-  return User.findById(userId)
+  return User.findById(userId, '-password')
 }
 
 function findByEmail (email) {
@@ -33,16 +33,28 @@ function deactivate (userId) {
     })
 }
 
-function changeNickName (userId, changeNickNameObject) {
-  logger.debug(`changing user nickName to ${JSON.stringify(changeNickNameObject)} UserId: ${userId}`)
+function changeNickName (userId, nickNameObj) {
+  logger.debug(`changing user nickName to ${JSON.stringify(nickNameObj)} UserId: ${userId}`)
   return User.findById(userId).exec()
     .then((user) => {
       if (!user) { throw new Error(`Deactivating user failed: ${NO_SUCH_USER}`); }
-      //TODO perform validation of changeNickNameObject
-      Object.assign(user, changeNickNameObject)
+      user.nickName = nickNameObj.nickName;
       return user.save();
     })
+}
 
+function changeUserRoles (userId, userRolesObj) {
+  logger.debug(`changing user roles to ${JSON.stringify(userRolesObj)} UserId: ${userId}`)
+
+  return User.findById(userId).exec()
+    .then((user) => {
+      if (!user) { throw new Error(`Changing user roles failed: ${NO_SUCH_USER}`); }
+      user.roles = userRolesObj.roles;
+      return user.save();
+    })
+    .then((user) => {
+      return findById(user.id);
+    })
 }
 
 module.exports = {
@@ -51,5 +63,6 @@ module.exports = {
   findById,
   findByEmail,
   deactivate,
-  changeNickName
+  changeNickName,
+  changeUserRoles
 }

@@ -3,7 +3,7 @@ const httpStatus = require('http-status-codes')
 
 
 function handleError (res, error, errorMsg) {
-  logger.info(error);
+  logger.error(error);
   return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({errorMsg})
 }
 
