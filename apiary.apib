@@ -5,7 +5,11 @@ HOST: http://localhost:3030/
 
 Arij's project API
 
-## Users collection [/api/users]
+# Users API
+
+Resources related to users
+
+## Collection [/api/users]
 
 ### List All Users [GET]
 
@@ -111,6 +115,14 @@ Arij's project API
 
 + Response 200
 
++ Response 500 (application/json)
+    
+        {
+            "errorMsg": "Deactivating user failed"
+        }
+
+## User Nickname [/api/users/{user_id}/nickName]
+
 ### Change User Nickname [PATCH]
 
 + Request (application/merge-patch+json)
@@ -120,3 +132,29 @@ Arij's project API
         }
         
 + Response 200
+
+
++ Response 500 (application/json)
+    
+        {
+            "errorMsg": "Modifying user nick name user failed"
+        }
+        
+
+## User Roles [/api/users/{user_id}/roles]
+
+### Change User Roles [PATCH]
+
++ Request (application/merge-patch+json)
+
+        { 
+          "roles": ["newRole1", "newRoleN"] 
+        }
+        
++ Response 200
+
+
++ Response 500 (application/json)
+    
+        {
+            "errorMsg": "Modifying user roles failed"
