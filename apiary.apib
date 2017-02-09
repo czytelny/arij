@@ -9,9 +9,10 @@ Arij's project API
 
 Resources related to users
 
-## Collection [/api/users]
+## User Collection [/api/users]
 
 ### List All Users [GET]
+Roles: **[admin]**
 
 + Response 200 (application/json)
 
@@ -23,6 +24,7 @@ Resources related to users
                 "email": "admin@a.pl",
                 "created_at": "2017-02-04T10:59:43.684Z",
                 "updated_at": "2017-02-04T10:59:43.684Z",
+                "projects": [],
                 "roles": [
                   "admin",
                   "user"
@@ -43,6 +45,7 @@ Resources related to users
     
 
 ### Add New User [POST]
+Roles: **[admin]**
 
 + Request (application/json)
 
@@ -50,9 +53,8 @@ Resources related to users
           "nickName": "testUser",
           "name": "test user",
           "email": "test@a.pl",
-          "password": "$2a$10$iPCNqDB16yAZjx5fd/N3suBWgeAV3sRYF7cddRMoqZVgO4a.uIXeu",
-          "created_at": "2017-02-04T10:59:43.684Z",
-          "updated_at": "2017-02-04T10:59:43.684Z",
+          "password": "secretHashedPassword",
+          "projects" : [],
           "roles": [
             "user"
           ],
@@ -67,7 +69,6 @@ Resources related to users
           "nickName": "testUser",
           "name": "test user",
           "email": "ttttt@a.pl",
-          "password": "$2a$10$wqZ0M4H7TgIyEKChVZRxQO.HR.43goYF3EutP6OAcV93mw6JQwJTG",
           "created_at": "2017-02-04T10:59:43.684Z",
           "updated_at": "2017-02-05T16:33:58.129Z",
           "roles": [
@@ -85,6 +86,7 @@ Resources related to users
 
     
 ### Get User Details [GET]
+Roles: **[admin, user]**
 
 + Response 200 (application/json)
 
@@ -94,7 +96,6 @@ Resources related to users
               "nickName": "azaliasz",
               "name": "admin",
               "email": "admin@a.pl",
-              "password": "$2a$10$iPCNqDB16yAZjx5fd/N3suBWgeAV3sRYF7cddRMoqZVgO4a.uIXeu",
               "created_at": "2017-02-04T10:59:43.684Z",
               "updated_at": "2017-02-04T10:59:43.684Z",
               "roles": [
@@ -112,6 +113,7 @@ Resources related to users
         }
 
 ### Deactivate User [DELETE]
+Roles: **[admin]**
 
 + Response 200
 
@@ -121,40 +123,41 @@ Resources related to users
             "errorMsg": "Deactivating user failed"
         }
 
-## User Nickname [/api/users/{user_id}/nickName]
+### Change User [PUT]
+Roles: **[admin]**
 
-### Change User Nickname [PATCH]
 
++ Request (application/json)
+
+            {
+                "nickName": "azaliasz",
+                "name": "admin",
+                "email": "admin@a.pl",
+                "projects": [],
+                "roles": [
+                  "admin",
+                  "user"
+                ]
+             }
+        
++ Response 200
+
+
++ Response 500 (application/json)
+
+
+### Change User Properties [PATCH]
+Roles: **[user]**
+
+Properties of body object are optional.
 + Request (application/merge-patch+json)
 
         { 
-          "nickName": "New Nickname Value" 
+          "nickName": "New Nickname Value",
+          "password": "new password value"
         }
         
 + Response 200
 
 
 + Response 500 (application/json)
-    
-        {
-            "errorMsg": "Modifying user nick name user failed"
-        }
-        
-
-## User Roles [/api/users/{user_id}/roles]
-
-### Change User Roles [PATCH]
-
-+ Request (application/merge-patch+json)
-
-        { 
-          "roles": ["newRole1", "newRoleN"] 
-        }
-        
-+ Response 200
-
-
-+ Response 500 (application/json)
-    
-        {
-            "errorMsg": "Modifying user roles failed"
