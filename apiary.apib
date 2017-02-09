@@ -11,8 +11,7 @@ Resources related to users
 
 ## User Collection [/api/users]
 
-### List All Users [GET]
-Roles: **[admin]**
+### List All Active Users [GET]
 
 + Response 200 (application/json)
 
@@ -45,7 +44,6 @@ Roles: **[admin]**
     
 
 ### Add New User [POST]
-Roles: **[admin]**
 
 + Request (application/json)
 
@@ -86,7 +84,6 @@ Roles: **[admin]**
 
     
 ### Get User Details [GET]
-Roles: **[admin, user]**
 
 + Response 200 (application/json)
 
@@ -113,7 +110,6 @@ Roles: **[admin, user]**
         }
 
 ### Deactivate User [DELETE]
-Roles: **[admin]**
 
 + Response 200
 
@@ -124,8 +120,6 @@ Roles: **[admin]**
         }
 
 ### Change User [PUT]
-Roles: **[admin]**
-
 
 + Request (application/json)
 
@@ -147,9 +141,7 @@ Roles: **[admin]**
 
 
 ### Change User Properties [PATCH]
-Roles: **[user]**
 
-Properties of body object are optional.
 + Request (application/merge-patch+json)
 
         { 
@@ -159,5 +151,16 @@ Properties of body object are optional.
         
 + Response 200
 
+        {
+          "nickName": "testUser",
+          "name": "test user",
+          "email": "test@a.pl",
+          "password": "secretHashedPassword",
+          "projects" : [],
+          "roles": [
+            "user"
+          ],
+          "active": true
+        }
 
 + Response 500 (application/json)
