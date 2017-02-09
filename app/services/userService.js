@@ -33,27 +33,26 @@ function deactivate (userId) {
     })
 }
 
-function changeNickName (userId, nickNameObj) {
-  logger.debug(`changing user nickName to ${JSON.stringify(nickNameObj)} UserId: ${userId}`)
+function modify (userId, user) {
+  logger.debug(`modifying user with id: ${userId}`)
+
   return User.findById(userId).exec()
-    .then((user) => {
+    .then((foundUser) => {
       if (!user) { throw new Error(`Deactivating user failed: ${NO_SUCH_USER}`); }
-      user.nickName = nickNameObj.nickName;
-      return user.save();
+      Object.assign(foundUser, user)
+      return foundUser.save()
     })
 }
 
-function changeUserRoles (userId, userRolesObj) {
-  logger.debug(`changing user roles to ${JSON.stringify(userRolesObj)} UserId: ${userId}`)
+function modifyPartial (userId, user) {
+  logger.debug(`modifying user with id: ${userId}`)
+  let filteredUser = _.pick(user, 'nickName', 'password')
 
   return User.findById(userId).exec()
-    .then((user) => {
-      if (!user) { throw new Error(`Changing user roles failed: ${NO_SUCH_USER}`); }
-      user.roles = userRolesObj.roles;
-      return user.save();
-    })
-    .then((user) => {
-      return findById(user.id);
+    .then((foundUser) => {
+      if (!user) { throw new Error(`Deactivating user failed: ${NO_SUCH_USER}`); }
+      Object.assign(foundUser, filteredUser)
+      return foundUser.save()
     })
 }
 
@@ -63,6 +62,6 @@ module.exports = {
   findById,
   findByEmail,
   deactivate,
-  changeNickName,
-  changeUserRoles
+  modify,
+  modifyPartial
 }

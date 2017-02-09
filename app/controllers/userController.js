@@ -5,58 +5,55 @@ const {handleError} = require('./errorHandler')
 const httpCodes = require('http-status-codes')
 
 
-router.get('/', checkPermissions([roles.admin]), function (req, res) {
+router.get('/', checkPermissions([roles.admin]), findAll)
+router.post('/', checkPermissions([roles.admin]), save)
+
+router.get('/:userId', checkPermissions([roles.user, roles.admin]), findById)
+router.put('/:userId', checkPermissions([roles.admin]), modifyUser)
+router.patch('/:userId', checkPermissions([roles.user]), checkIdPrivilege, modifyUserPartial)
+router.delete('/:userId', checkPermissions([roles.admin]), deactivate)
+
+
+function findAll (req, res) {
   userService
     .find()
     .then((users) => res.json(users))
     .catch((err) => handleError(res, err, 'Getting users failed'))
-})
+}
 
-router.get('/:userId', checkPermissions([roles.admin]), function (req, res) {
+function findById (req, res) {
   userService
     .findById(req.params.userId)
     .then((data) => res.json(data))
     .catch((err) => handleError(res, err, 'Getting user failed'))
-})
+}
 
-router.post('/', checkPermissions([roles.admin]), function (req, res) {
+function save (req, res) {
   userService
     .save(req.body)
     .then((data) => res.json(data))
     .catch((err) => handleError(res, err, 'Adding user failed'))
-})
+}
 
-router.delete('/:userId', checkPermissions([roles.admin]), function (req, res) {
+function deactivate (req, res) {
   userService
     .deactivate(req.params.userId)
     .then((data) => res.status(httpCodes.OK).send())
     .catch((err) => handleError(res, err, 'Deactivating user failed'))
-})
+}
 
-router.patch('/:userId/roles', checkPermissions([roles.admin]), function (req, res) {
+function modifyUser (req, res) {
   userService
-    .changeUserRoles(req.params.userId, req.body)
+    .modify(req.params.userId, req.body)
     .then((user) => res.json(user))
-    .catch((err) => handleError(res, err, 'Modifying user roles failed'))
-})
+    .catch((err) => handleError(res, err, 'Modifying user failed'))
+}
 
-router.patch('/:userId/nickName', checkPermissions([roles.user]), checkIdPrivilege, function (req, res) {
+function modifyUserPartial (req, res) {
   userService
-    .changeNickName(req.params.userId, req.body)
-    .then((data) => res.json(data))
-    .catch((err) => handleError(res, err, 'Modifying user nick name user failed'))
-})
-
-router.patch('/:userId/name', checkPermissions([roles.user]), checkIdPrivilege, function (req, res) {
-
-})
-
-router.patch('/:userId/email', checkPermissions([roles.user]), checkIdPrivilege, function (req, res) {
-
-})
-
-router.patch('/:userId/password', checkPermissions([roles.user]), checkIdPrivilege, function (req, res) {
-
-})
+    .modifyPartial(req.params.userId, req.body)
+    .then((user) => res.json(user))
+    .catch((err) => handleError(res, err, 'Modifying user failed'))
+}
 
 module.exports = router
