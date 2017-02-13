@@ -14,7 +14,7 @@ function findById (userId) {
 
 function findByEmail (email) {
   logger.debug(`user: findByEmail: ${email}`)
-  return User.findOne({email})
+  return User.findOne({email}, '-password')
 }
 
 function find () {
@@ -46,12 +46,12 @@ function modify (userId, user) {
 
 function modifyPartial (userId, user) {
   logger.debug(`modifying user with id: ${userId}`)
-  let filteredUser = _.pick(user, 'nickName', 'password')
+  let filteredUserFields = _.pick(user, 'nickName', 'password')
 
   return User.findById(userId).exec()
     .then((foundUser) => {
       if (!user) { throw new Error(`Deactivating user failed: ${NO_SUCH_USER}`); }
-      Object.assign(foundUser, filteredUser)
+      Object.assign(foundUser, filteredUserFields)
       return foundUser.save()
     })
 }

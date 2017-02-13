@@ -8,10 +8,10 @@ const httpCodes = require('http-status-codes')
 router.get('/', checkPermissions([roles.admin]), findAll)
 router.post('/', checkPermissions([roles.admin]), save)
 
-router.get('/:userId', checkPermissions([roles.user, roles.admin]), findById)
 router.put('/:userId', checkPermissions([roles.admin]), modifyUser)
-router.patch('/:userId', checkPermissions([roles.user]), checkIdPrivilege, modifyUserPartial)
 router.delete('/:userId', checkPermissions([roles.admin]), deactivate)
+router.patch('/:userId', checkPermissions([roles.user]), checkIdPrivilege, modifyUserPartial)
+router.get('/:userId', checkPermissions([roles.user]), findById)
 
 
 function findAll (req, res) {
@@ -31,14 +31,14 @@ function findById (req, res) {
 function save (req, res) {
   userService
     .save(req.body)
-    .then((data) => res.json(data))
+    .then((user) => res.json(user))
     .catch((err) => handleError(res, err, 'Adding user failed'))
 }
 
 function deactivate (req, res) {
   userService
     .deactivate(req.params.userId)
-    .then((data) => res.status(httpCodes.OK).send())
+    .then(() => res.status(httpCodes.OK).send())
     .catch((err) => handleError(res, err, 'Deactivating user failed'))
 }
 

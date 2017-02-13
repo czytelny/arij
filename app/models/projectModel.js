@@ -13,6 +13,7 @@ const projectSchema = new Schema({
   activeBoard:[],
   draftBoards:[],
   backlog:[],
+  active: {type: Boolean, default: true},
   created_at: Date,
   updated_at: Date
 })

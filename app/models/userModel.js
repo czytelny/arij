@@ -9,11 +9,12 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
   nickName: {type: String, required: false, maxlength: 30, minLength: 2},
-  name: {type: String, required: true},
-  email: {type: String, required: true, unique: true},
+  name: {type: String, required: true, maxlength: 30, minLength: 2},
+  email: {type: String, required: true, unique: true, maxlength: 40, minLength: 5},
   password: {type: String, required: true},
   active: {type: Boolean, default: true},
   roles: {type: Array, default: roles.user},
+  projects: {type: Array},
   created_at: Date,
   updated_at: Date
 })
