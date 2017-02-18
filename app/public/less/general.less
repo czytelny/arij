@@ -1,48 +1,13 @@
+html,
 body {
-  background-color: @background-dark;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+  #app {
+    height: 100%;
+  }
 }
 
-.mainView {
-  background-color: #f8f8f8;
-  height:98vh;
-}
 
-#logo{
-  color: @primary-color;
-  font-weight: 600;
-  font-size: 2.5em;
-
-}
-
-.link-unstyled {
-  color: #6d6d6d;
-}
-
-.link-unstyled:hover {
-  text-decoration: none;
-}
-
-.link-unstyled.chosen {
-  color: @secondary-color;
-  font-weight: bold;
-}
-.arij-messageContainer {
-  position: absolute;
-  top:0;
-  left: 50%;
-  z-index:10000;
-  opacity: 1;
-  -webkit-transition: all .3s;
-  -moz-transition: all .3s;
-  -ms-transition: all .3s;
-  -o-transition: all .3s;
-  transition: all .3s;
-}
-
-.arij-messageContainer.invisible {
-  opacity: 0;
-}
-.arij-message {
-  position: relative;
-  left: -50%;
-}

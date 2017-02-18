@@ -10,17 +10,22 @@ const MainLayout = React.createClass({
     render() {
         return (
           <div className="main-layout-container">
-            <TitleBar />
-            <ActionsBar />
-            <div className="row">
+            <header className="page-header">
+              <TitleBar />
+              <ActionsBar />
+            </header>
+            <div className="page-content">
                 <SideNavigation />
-                <div className="col-sm-10 mainView">
+                <div className="content-container">
                     <Breadcrumbs />
-                    <main>
+                    <main className="main-content">
                         {this.props.children}
                     </main>
                 </div>
             </div>
+            <footer className="page-footer">
+              <small>Arij, 2017</small>
+            </footer>
           </div>
         );
     }
