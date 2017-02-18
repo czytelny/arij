@@ -9,6 +9,10 @@ html #app,
 body #app {
   height: 100%;
 }
+html #app > div,
+body #app > div {
+  height: 100%;
+}
 .main-layout-container {
   display: flex;
   flex-direction: column;

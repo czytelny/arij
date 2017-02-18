@@ -11,5 +11,4 @@ const SettingsNavbarBtn = () =>
     </div>
   </div>;
 
-
 export default SettingsNavbarBtn;

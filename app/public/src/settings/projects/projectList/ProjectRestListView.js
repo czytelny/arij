@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 import Navbar from './../../../app/navbar/navbar';
-import SettingsMenu from './../../settingsSidenav';
 import ProjectRestListContainer from './ProjectRestListContainer';
 
 export default class ProjectRestListView extends Component {
