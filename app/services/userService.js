@@ -14,7 +14,7 @@ function findById (userId) {
 
 function findByEmail (email) {
   logger.debug(`user: findByEmail: ${email}`)
-  return User.findOne({email}, '-password')
+  return User.findOne({email})
 }
 
 function find () {
