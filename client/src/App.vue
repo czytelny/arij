@@ -6,9 +6,9 @@
     </header>
     <div class="page-content">
       <side-navigation></side-navigation>
-      <div class="page-content">
+      <div class="content-container">
         <breadcrumbs></breadcrumbs>
-        <main id="main-content">
+        <main class="main-content">
           <router-view></router-view>
         </main>
       </div>
@@ -20,10 +20,10 @@
 </template>
 
 <script>
-  import TitleBar from './layout/TitleBar';
-  import ActionsBar from './layout/ActionsBar';
-  import SideNavigation from './layout/SideNavigation';
-  import Breadcrumbs from './layout/Breadcrumbs';
+  import TitleBar from 'components/layout/TitleBar';
+  import ActionsBar from 'components/layout/ActionsBar';
+  import SideNavigation from 'components/layout/SideNavigation';
+  import Breadcrumbs from 'components/layout/Breadcrumbs';
 
   export default {
     name: 'app',
@@ -36,8 +36,61 @@
   };
 </script>
 
-<style>
-  #app {
+<style lang="less">
+  @import "styles/variables.less";
 
+  html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    .page-header {
+      flex: none;
+      padding: 1px;
+      background-color: @secondary-color;
+    }
+
+    .page-footer {
+      flex: none;
+      background-color: @secondary-color;
+      color: white;
+      padding: 5px;
+    }
+
+    .page-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: row;
+
+      .content-container {
+        background-color: @secondary-color;
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+
+          .main-content {
+            background: #eee;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            min-width: 300px;
+          }
+      }
+    }
   }
 </style>

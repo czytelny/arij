@@ -1,5 +1,5 @@
 <template>
-  <nav id="sidebar-left">
+  <nav class="sidebar-left">
     <h3>Sidebar</h3>
     <div class="links">
       <ul class="list-unstyled">
@@ -18,6 +18,16 @@
   };
 </script>
 
-<style>
+<style lang="less">
+  @import "../../styles/variables.less";
 
+  .sidebar-left {
+    flex: none;
+    background-color: @primary-color;
+    padding: 20px;
+    width: 200px;
+    overflow: auto;
+    color: white;
+    white-space: nowrap;
+  }
 </style>
