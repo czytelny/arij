@@ -3,11 +3,7 @@ const router = require('express').Router()
 
 module.exports = function (passport) {
   router.get('/login', function (req, res) {
-    res.sendFile(path.resolve('app/public/unauthorized/login.html'))
-  })
-
-  router.get('/css/login.css', function (req, res) {
-    res.sendFile(path.resolve('app/public/unauthorized' + req.path))
+    res.sendFile(path.resolve('client/login/login.html'))
   })
 
   router.post('/signin', passport.authenticate('local', {

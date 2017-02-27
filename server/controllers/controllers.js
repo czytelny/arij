@@ -8,6 +8,6 @@ module.exports = function (app, passport) {
 
   // ///////////
   // // Other resources
-  app.use(require('./authorizationController')(passport))
+  app.use(require('./loginController')(passport))
   app.use(require('./staticController'))
 }
