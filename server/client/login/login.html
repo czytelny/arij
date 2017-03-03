@@ -10,15 +10,20 @@
 <body>
 <h1>ARIJ</h1>
 
-<form>
+<form action="/signin" method="post">
   <div class="row">
     <div class="six columns">
-      <label for="exampleEmailInput">Your email</label>
-      <input class="u-full-width" type="email" placeholder="test@mailbox.com" id="exampleEmailInput">
+      <label for="emailInput">Your email</label>
+      <input class="u-full-width" type="email" name="email" placeholder="user@mailbox.com" id="emailInput">
     </div>
     <div class="six columns">
       <label for="passwordInput">Password</label>
-      <input class="u-full-width" type="password" placeholder="password" id="passwordInput">
+      <input class="u-full-width" type="password" placeholder="password" name="password" id="passwordInput">
+    </div>
+  </div>
+  <div class="row" id="errorMessage">
+    <div class="twelve columns">
+      wrong username or password
     </div>
   </div>
   <div class="row">
@@ -27,6 +32,16 @@
     </div>
   </div>
 </form>
+
+<script>
+  var error = location.search;
+  if (error.indexOf('error') != -1) {
+    document.getElementById('errorMessage').style.opacity = "1";
+  }
+  setTimeout(function() {
+    document.getElementById('errorMessage').style.opacity = "0";
+  }, 3000);
+</script>
 
 </body>
 </html>

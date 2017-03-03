@@ -5,9 +5,6 @@ module.exports = function (passport) {
   router.get('/login', function (req, res) {
     res.sendFile(path.resolve('client/login/login.html'))
   })
-  router.get('/login.css', function (req, res) {
-    res.sendFile(path.resolve('client/login/login.css'))
-  })
 
   router.post('/signin', passport.authenticate('local', {
     successRedirect: '/',

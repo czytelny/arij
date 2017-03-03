@@ -2,6 +2,7 @@
 
 const express = require('express')
 const http = require('http')
+const path = require('path')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const cookieParser = require('cookie-parser')
@@ -47,6 +48,7 @@ socketIO.use(passportSocketIo.authorize(sessionConfig))
 
 modelConfig.setConfig()
 
+app.use('/login', express.static(path.join(__dirname, 'client', 'login')))
 // ------- controllers
 require('./controllers/controllers')(app, passport)
 
