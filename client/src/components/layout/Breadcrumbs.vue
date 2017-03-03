@@ -15,7 +15,7 @@
 
   .breadcrumbs-container {
     flex: none;
-    background-color: @primary-color;
+    background-color: #c4c4c4;
     color: white;
     padding: 0 10px;
     font-size: 1em;

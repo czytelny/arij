@@ -16,9 +16,9 @@
   .actions-bar {
     background-color: @primary-color;
     color: white;
-    padding: 0 10px;
-    margin: 5px 0;
+    padding: 5px 10px;
     font-size: 1em;
     font-weight: bold;
+    border-top: 1px solid #5a5a5a;
   }
 </style>
