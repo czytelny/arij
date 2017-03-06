@@ -7,7 +7,7 @@ import router from './router';
 
 if (process.env.NODE_ENV !== 'production') {
   axios.defaults.baseURL = "http://localhost:3030";
-  axios.defaults.headers = { "Access-Control-Allow-Credentials": true };
+  axios.defaults.headers = {"Access-Control-Allow-Credentials": true};
 }
 
 axios.defaults.withCredentials = true;
@@ -17,5 +17,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App },
+  components: {App},
 });

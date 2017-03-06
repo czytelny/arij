@@ -1,7 +1,9 @@
 <template>
   <div class="title-bar">
     ARIJ
-    <span class="action pull-right">logout [{{username}}]</span>
+    <span class="action pull-right">
+       {{username}} (<a :href="logoutUrl">logout</a>)
+    </span>
   </div>
 </template>
 
@@ -12,15 +14,22 @@
     name: 'title-bar',
     data() {
       return {
-        username: null
+        username: null,
+        logoutUrl: `${axios.defaults.baseURL}/logout`
       }
     },
     beforeMount() {
       axios.get('/api/activeUser/')
         .then(({data}) => {
-          console.log(`response is + ${data.email}`);
+          this.username = data.email;
         })
     },
+    methods: {
+      callLogout() {
+        console.log("watch out, logging out!");
+        axios.get('/api/logout/');
+      }
+    }
   };
 </script>
 
