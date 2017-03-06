@@ -30,6 +30,10 @@ app.use(cookieParser()) // read cookies (needed for auth)
 app.use(bodyParser.json()) // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true}))
 
+if (app.get('env') === 'development'){
+  app.use(require('cors')({ origin: 'http://localhost:8080', credentials: true}))
+}
+
 const sessionConfig = {
   key: 'express.sid',       // the name of the cookie where express/connect stores its session_id
   secret: 'big fat cat',

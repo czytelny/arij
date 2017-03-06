@@ -59,8 +59,6 @@
 
     .page-header {
       flex: none;
-      padding: 1px;
-      background-color: @secondary-color;
     }
 
     .page-footer {
