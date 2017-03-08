@@ -1,6 +1,6 @@
 <template>
   <div class="title-bar">
-    ARIJ
+    ARIJ<span class="subtitle">project management tool</span>
     <span class="action pull-right">
        {{username}} (<a :href="logoutUrl">logout</a>)
     </span>
@@ -14,7 +14,7 @@
     name: 'title-bar',
     data() {
       return {
-        username: null,
+        username: "Anonymous",
         logoutUrl: `${axios.defaults.baseURL}/logout`
       }
     },
@@ -33,16 +33,21 @@
   };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   @import "../../styles/variables.less";
 
   .title-bar {
-    background-color: #f8f8f8;
-    color: #2c3e50;
+    background-color: @secondary-color;
     text-align: center;
     padding: 5px 10px;
-    font-size: 1em;
+    font-size: 1.3em;
     font-weight: bold;
+    color: #fff;
+  }
+
+  .subtitle{
+    font-size: .4em;
+    font-weight: normal;
   }
 
   .pull-right {
@@ -50,8 +55,8 @@
   }
 
   .action {
-    font-size: .8em;
-    line-height: 2em;
+    font-size: .6em;
+    line-height: 3em;
   }
 
 </style>

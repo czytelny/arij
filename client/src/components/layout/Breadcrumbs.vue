@@ -15,10 +15,8 @@
 
   .breadcrumbs-container {
     flex: none;
-    background-color: #c4c4c4;
-    color: white;
-    padding: 0 10px;
+    background-color: #dadada;
+    padding: 3px 10px;
     font-size: 1em;
-    font-weight: bold;
   }
 </style>

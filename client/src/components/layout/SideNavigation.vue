@@ -18,12 +18,12 @@
   };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   @import "../../styles/variables.less";
 
   .sidebar-left {
     flex: none;
-    background-color: @primary-color;
+    background-color: @secondary-color;
     padding: 20px;
     width: 200px;
     overflow: auto;

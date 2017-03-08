@@ -14,7 +14,7 @@
       </div>
     </div>
     <footer class="page-footer">
-      <small>Arij, 2017</small>
+      Arij, 2017 githublink
     </footer>
   </div>
 </template>
@@ -51,6 +51,7 @@
 
   a {
     text-decoration: none;
+    color: @active2-color;
   }
 
   #app {
@@ -68,8 +69,10 @@
     .page-footer {
       flex: none;
       background-color: @secondary-color;
-      color: white;
+      color: #b7b7b7;
       padding: 5px;
+      font-size:.5em;
+      text-align:right;
     }
 
     .page-content {
@@ -94,7 +97,7 @@
             overflow-x: hidden;
             width: 100%;
             min-width: 300px;
-            padding: 15px;
+            padding: 20px;
           }
       }
     }
