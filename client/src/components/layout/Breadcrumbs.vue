@@ -17,6 +17,5 @@
     flex: none;
     background-color: #dadada;
     padding: 3px 10px;
-    font-size: 1em;
   }
 </style>

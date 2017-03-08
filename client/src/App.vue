@@ -56,10 +56,9 @@
     transition: color .2s;
   }
 
-  a:hover{
+  a:hover {
     color: @active-color;
   }
-
 
   #app {
     display: flex;
@@ -69,35 +68,41 @@
     overflow-x: auto;
     overflow-y: hidden;
 
-    .page-header {
-      flex: none;
-    }
+  .page-header {
+    flex: none;
+  }
 
-    .page-content {
-      flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: row;
+  .page-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
 
-      .content-container {
-        background-color: @secondary-color;
-        flex: 1 1 auto;
-        width: 100%;
-        min-width: 400px;
-        display: flex;
-        flex-direction: column;
+  .content-container {
+    background-color: @secondary-color;
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
 
-          .main-content {
-            background: #eee;
-            flex: 1 1 auto;
-            overflow-y: auto;
-            overflow-x: hidden;
-            width: 100%;
-            min-width: 300px;
-            padding: 20px;
-          }
-      }
-    }
+  .main-content {
+    background: #eee;
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    min-width: 300px;
+    padding: 20px;
+  }
+
+  }
+  }
+
+  ul.list-unstyled {
+    list-style: none;
+  }
+
   }
 </style>

@@ -1,14 +1,17 @@
 <template>
   <nav class="sidebar-left">
-    <h3>Sidebar</h3>
-    <div class="links">
-      <ul class="list-unstyled">
-        <li>Your profile</li>
-        <li>Users</li>
-        <li>System Roles</li>
-        <li>Projects</li>
-      </ul>
-    </div>
+    <h5>Project Name</h5>
+    <ul class="list-unstyled">
+      <router-link to="/board"><li>Board</li></router-link>
+      <router-link to="/draft"><li>Draft Boards</li></router-link>
+      <router-link to="/backlog"><li>Backlog</li></router-link>
+    </ul>
+    <hr>
+    <h5>System settings</h5>
+    <ul class="list-unstyled">
+      <router-link to="/settings/projects"><li>Projects</li></router-link>
+      <router-link to="/settings/users"><li>Users</li></router-link>
+    </ul>
   </nav>
 </template>
 
@@ -21,13 +24,28 @@
 <style lang="less" scoped>
   @import "../../styles/variables.less";
 
+  hr {
+    margin: 0 20%;
+    border-color: @primary-color;
+  }
+
+  ul li {
+    display: block;
+  }
+
+  h5 {
+    font-size: 2em;
+    color: #909090;
+  }
+
   .sidebar-left {
     flex: none;
     background-color: @secondary-color;
     padding: 20px;
     width: 200px;
     overflow: auto;
-    color: white;
+    color: #cecece;
     white-space: nowrap;
+    font-size: .8em;
   }
 </style>

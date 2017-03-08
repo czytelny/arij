@@ -40,7 +40,7 @@
     background-color: @secondary-color;
     text-align: center;
     padding: 5px 10px;
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: bold;
     color: #fff;
   }
@@ -55,8 +55,9 @@
   }
 
   .action {
-    font-size: .6em;
-    line-height: 3em;
+    font-size: .5em;
+    line-height: 3.5em;
+    font-weight: normal;
   }
 
 </style>
