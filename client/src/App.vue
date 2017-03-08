@@ -13,9 +13,7 @@
         </main>
       </div>
     </div>
-    <footer class="page-footer">
-      Arij, 2017 githublink
-    </footer>
+    <footer-bar></footer-bar>
   </div>
 </template>
 
@@ -24,6 +22,7 @@
   import ActionsBar from 'components/layout/ActionsBar';
   import SideNavigation from 'components/layout/SideNavigation';
   import Breadcrumbs from 'components/layout/Breadcrumbs';
+  import FooterBar from 'components/layout/FooterBar';
 
   export default {
     name: 'app',
@@ -32,6 +31,7 @@
       'actions-bar': ActionsBar,
       'side-navigation': SideNavigation,
       breadcrumbs: Breadcrumbs,
+      'footer-bar': FooterBar
     },
   };
 </script>
@@ -52,7 +52,14 @@
   a {
     text-decoration: none;
     color: @active2-color;
+    cursor: pointer;
+    transition: color .2s;
   }
+
+  a:hover{
+    color: @active-color;
+  }
+
 
   #app {
     display: flex;
@@ -64,15 +71,6 @@
 
     .page-header {
       flex: none;
-    }
-
-    .page-footer {
-      flex: none;
-      background-color: @secondary-color;
-      color: #b7b7b7;
-      padding: 5px;
-      font-size:.5em;
-      text-align:right;
     }
 
     .page-content {
