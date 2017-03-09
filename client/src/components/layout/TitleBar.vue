@@ -55,6 +55,7 @@
   }
 
   .action {
+    color: #cecece;
     font-size: .5em;
     line-height: 3.5em;
     font-weight: normal;

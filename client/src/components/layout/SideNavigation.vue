@@ -44,7 +44,7 @@
     padding: 20px;
     width: 200px;
     overflow: auto;
-    color: #cecece;
+      color: #cecece;
     white-space: nowrap;
     font-size: .8em;
   }

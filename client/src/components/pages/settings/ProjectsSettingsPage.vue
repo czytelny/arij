@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>projects settings page</h1>
+      <h2>projects settings page</h2>
   </div>
 </template>
 

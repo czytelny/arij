@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>users settings page</h1>
+    <h2>users settings page</h2>
   </div>
 </template>
 

@@ -1,8 +1,7 @@
 <template>
   <div class="page-footer">
-    arij 2017
-
     <a href="http://github.com/czytelny/arij" target="_blank">
+    arij 2017
       <i class="fa fa-github fa-1x" aria-hidden="true"></i>
     </a>
   </div>
@@ -18,7 +17,7 @@
 <style lang="less" scoped>
   @import "../../styles/variables.less";
 
-  .fa {
+  a {
     color: #909090;
   }
 
@@ -26,7 +25,7 @@
     flex: none;
     background-color: @secondary-color;
     color: #909090;
-    padding: 5px;
+    padding: 0 20px;
     font-size: .7em;
     text-align: left;
   }
