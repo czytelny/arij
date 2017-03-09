@@ -16,6 +16,6 @@
   .breadcrumbs-container {
     flex: none;
     background-color: #dadada;
-    padding: 3px 10px;
+    padding: 3px 20px;
   }
 </style>

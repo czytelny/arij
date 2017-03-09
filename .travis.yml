@@ -1,5 +1,5 @@
-before_script: cd server
 language: node_js
 node_js:
   - "node"
   - "6"
+script: cd server && npm install && npm test
