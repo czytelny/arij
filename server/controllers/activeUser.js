@@ -8,7 +8,10 @@ router.get('/', checkPermissions([roles.user]), loggedUsername)
 function loggedUsername (req, res) {
   userService
     .findById(req.user["_id"])
-    .then((user) => res.json({email: user.email}))
+    .then((user) => res.json({
+      email: user.email,
+      roles: user.roles
+    }))
     .catch((err) => handleError(res, err, 'Getting username'))
 }
 
