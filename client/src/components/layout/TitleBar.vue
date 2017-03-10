@@ -14,19 +14,19 @@
     name: 'title-bar',
     data() {
       return {
-        username: "Anonymous",
         logoutUrl: `${axios.defaults.baseURL}/logout`
       }
     },
+    computed: {
+      username() {
+        return this.$store.state.loggedUser.email
+      }
+    },
     beforeMount() {
-      axios.get('/api/activeUser/')
-        .then(({data}) => {
-          this.username = data.email;
-        })
+      this.$store.dispatch('getLoggedUser')
     },
     methods: {
       callLogout() {
-        console.log("watch out, logging out!");
         axios.get('/api/logout/');
       }
     }

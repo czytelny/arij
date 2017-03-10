@@ -4,6 +4,7 @@ import axios from 'axios'
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './store/store'
 
 if (process.env.NODE_ENV !== 'production') {
   axios.defaults.baseURL = "http://localhost:3030";
@@ -18,4 +19,5 @@ new Vue({
   router,
   template: '<App/>',
   components: {App},
+  store,
 });

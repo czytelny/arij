@@ -41,7 +41,8 @@ module.exports = {
     "semi": 0,
     "quotes": 0,
     "comma-dangle": 0,
-    "object-curly-spacing": 0
+    "object-curly-spacing": 0,
+    "no-param-reassign": 0
 
   }
 }
