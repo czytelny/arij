@@ -2,22 +2,40 @@
   <nav class="sidebar-left">
     <h5>Project Name</h5>
     <ul class="list-unstyled">
-      <router-link to="/board"><li>Board</li></router-link>
-      <router-link to="/draft"><li>Draft Boards</li></router-link>
-      <router-link to="/backlog"><li>Backlog</li></router-link>
+      <router-link to="/board">
+        <li>Board</li>
+      </router-link>
+      <router-link to="/draft">
+        <li>Draft Boards</li>
+      </router-link>
+      <router-link to="/backlog">
+        <li>Backlog</li>
+      </router-link>
     </ul>
-    <hr>
-    <h5>System settings</h5>
-    <ul class="list-unstyled">
-      <router-link to="/settings/projects"><li>Projects</li></router-link>
-      <router-link to="/settings/users"><li>Users</li></router-link>
-    </ul>
+
+    <div v-if="isLoggedUserAdmin">
+      <hr>
+      <h5>System settings</h5>
+      <ul class="list-unstyled">
+        <router-link to="/settings/projects">
+          <li>Projects</li>
+        </router-link>
+        <router-link to="/settings/users">
+          <li>Users</li>
+        </router-link>
+      </ul>
+    </div>
   </nav>
 </template>
 
 <script>
   export default {
     name: 'side-navigation',
+    computed: {
+      isLoggedUserAdmin() {
+        return (this.$store.state.loggedUser.roles.indexOf('admin') !== -1)
+      }
+    }
   };
 </script>
 
@@ -44,7 +62,7 @@
     padding: 20px;
     width: 200px;
     overflow: auto;
-      color: #cecece;
+    color: #cecece;
     white-space: nowrap;
     font-size: .8em;
   }
