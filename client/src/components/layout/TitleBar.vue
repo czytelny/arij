@@ -19,7 +19,7 @@
     },
     computed: {
       username() {
-        return this.$store.state.loggedUser.email
+        return this.$store.state.users.loggedUser.email
       }
     },
     beforeMount() {

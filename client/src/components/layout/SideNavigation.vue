@@ -33,7 +33,7 @@
     name: 'side-navigation',
     computed: {
       isLoggedUserAdmin() {
-        return (this.$store.state.loggedUser.roles.indexOf('admin') !== -1)
+        return (this.$store.state.users.loggedUser.roles.indexOf('admin') !== -1)
       }
     }
   };
