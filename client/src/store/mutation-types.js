@@ -1,2 +1,2 @@
-export const ADD_LOGGED_USER = 'addLoggedUser';
-export const RECEIVE_PROJECTS = 'receiveProjects';
+export const SET_LOGGED_USER = 'setLoggedUser';
+export const SET_PROJECTS = 'setProjects';

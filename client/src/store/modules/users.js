@@ -1,25 +1,28 @@
 import axios from 'axios';
-import { ADD_LOGGED_USER } from '../mutation-types';
+import { SET_LOGGED_USER } from '../mutation-types';
+import { FETCH_LOGGED_USER } from './../action-types'
 
 export default {
   state: {
-    loggedUser: {
+    all: [],
+    details: {},
+    logged: {
       name: 'Anonymous',
       email: 'Anonymous',
       roles: []
     }
   },
   mutations: {
-    [ADD_LOGGED_USER](state, user) {
-      state.loggedUser = user;
+    [SET_LOGGED_USER](state, user) {
+      state.logged = user;
     }
   },
   actions: {
-    getLoggedUser(context) {
+    [FETCH_LOGGED_USER](context) {
       axios
         .get('/api/activeUser/')
         .then(({data}) => {
-          context.commit(ADD_LOGGED_USER, data);
+          context.commit(SET_LOGGED_USER, data);
         })
     }
   }

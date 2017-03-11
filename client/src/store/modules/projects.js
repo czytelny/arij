@@ -1,22 +1,22 @@
 import axios from 'axios';
-import {RECEIVE_PROJECTS} from '../mutation-types';
-
+import { SET_PROJECTS } from '../mutation-types';
+import { FETCH_PROJECTS } from '../action-types';
 
 export default {
   state: {
     all: []
   },
   mutations: {
-    [RECEIVE_PROJECTS](state, projects) {
+    [SET_PROJECTS](state, projects) {
       state.all = projects;
     }
   },
   actions: {
-    getUserProjects(context) {
+    [FETCH_PROJECTS](context) {
       return axios
         .get('/api/projects/')
         .then(({data}) => {
-          context.commit(RECEIVE_PROJECTS, data);
+          context.commit(SET_PROJECTS, data);
         });
     }
   }

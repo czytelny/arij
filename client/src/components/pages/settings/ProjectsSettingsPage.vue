@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  import { FETCH_PROJECTS } from './../../../store/action-types'
+
   export default {
     name: 'projects-settings-page',
     computed: {
@@ -18,7 +20,7 @@
       }
     },
     beforeMount() {
-      this.$store.dispatch('getUserProjects');
+      this.$store.dispatch(FETCH_PROJECTS);
     },
   };
 </script>

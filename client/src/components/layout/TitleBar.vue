@@ -9,6 +9,7 @@
 
 <script>
   import axios from 'axios'
+  import { FETCH_LOGGED_USER } from './../../store/action-types'
 
   export default {
     name: 'title-bar',
@@ -19,11 +20,11 @@
     },
     computed: {
       username() {
-        return this.$store.state.users.loggedUser.email
+        return this.$store.state.users.logged.email
       }
     },
     beforeMount() {
-      this.$store.dispatch('getLoggedUser')
+      this.$store.dispatch(FETCH_LOGGED_USER)
     },
     methods: {
       callLogout() {
