@@ -1,12 +1,17 @@
 <template>
   <div class="breadcrumbs-container">
-    Breadcrumbs
+    {{currentPath}}
   </div>
 </template>
 
 <script>
   export default {
     name: 'breadcrumbs',
+    computed: {
+      currentPath() {
+        return this.$store.state.route.path.slice(1).split("/").join(" > ");
+      }
+    }
   };
 </script>
 
