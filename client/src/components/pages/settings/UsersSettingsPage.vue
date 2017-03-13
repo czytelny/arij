@@ -10,7 +10,7 @@
         <th>Roles</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody class="clickableRows">
       <tr v-for="user in usersList">
         <td>{{user.name}}</td>
         <td>{{user.nickName}}</td>

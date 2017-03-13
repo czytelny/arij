@@ -11,6 +11,8 @@
 </script>
 
 <style>
+  @import "../styles/variables.less";
+
   .arij-tag {
     background-color: #8391a5;
     display: inline-block;
