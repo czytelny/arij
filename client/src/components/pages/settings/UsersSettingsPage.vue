@@ -1,6 +1,10 @@
 <template>
   <div>
     <h3>Users</h3>
+    <div>
+      <a-checkbox v-model="initCheckbox">show removed user </a-checkbox>
+      {{initCheckbox}}
+    </div>
     <table class="u-full-width">
       <thead>
       <tr>
@@ -17,7 +21,7 @@
         <td>{{user.email}}</td>
         <td>
           <span v-for="role in user.roles">
-            <arij-tag :isSpecial="isAdmin(role)">{{role}}</arij-tag>
+            <a-tag :isSpecial="isAdmin(role)">{{role}}</a-tag>
           </span>
         </td>
       </tr>
@@ -29,9 +33,15 @@
 <script>
   import { FETCH_USERS } from './../../../store/action-types'
   import Tag from './../../Tag'
+  import Checkbox from './../../Checkbox'
 
   export default {
     name: 'users-settings-page',
+    data() {
+      return {
+        initCheckbox: true
+      }
+    },
     beforeMount() {
       this.$store.dispatch(FETCH_USERS)
     },
@@ -46,7 +56,8 @@
       }
     },
     components: {
-      'arij-tag': Tag
+      'a-tag': Tag,
+      'a-checkbox': Checkbox
     }
   };
 </script>

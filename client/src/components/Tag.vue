@@ -7,7 +7,7 @@
 
 <script>
   export default {
-    name: 'arij-tag',
+    name: 'a-tag',
     props: ['isSpecial']
   };
 </script>
