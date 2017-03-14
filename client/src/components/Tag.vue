@@ -1,12 +1,14 @@
 <template>
-  <span class="arij-tag" :class="{ special: isSpecial }">{{textMessage}}</span>
+  <span class="arij-tag" :class="{ special: isSpecial }">
+    <slot></slot>
+  </span>
 </template>
 
 
 <script>
   export default {
     name: 'arij-tag',
-    props: ['textMessage', 'isSpecial']
+    props: ['isSpecial']
   };
 </script>
 

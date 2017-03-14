@@ -17,9 +17,7 @@
         <td>{{user.email}}</td>
         <td>
           <span v-for="role in user.roles">
-            <arij-tag
-              :text-message="role"
-              :isSpecial="isAdmin(role)"></arij-tag>
+            <arij-tag :isSpecial="isAdmin(role)">{{role}}</arij-tag>
           </span>
         </td>
       </tr>
