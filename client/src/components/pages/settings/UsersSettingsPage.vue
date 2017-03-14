@@ -4,13 +4,13 @@
 
     <a-action-panel>
       <slot>
-        <a-checkbox v-model="initCheckbox"
-                    :change="print()">Show removed users
+        <a-checkbox v-model="showAllUsers">
+          Show removed users
         </a-checkbox>
       </slot>
     </a-action-panel>
 
-    <users-table></users-table>
+    <users-table :show-all="showAllUsers"></users-table>
   </div>
 </template>
 
@@ -23,12 +23,7 @@
     name: 'users-settings-page',
     data() {
       return {
-        initCheckbox: null
-      }
-    },
-    methods: {
-      print() {
-        console.log('dupa')
+        showAllUsers: false
       }
     },
     components: {
