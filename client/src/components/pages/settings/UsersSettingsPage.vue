@@ -4,64 +4,37 @@
 
     <a-action-panel>
       <slot>
-        <a-checkbox v-model="initCheckbox">Show removed users</a-checkbox>
+        <a-checkbox v-model="initCheckbox"
+                    :change="print()">Show removed users
+        </a-checkbox>
       </slot>
     </a-action-panel>
-    <table class="u-full-width">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Nickname</th>
-        <th>Email</th>
-        <th>Roles</th>
-      </tr>
-      </thead>
-      <tbody class="clickableRows">
-      <tr v-for="user in usersList">
-        <td>{{user.name}}</td>
-        <td>{{user.nickName}}</td>
-        <td>{{user.email}}</td>
-        <td>
-          <span v-for="role in user.roles">
-            <a-tag :isSpecial="isAdmin(role)">{{role}}</a-tag>
-          </span>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+
+    <users-table></users-table>
   </div>
 </template>
 
 <script>
-  import { FETCH_USERS } from './../../../store/action-types'
-  import Tag from './../../Tag'
   import Checkbox from './../../Checkbox'
   import TableActionPanel from './../../TableActionPanel'
+  import UsersTable from './../../UsersTable'
 
   export default {
     name: 'users-settings-page',
     data() {
       return {
-        initCheckbox: true
-      }
-    },
-    beforeMount() {
-      this.$store.dispatch(FETCH_USERS)
-    },
-    computed: {
-      usersList() {
-        return this.$store.state.users.all;
+        initCheckbox: null
       }
     },
     methods: {
-      isAdmin(roleName) {
-        return roleName.toLowerCase() === 'admin';
+      print() {
+        console.log('dupa')
       }
     },
     components: {
-      'a-tag': Tag,
       'a-checkbox': Checkbox,
-      'a-action-panel': TableActionPanel
+      'a-action-panel': TableActionPanel,
+      'users-table': UsersTable
     }
   };
 </script>
