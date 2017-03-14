@@ -2,8 +2,7 @@
   <div>
     <h3>Users</h3>
     <div>
-      <a-checkbox v-model="initCheckbox">show removed user </a-checkbox>
-      {{initCheckbox}}
+      <a-checkbox v-model="initCheckbox">Show removed users</a-checkbox>
     </div>
     <table class="u-full-width">
       <thead>

@@ -3,7 +3,8 @@
     <span class="el-checkbox__input"
           :class="{
                     'is-disabled': disabled,
-                    'is-checked': isChecked
+                    'is-checked': isChecked,
+                    'is-focus': focus
                   }"
     >
 
@@ -73,11 +74,6 @@
     methods: {
       handleChange(ev) {
         this.$emit('change', ev);
-        if (this.isGroup) {
-          this.$nextTick(() => {
-            this.dispatch('ElCheckboxGroup', 'change');
-          });
-        }
       }
     }
   };
@@ -104,7 +100,7 @@
     cursor: pointer;
     outline: none;
     display: inline-block;
-    line-height: .5;
+    line-height: 1;
     position: relative;
     vertical-align: middle;
   }
@@ -127,7 +123,7 @@
     display: inline-block;
     position: relative;
     border: 1px solid #bfcbd9;
-    border-radius: 4px;
+    border-radius: 3px;
     box-sizing: border-box;
     width: 18px;
     height: 18px;
@@ -180,6 +176,13 @@
   .el-checkbox__input.is-disabled+.el-checkbox__label {
     color: #bbb;
     cursor: not-allowed;
+  }
+
+  .el-checkbox__inner:hover {
+    border-color: @active2-color;
+  }
+  .el-checkbox__input.is-focus .el-checkbox__inner {
+    border-color: @active2-color;
   }
 
 </style>
