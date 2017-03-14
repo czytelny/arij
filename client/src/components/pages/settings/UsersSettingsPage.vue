@@ -1,9 +1,12 @@
 <template>
   <div>
     <h3>Users</h3>
-    <div>
-      <a-checkbox v-model="initCheckbox">Show removed users</a-checkbox>
-    </div>
+
+    <a-action-panel>
+      <slot>
+        <a-checkbox v-model="initCheckbox">Show removed users</a-checkbox>
+      </slot>
+    </a-action-panel>
     <table class="u-full-width">
       <thead>
       <tr>
@@ -33,6 +36,7 @@
   import { FETCH_USERS } from './../../../store/action-types'
   import Tag from './../../Tag'
   import Checkbox from './../../Checkbox'
+  import TableActionPanel from './../../TableActionPanel'
 
   export default {
     name: 'users-settings-page',
@@ -56,7 +60,8 @@
     },
     components: {
       'a-tag': Tag,
-      'a-checkbox': Checkbox
+      'a-checkbox': Checkbox,
+      'a-action-panel': TableActionPanel
     }
   };
 </script>
