@@ -32,7 +32,8 @@
   export default {
     name: 'users-table',
     props: {
-      showAll: Boolean
+      showAll: Boolean,
+      filter: [String, Number]
     },
     beforeMount() {
       this.$store.dispatch(FETCH_USERS)
@@ -45,7 +46,14 @@
               return true
             }
             return user.active === true
-          });
+          })
+          .filter(user => user.name.toLowerCase().includes(this.filter.toLowerCase()) ||
+            user.nickName.toLowerCase().includes(this.filter.toLowerCase()) ||
+            user.email.toLowerCase().includes(this.filter.toLowerCase())
+          );
+      },
+      filterList() {
+        return this.$store.state.users.all
       }
     },
     methods: {

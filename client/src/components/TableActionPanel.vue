@@ -29,7 +29,7 @@
     background-color: rgba(131, 145, 165, 0.1);
     border:1px solid rgba(131, 145, 165, 0.15);
     width: 80%;
-    padding: 7px 15px 0 15px;
+    padding: 15px 15px 0 15px;
 
 
   }

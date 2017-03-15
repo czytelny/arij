@@ -49,6 +49,11 @@
     color: #2c3e50;
   }
 
+  input[type="text"] {
+    border-radius: 3px;
+    height: 33px;
+  }
+
   a {
     text-decoration: none;
     color: @active2-color;
