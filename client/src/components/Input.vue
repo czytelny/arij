@@ -1,12 +1,15 @@
 <template>
-  <span class="inner-addon" :class="{'left-addon':withIcon}">
+  <span class="inner-addon"
+        :class="{'left-addon':withIcon}">
     <span class="fa"
           :class="iconClass"
           v-if="withIcon"></span>
     <input :type="type"
+           :class="[className, {'is-special': isSpecial}]"
            :maxlength="maxlength"
            :minlength="minlength"
            :value="currentValue"
+           :placeholder="placeholder"
            @input="handleInput"/>
   </span>
 </template>
@@ -24,9 +27,12 @@
         type: Boolean,
         default: false
       },
+      className: String,
       maxlength: Number,
       minlength: Number,
-      iconClass: String
+      iconClass: String,
+      isSpecial: Boolean,
+      placeholder: String
     },
     data() {
       return {
@@ -45,6 +51,10 @@
 
 <style>
   @import "../styles/variables.less";
+
+  input {
+    transition: all .3s;
+  }
 
   .inner-addon {
     position: relative;
@@ -73,6 +83,23 @@
 
   .right-addon input {
     padding-right: 30px;
+  }
+
+  input.is-special {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #bfbfbf;
+    background: transparent;
+    margin-bottom: 10px;
+    border-radius: 0;
+  }
+
+  input.is-special:focus {
+    border: 1px solid transparent;
+    border-bottom: 1px solid #8391a5;
   }
 
 </style>

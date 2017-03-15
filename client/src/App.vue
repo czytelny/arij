@@ -122,5 +122,9 @@
     background-color: rgba(131, 145, 165, 0.08);
   }
 
+  .without-bottom-margin {
+    margin-bottom: 0;
+  }
+
   }
 </style>

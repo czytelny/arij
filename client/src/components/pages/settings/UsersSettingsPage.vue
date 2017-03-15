@@ -2,15 +2,22 @@
   <div>
     <h3>Users</h3>
 
-    <a-action-panel>
-      <slot>
-
-        <a-input :withIcon="true" iconClass="fa-search" v-model="filterValue"></a-input>
-        <a-checkbox v-model="showAllUsers">
+    <div class="row">
+      <div class="four columns">
+        <a-input :withIcon="true"
+                 iconClass="fa-search"
+                 className="u-full-width without-bottom-margin"
+                 :isSpecial="true"
+                 placeholder="Filter..."
+                 v-model="filterValue">
+        </a-input>
+      </div>
+      <div class="seven columns ">
+        <a-checkbox class="u-pull-right without-bottom-margin" v-model="showAllUsers">
           Show removed users
         </a-checkbox>
-      </slot>
-    </a-action-panel>
+      </div>
+    </div>
 
     <users-table :show-all="showAllUsers" :filter="filterValue"></users-table>
   </div>
