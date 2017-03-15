@@ -19,7 +19,7 @@ function findByEmail (email) {
 
 function find () {
   logger.debug('user: find all active users')
-  return User.find({active: true}, '-password')
+  return User.find({}, '-password')
 }
 
 function deactivate (userId) {

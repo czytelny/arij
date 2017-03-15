@@ -104,5 +104,18 @@
     list-style: none;
   }
 
+  table {
+    border-collapse: collapse;
+  }
+
+  tbody.clickableRows tr {
+    cursor: pointer;
+    transition: background-color .2s;
+  }
+
+  tbody.clickableRows tr:hover {
+    background-color: rgba(131, 145, 165, 0.08);
+  }
+
   }
 </style>
