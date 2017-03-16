@@ -20,8 +20,14 @@
         <router-link to="/settings/projects">
           <li>Projects</li>
         </router-link>
+        <router-link to="/settings/projects">
+          <li>Add Projects</li>
+        </router-link>
         <router-link to="/settings/users">
           <li>Users</li>
+        </router-link>
+        <router-link to="/settings/users/add">
+          <li>Add Users</li>
         </router-link>
       </ul>
     </div>

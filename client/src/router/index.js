@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Hello from 'components/pages/Hello';
 import ProjectsSettingsPage from 'components/pages/settings/ProjectsSettingsPage';
 import UsersSettingsPage from 'components/pages/settings/UsersSettingsPage';
+import AddUsersSettingsPage from 'components/pages/settings/AddUsersSettingsPage';
 
 
 Vue.use(Router);
@@ -22,6 +23,10 @@ export default new Router({
     {
       path: '/settings/users',
       component: UsersSettingsPage,
+    },
+    {
+      path: '/settings/users/add',
+      component: AddUsersSettingsPage,
     },
   ],
 });

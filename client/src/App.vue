@@ -47,6 +47,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+    background-color: #EEEEEE;
   }
 
   input[type="text"] {
@@ -83,6 +84,8 @@
     overflow-x: hidden;
     display: flex;
     flex-direction: row;
+    max-width: 1440px;
+    border-right: 1px dashed #cecece;
 
   .content-container {
     background-color: @secondary-color;

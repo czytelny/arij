@@ -10,7 +10,8 @@
       </tr>
       </thead>
       <tbody class="clickableRows">
-      <tr v-for="user in usersList" :class="{'removed-row' : !user.active}">
+      <tr v-for="user in usersList" :key="user['_id']"
+          :class="{'removed-row' : !user.active}">
         <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
         <td>{{user.nickName}}</td>
         <td>{{user.email}}</td>

@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h3>Users</h3>
-
+    <h3>Users </h3>
     <div class="row">
       <div class="four columns">
         <a-input :withIcon="true"
