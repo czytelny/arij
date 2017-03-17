@@ -4,6 +4,7 @@
     <span class="fa"
           :class="iconClass"
           v-if="withIcon"></span>
+    <span class="fa fa-trash-o clear-field" @click='clearInput' v-if="!hasEmptyValue"></span>
     <input :type="type"
            :class="[className, {'is-special': isSpecial}]"
            :maxlength="maxlength"
@@ -19,6 +20,8 @@
   export default {
     name: 'a-input',
     props: {
+      value: [String, Number],
+      placeholder: String,
       type: {
         type: String,
         default: 'text'
@@ -32,18 +35,39 @@
       minlength: Number,
       iconClass: String,
       isSpecial: Boolean,
-      placeholder: String
     },
     data() {
       return {
         currentValue: this.value,
       };
     },
+    computed: {
+      hasEmptyValue() {
+        if (!this.value) {
+          return true;
+        }
+        return this.value.length === 0;
+      }
+    },
+    watch: {
+      value(val) {
+        this.setCurrentValue(val);
+      }
+    },
     methods: {
       handleInput(event) {
         const value = event.target.value;
         this.$emit('input', value);
         this.$emit('change', value);
+      },
+      setCurrentValue(value) {
+        if (value === this.currentValue) return;
+        this.currentValue = value;
+      },
+      clearInput() {
+        this.currentValue = "";
+        this.$emit('input', "");
+        this.$emit('change', "");
       }
     }
   };
@@ -56,6 +80,12 @@
     transition: all .3s;
   }
 
+  .inner-addon .fa.clear-field {
+    cursor: pointer;
+    right: 0;
+    left: auto;
+  }
+
   .inner-addon {
     position: relative;
   }
@@ -64,7 +94,7 @@
   .inner-addon .fa {
     position: absolute;
     padding: 9px;
-    pointer-events: none;
+    pointer-events: auto;
   }
 
   /* align icon */
