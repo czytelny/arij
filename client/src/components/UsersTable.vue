@@ -9,24 +9,33 @@
         <th>Roles</th>
       </tr>
       </thead>
-      <tbody class="clickableRows">
-      <tr v-for="user in usersList" :key="user['_id']"
-          :class="{'removed-row' : !user.active}">
-        <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
-        <td>{{user.nickName}}</td>
-        <td>{{user.email}}</td>
-        <td>
+      <transition-group
+        name="staggered-fade"
+        tag="tbody"
+        class="clickableRows"
+        v-bind:css="false"
+        v-on:before-enter="beforeEnter"
+        v-on:enter="enter"
+        v-on:leave="leave"
+      >
+        <tr v-for="user in usersList" :key="user['_id']"
+            :class="{'removed-row' : !user.active}">
+          <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
+          <td>{{user.nickName}}</td>
+          <td>{{user.email}}</td>
+          <td>
           <span v-for="role in user.roles">
             <a-tag :isSpecial="isAdmin(role)">{{role}}</a-tag>
           </span>
-        </td>
-      </tr>
-      </tbody>
+          </td>
+        </tr>
+      </transition-group>
     </table>
   </div>
 </template>
 
 <script>
+  import Velocity from 'velocity-animate'
   import Tag from './Tag'
   import { FETCH_USERS } from './../store/action-types'
 
@@ -63,6 +72,30 @@
       },
       isAdmin(roleName) {
         return roleName.toLowerCase() === 'admin'
+      },
+      beforeEnter(el) {
+        el.style.opacity = 0
+        el.style.height = 0
+      },
+      enter(el, done) {
+        const delay = el.dataset.index * 150
+        setTimeout(() => {
+          Velocity(
+            el,
+            {opacity: 1},
+            {complete: done}
+          )
+        }, delay)
+      },
+      leave(el, done) {
+        const delay = el.dataset.index * 150
+        setTimeout(() => {
+          Velocity(
+            el,
+            {opacity: 0, height: 0},
+            {complete: done}
+          )
+        }, delay)
       }
     },
     components: {
