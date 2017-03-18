@@ -51,7 +51,7 @@
           .filter(user => user.name.toLowerCase().includes(this.filter.toLowerCase()) ||
             user.nickName.toLowerCase().includes(this.filter.toLowerCase()) ||
             user.email.toLowerCase().includes(this.filter.toLowerCase())
-          );
+          )
       },
       filterList() {
         return this.$store.state.users.all
@@ -72,6 +72,15 @@
 </script>
 
 <style>
+  .list-enter-active, .list-leave-active {
+    transition: all 1s;
+  }
+
+  .list-enter, .list-leave-to /* .list-leave-active for <2.1.8 */
+  {
+    opacity: 0;
+    transform: translateX(30px);
+  }
 
   .removed-row {
     background-color: rgba(44, 62, 80, 0.2);

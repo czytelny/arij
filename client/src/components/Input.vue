@@ -17,6 +17,8 @@
 
 
 <script>
+  import _ from 'lodash'
+
   export default {
     name: 'a-input',
     props: {
@@ -55,11 +57,12 @@
       }
     },
     methods: {
-      handleInput(event) {
+      /* eslint-disable func-names */
+      handleInput: _.debounce(function (event) {
         const value = event.target.value;
         this.$emit('input', value);
         this.$emit('change', value);
-      },
+      }, 250),
       setCurrentValue(value) {
         if (value === this.currentValue) return;
         this.currentValue = value;
@@ -84,6 +87,12 @@
     cursor: pointer;
     right: 0;
     left: auto;
+    opacity: .4;
+    transition: all .2s;
+  }
+
+  .inner-addon .fa.clear-field:hover {
+    opacity: 1;
   }
 
   .inner-addon {
