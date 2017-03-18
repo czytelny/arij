@@ -34,6 +34,20 @@
             <input type="password" name="password" placeholder="password" autocomplete="off">
             <input type="password" name="passwordConfirm" placeholder="confirm password" autocomplete="off">
           </div>
+          <div class="flex-item">
+            <input type="text" name="roles">
+          </div>
+          <div class="flex-item">
+            <multiselect v-model="selectedProjects"
+                         :options="projects"
+                         :multiple="true"
+                         :close-on-select="false"
+                         :clear-on-select="false"
+                         :hide-selected="true"
+                         placeholder="Pick projects"
+                         label="name"
+                         track-by="name"></multiselect>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -50,11 +64,19 @@
 <script>
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
+  import { FETCH_PROJECTS } from './../../../store/action-types'
 
   export default {
     name: 'add-users-settings-page',
     data() {
-      return {}
+      return {
+        selectedProjects: []
+      }
+    },
+    computed: {
+      projects() {
+        return this.$store.state.projects.all;
+      }
     },
     methods: {
       onSubmit() {
@@ -63,7 +85,10 @@
     },
     components: {
       'a-checkbox': Checkbox,
-      'a-input': Input,
+      'a-input': Input
+    },
+    beforeMount() {
+      this.$store.dispatch(FETCH_PROJECTS)
     }
   };
 </script>
@@ -82,6 +107,10 @@
   .flex-item input {
     margin: 0;
     width: 250px;
+  }
+
+  .multiselect{
+    width: 500px;
   }
 
   .sub-description {

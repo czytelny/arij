@@ -61,9 +61,6 @@
             user.nickName.toLowerCase().includes(this.filter.toLowerCase()) ||
             user.email.toLowerCase().includes(this.filter.toLowerCase())
           )
-      },
-      filterList() {
-        return this.$store.state.users.all
       }
     },
     methods: {

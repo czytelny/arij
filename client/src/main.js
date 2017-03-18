@@ -3,6 +3,7 @@
 import axios from 'axios'
 import Vue from 'vue';
 import { sync } from 'vuex-router-sync'
+import Multiselect from 'vue-multiselect'
 import App from './App';
 import router from './router';
 import store from './store/store'
@@ -15,6 +16,8 @@ if (process.env.NODE_ENV !== 'production') {
 axios.defaults.withCredentials = true;
 
 sync(store, router)
+
+Vue.component('multiselect', Multiselect)
 
 /* eslint-disable no-new */
 new Vue({

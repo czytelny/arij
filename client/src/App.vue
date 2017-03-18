@@ -38,6 +38,7 @@
 
 <style lang="less">
   @import "styles/variables.less";
+  @import "./../node_modules/vue-multiselect/dist/vue-multiselect.min.css";
 
   html, body {
     height: 100%;
@@ -131,12 +132,11 @@
 
   .button-primary {
     background-color: @active2-color;
-    border-color: #ad6616;
+    border-color: #c17517;
     transition: all .2s;
   }
   .button-primary:hover {
-    background-color: #ad6616;
-    border-color: @active2-color;
+    background-color: #c17517;
   }
 
   }

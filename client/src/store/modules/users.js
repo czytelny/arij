@@ -22,14 +22,14 @@ export default {
   },
   actions: {
     [FETCH_LOGGED_USER](context) {
-      axios
+      return axios
         .get('/api/activeUser/')
         .then(({data}) => {
           context.commit(SET_LOGGED_USER, data);
         })
     },
     [FETCH_USERS](context) {
-      axios
+      return axios
         .get('/api/users/')
         .then(({data}) => {
           context.commit(SET_USERS, data);
