@@ -38,7 +38,8 @@
             <input type="text" name="roles">
           </div>
           <div class="flex-item">
-            <multiselect v-model="selectedProjects"
+            <multiselect v-if="projects.length"
+                         v-model="selectedProjects"
                          :options="projects"
                          :multiple="true"
                          :close-on-select="false"
@@ -47,6 +48,7 @@
                          placeholder="Pick projects"
                          label="name"
                          track-by="name"></multiselect>
+            <div v-else><i>Sorry, no projects available...</i></div>
           </div>
         </div>
       </div>
@@ -109,7 +111,7 @@
     width: 250px;
   }
 
-  .multiselect{
+  .multiselect {
     width: 500px;
   }
 
