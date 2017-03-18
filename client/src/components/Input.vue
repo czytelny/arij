@@ -4,7 +4,7 @@
     <span class="fa"
           :class="iconClass"
           v-if="withIcon"></span>
-    <span class="fa fa-trash-o clear-field" @click='clearInput' v-if="!hasEmptyValue"></span>
+    <span class="fa fa-trash-o clear-field" @click='clearInput' v-if="!hasEmptyValue && isSpecial"></span>
     <input :type="type"
            :class="[className, {'is-special': isSpecial}]"
            :maxlength="maxlength"

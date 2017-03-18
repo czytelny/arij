@@ -129,5 +129,15 @@
     margin-bottom: 0;
   }
 
+  .button-primary {
+    background-color: @active2-color;
+    border-color: #ad6616;
+    transition: all .2s;
+  }
+  .button-primary:hover {
+    background-color: #ad6616;
+    border-color: @active2-color;
+  }
+
   }
 </style>

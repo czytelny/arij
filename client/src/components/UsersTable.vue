@@ -75,7 +75,6 @@
       },
       beforeEnter(el) {
         el.style.opacity = 0
-        el.style.height = 0
       },
       enter(el, done) {
         const delay = el.dataset.index * 150
@@ -92,7 +91,7 @@
         setTimeout(() => {
           Velocity(
             el,
-            {opacity: 0, height: 0},
+            {opacity: 0},
             {complete: done}
           )
         }, delay)
