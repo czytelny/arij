@@ -12,11 +12,11 @@
   };
 </script>
 
-<style>
-  @import "../styles/variables.less";
+<style lang="less">
+  @import "./../styles/variables.less";
 
   .arij-tag {
-    background-color: #8391a5;
+    background-color: @active-color;
     display: inline-block;
     padding: 0 5px;
     height: 22px;
@@ -27,13 +27,13 @@
     box-sizing: border-box;
     border: 1px solid transparent;
     white-space: nowrap;
-    margin-right: 1px;
+    margin-right: 3px;
   }
 
   .special {
-    background-color: rgba(253, 151, 31, 0.08);
-    border-color: #FD971F;
-    color: #FD971F;
+    background-color: @active-color;
+    border-color: #51d896;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.5);
   }
 
 </style>
