@@ -6,11 +6,11 @@
         <div class="description">
           <div class="flex-item">
             email
-            <div class="sub-description">must be unique, identifier</div>
+            <div class="sub-description">unique, your login and identifier</div>
           </div>
           <div class="flex-item">
             name
-            <div class="sub-description">displayed in tasks</div>
+            <div class="sub-description">displayed everywhere</div>
           </div>
           <div class="flex-item">
             password
@@ -35,7 +35,17 @@
             <input type="password" name="passwordConfirm" placeholder="confirm password" autocomplete="off">
           </div>
           <div class="flex-item">
-            <input type="text" name="roles">
+            <multiselect v-if="roles.length"
+                         v-model="selectedRoles"
+                         :options="roles"
+                         :multiple="true"
+                         :close-on-select="false"
+                         :clear-on-select="false"
+                         :hide-selected="true"
+                         placeholder="pick roles"
+                         label="name"
+                         track-by="name"></multiselect>
+            <div v-else><i>Sorry, no roles available...</i></div>
           </div>
           <div class="flex-item">
             <multiselect v-if="projects.length"
@@ -45,7 +55,7 @@
                          :close-on-select="false"
                          :clear-on-select="false"
                          :hide-selected="true"
-                         placeholder="Pick projects"
+                         placeholder="pick projects"
                          label="name"
                          track-by="name"></multiselect>
             <div v-else><i>Sorry, no projects available...</i></div>
@@ -66,18 +76,22 @@
 <script>
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
-  import { FETCH_PROJECTS } from './../../../store/action-types'
+  import { FETCH_PROJECTS, FETCH_ROLES } from './../../../store/action-types'
 
   export default {
     name: 'add-users-settings-page',
     data() {
       return {
-        selectedProjects: []
+        selectedProjects: [],
+        selectedRoles: [],
       }
     },
     computed: {
       projects() {
         return this.$store.state.projects.all;
+      },
+      roles() {
+        return this.$store.state.roles.all;
       }
     },
     methods: {
@@ -91,6 +105,7 @@
     },
     beforeMount() {
       this.$store.dispatch(FETCH_PROJECTS)
+      this.$store.dispatch(FETCH_ROLES)
     }
   };
 </script>
@@ -103,7 +118,7 @@
   }
 
   .flex-item {
-    height: 70px;
+    height: 80px;
   }
 
   .flex-item input {
@@ -112,7 +127,7 @@
   }
 
   .multiselect {
-    width: 500px;
+    width: 505px;
   }
 
   .sub-description {
@@ -123,8 +138,8 @@
   .description {
     text-align: right;
     border-right: 1px solid #8391a5;
-    padding: 0 10px;
-    margin: 0 10px;
+    padding-right: 20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
     width: 15%

@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import projects from './modules/projects'
 import users from './modules/users'
+import roles from './modules/roles'
 
 Vue.use(Vuex);
 
@@ -10,6 +11,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
     users,
-    projects
+    projects,
+    roles
   }
 })
