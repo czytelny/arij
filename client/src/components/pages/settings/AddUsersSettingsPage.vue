@@ -4,18 +4,24 @@
     <form name="newUserForm" @submit.prevent="onSubmit">
       <div class="flex-container">
         <div class="description">
-          <div class="flex-item">
+          <div class="flex-item"
+               :class="{'error': $v.email.$error}">
             email
             <div class="sub-description">unique, your login and identifier</div>
           </div>
-          <div class="flex-item">
+          <div class="flex-item"
+               :class="{'error': $v.name.$error}">
             name
             <div class="sub-description">displayed everywhere</div>
           </div>
-          <div class="flex-item">
+          <div class="flex-item"
+               :class="{'error': $v.password.$error, 'error': $v.passwordConfirm.$error}">
             password
+            <div class="sub-description">and confirmation</div>
+
           </div>
-          <div class="flex-item">
+          <div class="flex-item"
+               :class="{'error': $v.selectedRoles.$error}">
             roles
             <div class="sub-description">privileges in system</div>
           </div>
@@ -26,13 +32,34 @@
         </div>
         <div class="inputs">
           <div class="flex-item">
-            <input type="text" name="email" placeholder="email" autocomplete="off"></div>
-          <div class="flex-item">
-            <input type="text" name="name" placeholder="name" autocomplete="off">
+            <input type="text"
+                   name="email"
+                   placeholder="email"
+                   autocomplete="off"
+                   v-model="email"
+                   @input="$v.email.$touch()">
           </div>
           <div class="flex-item">
-            <input type="password" name="password" placeholder="password" autocomplete="off">
-            <input type="password" name="passwordConfirm" placeholder="confirm password" autocomplete="off">
+            <input type="text"
+                   name="name"
+                   placeholder="name"
+                   autocomplete="off"
+                   v-model="name"
+                   @input="$v.name.$touch()">
+          </div>
+          <div class="flex-item">
+            <input type="password"
+                   name="password"
+                   v-model="password"
+                   placeholder="password"
+                   autocomplete="off"
+                   @input="$v.password.$touch()">
+            <input type="password"
+                   name="passwordConfirm"
+                   v-model="passwordConfirm"
+                   placeholder="confirm password"
+                   autocomplete="off"
+                   @input="$v.passwordConfirm.$touch()">
           </div>
           <div class="flex-item">
             <multiselect v-if="roles.length"
@@ -44,6 +71,7 @@
                          :hide-selected="true"
                          placeholder="pick roles"
                          label="name"
+                         @input="$v.selectedRoles.$touch()"
                          track-by="name"></multiselect>
             <div v-else><i>Sorry, no roles available...</i></div>
           </div>
@@ -64,6 +92,7 @@
       </div>
       <div class="row">
         <div class="column twelve">
+          <pre>is form invalid ?: {{$v.$invalid}}</pre>
           <button type="submit" class="button-primary">Add</button>
         </div>
       </div>
@@ -74,6 +103,7 @@
 </template>
 
 <script>
+  import { required, email, sameAs } from 'vuelidate/lib/validators'
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
   import { FETCH_PROJECTS, FETCH_ROLES } from './../../../store/action-types'
@@ -83,7 +113,11 @@
     data() {
       return {
         selectedProjects: [],
-        selectedRoles: [],
+        selectedRoles: [{name: 'user'}],
+        email: '',
+        name: '',
+        password: '',
+        passwordConfirm: ''
       }
     },
     computed: {
@@ -106,12 +140,23 @@
     beforeMount() {
       this.$store.dispatch(FETCH_PROJECTS)
       this.$store.dispatch(FETCH_ROLES)
+    },
+    validations: {
+      email: {required, email},
+      name: {required},
+      password: {required},
+      passwordConfirm: {sameAsPassword: sameAs('password')},
+      selectedRoles: {required}
     }
   };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   @import "./../../../styles/variables.less";
+
+  .error {
+    color: @error-color;
+  }
 
   .flex-container {
     display: flex;
@@ -119,6 +164,7 @@
 
   .flex-item {
     height: 80px;
+    transition: all .5s;
   }
 
   .flex-item input {

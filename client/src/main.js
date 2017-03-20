@@ -3,6 +3,7 @@
 import axios from 'axios';
 import Vue from 'vue';
 import { sync } from 'vuex-router-sync'
+import Vuelidate from 'vuelidate'
 import Multiselect from 'vue-multiselect'
 
 import App from './App';
@@ -18,6 +19,8 @@ if (process.env.NODE_ENV !== 'production') {
 axios.defaults.withCredentials = true;
 
 sync(store, router)
+
+Vue.use(Vuelidate)
 
 // Global Components
 Vue.component('multiselect', Multiselect)
