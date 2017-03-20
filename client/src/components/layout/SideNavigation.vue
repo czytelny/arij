@@ -20,7 +20,7 @@
         <router-link to="/settings/projects">
           <li>Projects</li>
         </router-link>
-        <router-link to="/settings/projects">
+        <router-link to="/settings/projects/add">
           <li>Add Projects</li>
         </router-link>
         <router-link to="/settings/users">
