@@ -5,28 +5,27 @@
       <div class="flex-container">
         <div class="description">
           <div class="flex-item"
-               :class="{'error': $v.email.$error}">
-            email
+               :class="{'error-color': $v.email.$error}">
+            <div>email</div>
             <div class="sub-description">unique, your login and identifier</div>
           </div>
           <div class="flex-item"
-               :class="{'error': $v.name.$error}">
-            name
+               :class="{'error-color': $v.name.$error}">
+            <div>name</div>
             <div class="sub-description">displayed everywhere</div>
           </div>
           <div class="flex-item"
-               :class="{'error': $v.password.$error, 'error': $v.passwordConfirm.$error}">
-            password
+               :class="{'error-color': isPasswordValid}">
+            <div>password</div>
             <div class="sub-description">and confirmation</div>
-
           </div>
           <div class="flex-item"
-               :class="{'error': $v.selectedRoles.$error}">
-            roles
+               :class="{'error-color': $v.selectedRoles.$error}">
+            <div>roles</div>
             <div class="sub-description">privileges in system</div>
           </div>
           <div class="flex-item">
-            projects
+            <div>projects</div>
             <div class="sub-description">assign user to project(s)</div>
           </div>
         </div>
@@ -38,6 +37,10 @@
                    autocomplete="off"
                    v-model="email"
                    @input="$v.email.$touch()">
+            <a-val-message :isError="$v.email.$error"
+                           :isRequired="$v.email.required"
+                           :isEmail="$v.email.email">
+            </a-val-message>
           </div>
           <div class="flex-item">
             <input type="text"
@@ -107,6 +110,7 @@
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
   import { FETCH_PROJECTS, FETCH_ROLES } from './../../../store/action-types'
+  import AValMessage from '../../common/ValidationMessage'
 
   export default {
     name: 'add-users-settings-page',
@@ -121,6 +125,9 @@
       }
     },
     computed: {
+      isPasswordValid() {
+        return this.$v.password.$error || this.$v.passwordConfirm.$error;
+      },
       projects() {
         return this.$store.state.projects.all;
       },
@@ -130,10 +137,12 @@
     },
     methods: {
       onSubmit() {
+        this.$v.$touch();
         console.log('submitting form')
       }
     },
     components: {
+      AValMessage,
       'a-checkbox': Checkbox,
       'a-input': Input
     },
@@ -154,17 +163,13 @@
 <style lang="less" scoped>
   @import "./../../../styles/variables.less";
 
-  .error {
-    color: @error-color;
-  }
-
   .flex-container {
     display: flex;
   }
 
   .flex-item {
     height: 80px;
-    transition: all .5s;
+    transition: all .3s;
   }
 
   .flex-item input {

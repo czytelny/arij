@@ -17,7 +17,7 @@
 
 
 <script>
-  import _ from 'lodash'
+  import { debounce } from 'lodash'
 
   export default {
     name: 'a-input',
@@ -58,7 +58,7 @@
     },
     methods: {
       /* eslint-disable func-names */
-      handleInput: _.debounce(function (event) {
+      handleInput: debounce(function (event) {
         const value = event.target.value;
         this.$emit('input', value);
         this.$emit('change', value);

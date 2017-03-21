@@ -67,6 +67,10 @@
     color: @active-color;
   }
 
+  .error-color {
+    color: @error-color;
+  }
+
   #app {
     display: flex;
     flex-direction: column;
