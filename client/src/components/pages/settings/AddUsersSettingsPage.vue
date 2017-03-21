@@ -122,6 +122,7 @@
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
   import { FETCH_PROJECTS, FETCH_ROLES } from './../../../store/action-types'
+  import { SET_NEW_USER_EMAIL } from './../../../store/mutation-types'
   import AValMessage from '../../common/ValidationMessage'
 
   export default {
@@ -130,13 +131,20 @@
       return {
         selectedProjects: [],
         selectedRoles: [{name: 'user'}],
-        email: '',
         name: '',
         password: '',
         passwordConfirm: ''
       }
     },
     computed: {
+      email: {
+        get() {
+          return this.$store.state.users.newUser.email;
+        },
+        set(value) {
+          this.$store.commit(SET_NEW_USER_EMAIL, value)
+        }
+      },
       isPasswordValid() {
         return this.$v.password.$error || this.$v.passwordConfirm.$error;
       },

@@ -1,11 +1,19 @@
 import axios from 'axios';
-import { SET_LOGGED_USER, SET_USERS } from '../mutation-types';
+import { SET_LOGGED_USER, SET_USERS, SET_NEW_USER_EMAIL } from '../mutation-types';
 import { FETCH_LOGGED_USER, FETCH_USERS } from './../action-types'
 
 export default {
   state: {
     all: [],
     details: {},
+    newUser: {
+      email: '',
+      name: '',
+      password: '',
+      passwordConfirm: '',
+      projects: [],
+      roles: [],
+    },
     logged: {
       name: 'Anonymous',
       email: 'Anonymous',
@@ -18,6 +26,9 @@ export default {
     },
     [SET_USERS](state, users) {
       state.all = users;
+    },
+    [SET_NEW_USER_EMAIL](state, value) {
+      state.newUser.email = value;
     }
   },
   actions: {
