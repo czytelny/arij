@@ -1,9 +1,10 @@
 <template>
   <div>
-    <transition name="fade">
-      <div v-if="isError" class="error-message">
+    <transition name="slide-fade">
+      <div v-if="hasError" class="error-message">
         <span v-if="!isRequired">This field is required</span>
-        <span v-if="!isEmail">Wrong email format</span>
+        <span v-if="!isEmail">This needs to be a valid email</span>
+        <span v-if="!isSamePassword">Confirmation needs to be same as password </span>
       </div>
     </transition>
   </div>
@@ -12,9 +13,10 @@
   export default {
     name: 'a-val-message',
     props: {
-      isError: Boolean,
-      isRequired: Boolean,
-      isEmail: Boolean
+      hasError: {type: Boolean, default: false},
+      isRequired: {type: Boolean, default: true},
+      isEmail: {type: Boolean, default: true},
+      isSamePassword: {type: Boolean, default: true}
     }
   };
 </script>
@@ -26,12 +28,19 @@
     color: @error-color;
   }
 
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity .3s
+  .slide-fade-enter-active {
+    /*transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
+    transition: all .5s cubic-bezier(.63, .11, .83, 1.6);
   }
 
-  .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
+  .slide-fade-leave-active {
+    transition: all .25s ease;
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active for <2.1.8 */
   {
-    opacity: 0
+    transform: translateY(-5px);
+    opacity: 0;
   }
 </style>

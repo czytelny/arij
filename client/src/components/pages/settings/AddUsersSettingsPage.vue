@@ -36,8 +36,8 @@
                    placeholder="email"
                    autocomplete="off"
                    v-model="email"
-                   @input="$v.email.$touch()">
-            <a-val-message :isError="$v.email.$error"
+                   @change="$v.email.$touch()">
+            <a-val-message :hasError="$v.email.$error"
                            :isRequired="$v.email.required"
                            :isEmail="$v.email.email">
             </a-val-message>
@@ -48,7 +48,10 @@
                    placeholder="name"
                    autocomplete="off"
                    v-model="name"
-                   @input="$v.name.$touch()">
+                   @change="$v.name.$touch()">
+            <a-val-message :hasError="$v.name.$error"
+                           :isRequired="$v.name.required">
+            </a-val-message>
           </div>
           <div class="flex-item">
             <input type="password"
@@ -56,13 +59,19 @@
                    v-model="password"
                    placeholder="password"
                    autocomplete="off"
-                   @input="$v.password.$touch()">
+                   @change="$v.password.$touch()">
             <input type="password"
                    name="passwordConfirm"
                    v-model="passwordConfirm"
                    placeholder="confirm password"
                    autocomplete="off"
-                   @input="$v.passwordConfirm.$touch()">
+                   @change="$v.passwordConfirm.$touch()">
+            <a-val-message :hasError="$v.password.$error"
+                           :isRequired="$v.password.required">
+            </a-val-message>
+            <a-val-message :hasError="$v.passwordConfirm.$error"
+                           :isSamePassword="$v.passwordConfirm.sameAsPassword">
+            </a-val-message>
           </div>
           <div class="flex-item">
             <multiselect v-if="roles.length"
@@ -77,6 +86,9 @@
                          @input="$v.selectedRoles.$touch()"
                          track-by="name"></multiselect>
             <div v-else><i>Sorry, no roles available...</i></div>
+            <a-val-message :hasError="$v.selectedRoles.$error"
+                           :isRequired="$v.selectedRoles.required">
+            </a-val-message>
           </div>
           <div class="flex-item">
             <multiselect v-if="projects.length"
