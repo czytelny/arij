@@ -9,6 +9,8 @@
     </transition>
   </div>
 </template>
+
+
 <script>
   export default {
     name: 'a-val-message',
@@ -20,6 +22,7 @@
     }
   };
 </script>
+
 <style lang="less" scope>
   @import "./../../styles/variables.less";
 

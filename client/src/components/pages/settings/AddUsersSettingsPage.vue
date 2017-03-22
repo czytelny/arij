@@ -20,7 +20,7 @@
             <div class="sub-description">and confirmation</div>
           </div>
           <div class="flex-item"
-               :class="{'error-color': $v.selectedRoles.$error}">
+               :class="{'error-color': $v.roles.$error}">
             <div>roles</div>
             <div class="sub-description">privileges in system</div>
           </div>
@@ -74,26 +74,26 @@
             </a-val-message>
           </div>
           <div class="flex-item">
-            <multiselect v-if="roles.length"
-                         v-model="selectedRoles"
-                         :options="roles"
+            <multiselect v-if="rolesList.length"
+                         v-model="roles"
+                         :options="rolesList"
                          :multiple="true"
                          :close-on-select="false"
                          :clear-on-select="false"
                          :hide-selected="true"
                          placeholder="pick roles"
                          label="name"
-                         @input="$v.selectedRoles.$touch()"
+                         @input="$v.roles.$touch()"
                          track-by="name"></multiselect>
             <div v-else><i>Sorry, no roles available...</i></div>
-            <a-val-message :hasError="$v.selectedRoles.$error"
-                           :isRequired="$v.selectedRoles.required">
+            <a-val-message :hasError="$v.roles.$error"
+                           :isRequired="$v.roles.required">
             </a-val-message>
           </div>
           <div class="flex-item">
-            <multiselect v-if="projects.length"
-                         v-model="selectedProjects"
-                         :options="projects"
+            <multiselect v-if="projectsList.length"
+                         v-model="projects"
+                         :options="projectsList"
                          :multiple="true"
                          :close-on-select="false"
                          :clear-on-select="false"
@@ -122,18 +122,17 @@
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
   import { FETCH_PROJECTS, FETCH_ROLES } from './../../../store/action-types'
-  import { SET_NEW_USER_EMAIL } from './../../../store/mutation-types'
+  import {
+    SET_NEW_USER_EMAIL, SET_NEW_USER_NAME,
+    SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
+    SET_NEW_USER_PROJECTS, SET_NEW_USER_ROLES
+  } from './../../../store/mutation-types'
   import AValMessage from '../../common/ValidationMessage'
 
   export default {
     name: 'add-users-settings-page',
     data() {
       return {
-        selectedProjects: [],
-        selectedRoles: [{name: 'user'}],
-        name: '',
-        password: '',
-        passwordConfirm: ''
       }
     },
     computed: {
@@ -145,13 +144,53 @@
           this.$store.commit(SET_NEW_USER_EMAIL, value)
         }
       },
+      name: {
+        get() {
+          return this.$store.state.users.newUser.name;
+        },
+        set(value) {
+          this.$store.commit(SET_NEW_USER_NAME, value)
+        }
+      },
+      password: {
+        get() {
+          return this.$store.state.users.newUser.password;
+        },
+        set(value) {
+          this.$store.commit(SET_NEW_USER_PASSWORD, value)
+        }
+      },
+      passwordConfirm: {
+        get() {
+          return this.$store.state.users.newUser.passwordConfirm;
+        },
+        set(value) {
+          this.$store.commit(SET_NEW_USER_PASSWORDCONFIRM, value)
+        }
+      },
+      projects: {
+        get() {
+          return this.$store.state.users.newUser.projects;
+        },
+        set(value) {
+          this.$store.commit(SET_NEW_USER_PROJECTS, value)
+        }
+      },
+      roles: {
+        get() {
+          return this.$store.state.users.newUser.roles;
+        },
+        set(value) {
+          this.$store.commit(SET_NEW_USER_ROLES, value)
+        }
+      },
       isPasswordValid() {
         return this.$v.password.$error || this.$v.passwordConfirm.$error;
       },
-      projects() {
+      projectsList() {
         return this.$store.state.projects.all;
       },
-      roles() {
+      rolesList() {
         return this.$store.state.roles.all;
       }
     },
@@ -175,7 +214,7 @@
       name: {required},
       password: {required},
       passwordConfirm: {sameAsPassword: sameAs('password')},
-      selectedRoles: {required}
+      roles: {required}
     }
   };
 </script>

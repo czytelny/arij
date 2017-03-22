@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { SET_LOGGED_USER, SET_USERS, SET_NEW_USER_EMAIL } from '../mutation-types';
+import {
+  SET_LOGGED_USER, SET_USERS, SET_NEW_USER_EMAIL,
+  SET_NEW_USER_NAME, SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
+  SET_NEW_USER_PROJECTS, SET_NEW_USER_ROLES
+} from '../mutation-types';
 import { FETCH_LOGGED_USER, FETCH_USERS } from './../action-types'
 
 export default {
@@ -29,6 +33,23 @@ export default {
     },
     [SET_NEW_USER_EMAIL](state, value) {
       state.newUser.email = value;
+    },
+    [SET_NEW_USER_NAME](state, value) {
+      state.newUser.name = value;
+    },
+    [SET_NEW_USER_PASSWORD](state, value) {
+      state.newUser.password = value;
+    },
+    [SET_NEW_USER_PASSWORDCONFIRM](state, value) {
+      state.newUser.passwordConfirm = value;
+    },
+    [SET_NEW_USER_PROJECTS](state, value) {
+      console.log(`new user projects ${value}`)
+      state.newUser.projects = value;
+    },
+    [SET_NEW_USER_ROLES](state, value) {
+      console.log(`new user roles ${value}`)
+      state.newUser.roles = value;
     }
   },
   actions: {
