@@ -118,6 +118,7 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
   import { required, email, sameAs } from 'vuelidate/lib/validators'
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
@@ -132,8 +133,7 @@
   export default {
     name: 'add-users-settings-page',
     data() {
-      return {
-      }
+      return {}
     },
     computed: {
       email: {
@@ -141,7 +141,7 @@
           return this.$store.state.users.newUser.email;
         },
         set(value) {
-          this.$store.commit(SET_NEW_USER_EMAIL, value)
+          this.setNewUserEmail(value)
         }
       },
       name: {
@@ -149,7 +149,7 @@
           return this.$store.state.users.newUser.name;
         },
         set(value) {
-          this.$store.commit(SET_NEW_USER_NAME, value)
+          this.setNewUserName(value)
         }
       },
       password: {
@@ -157,7 +157,7 @@
           return this.$store.state.users.newUser.password;
         },
         set(value) {
-          this.$store.commit(SET_NEW_USER_PASSWORD, value)
+          this.setNewUserPassword(value)
         }
       },
       passwordConfirm: {
@@ -165,7 +165,7 @@
           return this.$store.state.users.newUser.passwordConfirm;
         },
         set(value) {
-          this.$store.commit(SET_NEW_USER_PASSWORDCONFIRM, value)
+          this.setNewUserPasswordConfirm(value)
         }
       },
       projects: {
@@ -173,7 +173,7 @@
           return this.$store.state.users.newUser.projects;
         },
         set(value) {
-          this.$store.commit(SET_NEW_USER_PROJECTS, value)
+          this.setNewUserProjects(value)
         }
       },
       roles: {
@@ -181,7 +181,7 @@
           return this.$store.state.users.newUser.roles;
         },
         set(value) {
-          this.$store.commit(SET_NEW_USER_ROLES, value)
+          this.setNewUserRoles(value)
         }
       },
       isPasswordValid() {
@@ -195,6 +195,14 @@
       }
     },
     methods: {
+      ...mapMutations({
+        setNewUserEmail: SET_NEW_USER_EMAIL,
+        setNewUserName: SET_NEW_USER_NAME,
+        setNewUserPassword: SET_NEW_USER_PASSWORD,
+        setNewUserPasswordConfirm: SET_NEW_USER_PASSWORDCONFIRM,
+        setNewUserRoles: SET_NEW_USER_ROLES,
+        setNewUserProjects: SET_NEW_USER_PROJECTS
+      }),
       onSubmit() {
         this.$v.$touch();
         console.log('submitting form')
