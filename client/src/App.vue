@@ -38,12 +38,14 @@
 
 <style lang="less">
   @import "styles/variables.less";
+  @import "styles/skeleton-modifiers.less";
   @import "./../node_modules/vue-multiselect/dist/vue-multiselect.min.css";
 
   html, body {
     height: 100%;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     font-family: 'Raleway', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
