@@ -82,9 +82,8 @@
                          :clear-on-select="false"
                          :hide-selected="true"
                          placeholder="pick roles"
-                         label="name"
                          @input="$v.roles.$touch()"
-                         track-by="name"></multiselect>
+            ></multiselect>
             <div v-else><i>Sorry, no roles available...</i></div>
             <a-val-message :hasError="$v.roles.$error"
                            :isRequired="$v.roles.required">
@@ -107,7 +106,6 @@
       </div>
       <div class="row">
         <div class="column twelve">
-          <pre>is form invalid ?: {{$v.$invalid}}</pre>
           <button type="submit" class="button-primary">Add</button>
         </div>
       </div>
@@ -122,7 +120,7 @@
   import { required, email, sameAs } from 'vuelidate/lib/validators'
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
-  import { FETCH_PROJECTS, FETCH_ROLES } from './../../../store/action-types'
+  import { FETCH_PROJECTS, FETCH_ROLES, SAVE_USER } from './../../../store/action-types'
   import {
     SET_NEW_USER_EMAIL, SET_NEW_USER_NAME,
     SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
@@ -133,7 +131,9 @@
   export default {
     name: 'add-users-settings-page',
     data() {
-      return {}
+      return {
+        loadingInProgress: false
+      }
     },
     computed: {
       email: {
@@ -188,10 +188,15 @@
         return this.$v.password.$error || this.$v.passwordConfirm.$error;
       },
       projectsList() {
-        return this.$store.state.projects.all;
+        return this.$store.state.projects.all.map(item => (
+          {
+            /* eslint-disable no-underscore-dangle */
+            id: item._id, name: item.name
+          })
+        );
       },
       rolesList() {
-        return this.$store.state.roles.all;
+        return this.$store.state.roles.all.map(item => item.name);
       }
     },
     methods: {
@@ -205,7 +210,17 @@
       }),
       onSubmit() {
         this.$v.$touch();
-        console.log('submitting form')
+        if (!this.$v.$invalid) {
+          this.loadingInProgress = true;
+          this.$store
+            .dispatch(SAVE_USER, this.$store.state.users.newUser)
+            .then(() => {
+              this.loadingInProgress = false;
+            })
+            .catch(() => {
+              this.loadingInProgress = false;
+            })
+        }
       }
     },
     components: {
