@@ -4,7 +4,6 @@
       <thead>
       <tr>
         <th>Name</th>
-        <th>Nickname</th>
         <th>Email</th>
         <th>Roles</th>
       </tr>
@@ -21,7 +20,6 @@
         <tr v-for="user in usersList" :key="user['_id']"
             :class="{'removed-row' : !user.active}">
           <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
-          <td>{{user.nickName}}</td>
           <td>{{user.email}}</td>
           <td>
           <span v-for="role in user.roles">
@@ -58,7 +56,6 @@
             return user.active === true
           })
           .filter(user => user.name.toLowerCase().includes(this.filter.toLowerCase()) ||
-            user.nickName.toLowerCase().includes(this.filter.toLowerCase()) ||
             user.email.toLowerCase().includes(this.filter.toLowerCase())
           )
       }
