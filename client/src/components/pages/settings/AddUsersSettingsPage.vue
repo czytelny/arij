@@ -106,7 +106,7 @@
       </div>
       <div class="row">
         <div class="column twelve">
-          <button type="submit" class="button-primary">Add</button>
+          <a-submit-button :isLoading="loadingInProgress">Add user</a-submit-button>
         </div>
       </div>
     </form>
@@ -127,6 +127,7 @@
     SET_NEW_USER_PROJECTS, SET_NEW_USER_ROLES
   } from './../../../store/mutation-types'
   import AValMessage from '../../common/ValidationMessage'
+  import ASubmitButton from "../../SubmitButton"
 
   export default {
     name: 'add-users-settings-page',
@@ -230,6 +231,7 @@
       }
     },
     components: {
+      ASubmitButton,
       AValMessage,
       'a-checkbox': Checkbox,
       'a-input': Input
