@@ -223,7 +223,7 @@
               this.loadingInProgress = false;
             })
         } else {
-          this.$toasted.error('Adding user failed')
+          this.$notify.error('Adding user failed');
         }
       }
     },

@@ -5,12 +5,12 @@ import Vue from 'vue';
 import { sync } from 'vuex-router-sync'
 import Vuelidate from 'vuelidate'
 import Multiselect from 'vue-multiselect'
-import Toasted from 'vue-toasted';
 
 import App from './App';
 import router from './router';
 import store from './store/store'
 import dateFilter from './utils/filters';
+import notifications from './plugins/Notifications'
 
 if (process.env.NODE_ENV !== 'production') {
   axios.defaults.baseURL = "http://localhost:3030";
@@ -22,10 +22,7 @@ axios.defaults.withCredentials = true;
 sync(store, router)
 
 Vue.use(Vuelidate)
-Vue.use(Toasted, {
-  position: 'top-center',
-  duration: 1000
-})
+Vue.use(notifications);
 
 // Global Components
 Vue.component('multiselect', Multiselect)
