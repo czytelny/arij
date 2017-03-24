@@ -146,4 +146,8 @@
   }
 
   }
+  .toasted .fa {
+    margin-left: -5px;
+    margin-right: 5px;
+  }
 </style>

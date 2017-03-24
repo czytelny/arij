@@ -116,11 +116,11 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
-  import { required, email, sameAs } from 'vuelidate/lib/validators'
+  import {mapMutations} from 'vuex'
+  import {required, email, sameAs} from 'vuelidate/lib/validators'
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
-  import { FETCH_PROJECTS, FETCH_ROLES, SAVE_USER } from './../../../store/action-types'
+  import {FETCH_PROJECTS, FETCH_ROLES, SAVE_USER} from './../../../store/action-types'
   import {
     SET_NEW_USER_EMAIL, SET_NEW_USER_NAME,
     SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
@@ -208,20 +208,22 @@
         setNewUserRoles: SET_NEW_USER_ROLES,
         setNewUserProjects: SET_NEW_USER_PROJECTS
       }),
+      handleSuccessSave() {
+        this.$notify.success('User added')
+        this.loadingInProgress = false;
+        this.$v.$reset();
+      },
+      handleErrorSave() {
+        this.$notify.error('Adding user failed');
+        this.loadingInProgress = false;
+      },
       onSubmit() {
         this.$v.$touch();
         if (!this.$v.$invalid) {
           this.loadingInProgress = true;
           this.$store
             .dispatch(SAVE_USER, this.$store.state.users.newUser)
-            .then(() => {
-              this.$notify.success('User added')
-              this.loadingInProgress = false;
-            })
-            .catch(() => {
-              this.$notify.error('Adding user failed');
-              this.loadingInProgress = false;
-            })
+            .then(this.handleSuccessSave, this.handleErrorSave)
         } else {
           this.$notify.error('Adding user failed');
         }
