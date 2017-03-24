@@ -38,22 +38,15 @@
       iconClass: String,
       isSpecial: Boolean,
     },
-    data() {
-      return {
-        currentValue: this.value,
-      };
-    },
     computed: {
+      currentValue() {
+        return this.value;
+      },
       hasEmptyValue() {
         if (!this.value) {
           return true;
         }
         return this.value.length === 0;
-      }
-    },
-    watch: {
-      value(val) {
-        this.setCurrentValue(val);
       }
     },
     methods: {
@@ -63,10 +56,6 @@
         this.$emit('input', value);
         this.$emit('change', value);
       }, 250),
-      setCurrentValue(value) {
-        if (value === this.currentValue) return;
-        this.currentValue = value;
-      },
       clearInput() {
         this.currentValue = "";
         this.$emit('input', "");
