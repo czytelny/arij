@@ -215,11 +215,11 @@
           this.$store
             .dispatch(SAVE_USER, this.$store.state.users.newUser)
             .then(() => {
-              this.$toasted.success('User added')
+              this.$notify.success('User added')
               this.loadingInProgress = false;
             })
             .catch(() => {
-              this.$toasted.error('Adding user failed')
+              this.$notify.error('Adding user failed');
               this.loadingInProgress = false;
             })
         } else {

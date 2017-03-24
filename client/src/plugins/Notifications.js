@@ -13,10 +13,10 @@ export default {
 
     Vue.prototype.$notify = {
       success(message) {
-        Vue.prototype.$toasted.success(`<span class="fa fa-fw fa-check-circle"></span> ${message}`)
+        Vue.prototype.$toasted.success(`<span class="fa fa-fw fa-check-circle"></span>${message}`)
       },
       error(message) {
-        Vue.prototype.$toasted.error(`<span class="fa fa-fw fa-frown-o"></span> ${message}`)
+        Vue.prototype.$toasted.error(`<span class="fa fa-fw fa-frown-o"></span>${message}`)
       }
     }
   }
