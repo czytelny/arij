@@ -5,6 +5,7 @@ import Vue from 'vue';
 import { sync } from 'vuex-router-sync'
 import Vuelidate from 'vuelidate'
 import Multiselect from 'vue-multiselect'
+import Toasted from 'vue-toasted';
 
 import App from './App';
 import router from './router';
@@ -21,6 +22,10 @@ axios.defaults.withCredentials = true;
 sync(store, router)
 
 Vue.use(Vuelidate)
+Vue.use(Toasted, {
+  position: 'top-center',
+  duration: 1000
+})
 
 // Global Components
 Vue.component('multiselect', Multiselect)
