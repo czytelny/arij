@@ -2,9 +2,9 @@
   <div>
     <h3>Add Project</h3>
     <a-horizontal-label title="Example title">
-      <input type="text">
+      <input type="text" class="u-full-width">
     </a-horizontal-label>
-    <a-horizontal-label title="Example title">
+    <a-horizontal-label title="Example title loong title in deed that sjpuld be not so log">
       <input type="text">
     </a-horizontal-label>
   </div>

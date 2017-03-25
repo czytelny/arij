@@ -1,8 +1,10 @@
 <template>
-  <div class="horizontal-label">
-    <div class="title-label">{{title}}</div>
+  <div class="horizontal-label row">
+    <div class="three columns title-label">{{title}}</div>
     <div class="divider"></div>
-    <slot></slot>
+    <span class="content">
+      <slot></slot>
+    </span>
   </div>
 </template>
 <script>
@@ -12,11 +14,15 @@
   }
 </script>
 <style lang="less" scoped>
+  @row-padding: 10px;
+
   .horizontal-label {
     display: flex;
+    padding: @row-padding 0;
 
     .title-label {
-      width: 15%;
+      min-width: 150px;
+      flex: none;
       text-align: right;
       align-self: center;
     }
@@ -24,7 +30,12 @@
     .divider {
       width: 1px;
       background-color: #8391a5;
-      margin: 0 20px;
+      margin: -@row-padding 20px;
+    }
+
+    .content {
+      width: 100%;
+      align-self: center;
     }
   }
 </style>

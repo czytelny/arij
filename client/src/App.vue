@@ -107,7 +107,6 @@
     flex: 1 1 auto;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 100%;
     min-width: 300px;
     padding: 20px;
   }
