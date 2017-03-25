@@ -1,6 +1,6 @@
 <template>
   <div class="horizontal-label row">
-    <div class="three columns title-label">{{title}}</div>
+    <div class="two columns title-label">{{title}}</div>
     <div class="divider"></div>
     <span class="content">
       <slot></slot>
@@ -21,15 +21,14 @@
     padding: @row-padding 0;
 
     .title-label {
-      min-width: 150px;
+      min-width: 100px;
       flex: none;
       text-align: right;
       align-self: center;
     }
 
     .divider {
-      width: 1px;
-      background-color: #8391a5;
+      border-right: 1px solid #8391a5;
       margin: -@row-padding 20px;
     }
 

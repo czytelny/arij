@@ -1,11 +1,16 @@
 <template>
   <div>
     <h3>Add Project</h3>
-    <a-horizontal-label title="Example title">
+    <a-horizontal-label title="Name">
       <input type="text" class="u-full-width">
     </a-horizontal-label>
-    <a-horizontal-label title="Example title loong title in deed that sjpuld be not so log">
-      <input type="text">
+    <a-horizontal-label title="Short Name">
+      <input type="text" class="u-full-width">
+    </a-horizontal-label>
+    <a-horizontal-label title="Users">
+      <input type="text" class="u-full-width">
+    </a-horizontal-label>
+    <a-horizontal-label title="Status">
     </a-horizontal-label>
   </div>
 </template>
