@@ -3,7 +3,7 @@
     <h3>Add User</h3>
     <form name="newUserForm" @submit.prevent="onSubmit">
       <div class="flex-container">
-        <div class="description">
+        <div class="description-block">
           <div class="flex-item"
                :class="{'error-color': $v.email.$error}">
             <div>email</div>
@@ -29,7 +29,7 @@
             <div class="sub-description">assign user to project(s)</div>
           </div>
         </div>
-        <div class="inputs">
+        <div class="inputs-block">
           <div class="flex-item">
             <input type="text"
                    name="email"
@@ -48,7 +48,7 @@
                    placeholder="name"
                    autocomplete="off"
                    v-model="name"
-                   @change="$v.name.$touch()">
+                   @change="$v.name.$touch();">
             <a-val-message :hasError="$v.name.$error"
                            :isRequired="$v.name.required">
             </a-val-message>
@@ -103,9 +103,16 @@
             <div v-else><i>Sorry, no projects available...</i></div>
           </div>
         </div>
+        <div class="avatar-block" v-if="name">
+          <avatar :username="name"
+                  :size="100"
+                  :rounded="false"
+                  :backgroundColor="avatarColor"></avatar>
+          <div class="reload" @click="changeAvatarColor()">shuffle color</div>
+        </div>
       </div>
       <div class="row">
-        <div class="column twelve">
+        <div class="three columns action">
           <a-submit-button :isLoading="loadingInProgress">Add user</a-submit-button>
         </div>
       </div>
@@ -116,11 +123,13 @@
 </template>
 
 <script>
-  import {mapMutations} from 'vuex'
-  import {required, email, sameAs} from 'vuelidate/lib/validators'
+  import { mapMutations } from 'vuex'
+  import { required, email, sameAs } from 'vuelidate/lib/validators'
+  import Avatar from 'vue-avatar/dist/Avatar'
+  import randomColor from 'random-material-color'
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
-  import {FETCH_PROJECTS, FETCH_ROLES, SAVE_USER} from './../../../store/action-types'
+  import { FETCH_PROJECTS, FETCH_ROLES, SAVE_USER } from './../../../store/action-types'
   import {
     SET_NEW_USER_EMAIL, SET_NEW_USER_NAME,
     SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
@@ -133,7 +142,8 @@
     name: 'add-users-settings-page',
     data() {
       return {
-        loadingInProgress: false
+        loadingInProgress: false,
+        avatarColor: randomColor.getColor()
       }
     },
     computed: {
@@ -201,6 +211,9 @@
       }
     },
     methods: {
+      changeAvatarColor() {
+        this.avatarColor = randomColor.getColor();
+      },
       ...mapMutations({
         setNewUserEmail: SET_NEW_USER_EMAIL,
         setNewUserName: SET_NEW_USER_NAME,
@@ -231,6 +244,7 @@
       }
     },
     components: {
+      Avatar,
       ASubmitButton,
       AValMessage,
       'a-checkbox': Checkbox,
@@ -276,7 +290,7 @@
     font-style: italic;
   }
 
-  .description {
+  .description-block {
     text-align: right;
     border-right: 1px solid #8391a5;
     padding-right: 20px;
@@ -286,10 +300,26 @@
     width: 15%
   }
 
-  .inputs {
-    width: 80%;
+  .inputs-block {
+    width: 50%;
     display: flex;
     flex-direction: column;
+  }
+
+  .action {
+    text-align: center;
+  }
+
+  .avatar-block {
+    border-left: 1px solid rgba(131, 145, 165, 0.2);
+    padding: 0 10px;
+
+    .reload {
+      font-size: .7em;
+      cursor: pointer;
+      color: @active-color;
+    }
+
   }
 
 
