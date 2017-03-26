@@ -3,4 +3,5 @@ export const FETCH_PROJECTS = 'fetchProjects';
 export const FETCH_USERS = 'fetchUsers';
 export const FETCH_ROLES = 'fetchRoles';
 export const SAVE_USER = 'saveUser';
+export const SAVE_PROJECT = 'saveProject';
 
