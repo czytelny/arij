@@ -1,6 +1,10 @@
 // Projects
 export const ADD_PROJECT = 'addProject';
 export const RESET_PROJECT = 'resetProject';
+export const SET_NEW_PROJECT_NAME = 'setNewProjectName';
+export const SET_NEW_PROJECT_SHORTCUT = 'setNewProjectShortcut';
+export const SET_NEW_PROJECT_STATUS = 'setNewProjectStatus';
+export const SET_NEW_PROJECT_USERS = 'setNewProjectUsers';
 export const SET_PROJECTS = 'setProjects';
 
 // Roles
