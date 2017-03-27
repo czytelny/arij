@@ -13,6 +13,10 @@ const userSchema = new Schema({
   password: {type: String, required: true},
   active: {type: Boolean, default: true},
   roles: {type: Array, default: roles.user},
+  avatar: {
+    initials: {type: String, maxlength: 3, minLength: 1},
+    color: String
+  },
   projects: {type: Array},
   created_at: Date,
   updated_at: Date

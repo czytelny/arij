@@ -3,6 +3,7 @@
     <table class="u-full-width">
       <thead>
       <tr>
+        <th></th>
         <th>Name</th>
         <th>Email</th>
         <th>Roles</th>
@@ -19,6 +20,15 @@
       >
         <tr v-for="user in usersList" :key="user['_id']"
             :class="{'removed-row' : !user.active}">
+          <td>
+            <avatar v-if="user.avatar"
+                    username=""
+                    :size="30"
+                    :rounded="false"
+                    :backgroundColor="user.avatar.color"
+                    :initials="user.avatar.initials"
+            ></avatar>
+          </td>
           <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
           <td>{{user.email}}</td>
           <td>
@@ -34,6 +44,7 @@
 
 <script>
   import Velocity from 'velocity-animate'
+  import Avatar from 'vue-avatar/dist/Avatar'
   import Tag from './Tag'
   import { FETCH_USERS } from './../store/action-types'
 
@@ -92,6 +103,7 @@
       }
     },
     components: {
+      Avatar,
       'a-tag': Tag,
     }
   }
