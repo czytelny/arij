@@ -5,7 +5,6 @@ import {
   SET_PROJECTS,
   SET_NEW_PROJECT_NAME,
   SET_NEW_PROJECT_SHORTCUT,
-  SET_NEW_PROJECT_STATUS,
   SET_NEW_PROJECT_USERS
 } from '../mutation-types';
 import {FETCH_PROJECTS, SAVE_PROJECT} from '../action-types';
@@ -45,9 +44,6 @@ export default {
     },
     [SET_NEW_PROJECT_SHORTCUT](state, value) {
       state.newProject.shortcut = value;
-    },
-    [SET_NEW_PROJECT_STATUS](state, value) {
-      state.newProject.status = value;
     },
     [SET_NEW_PROJECT_USERS](state, value) {
       state.newProject.users_id = value;

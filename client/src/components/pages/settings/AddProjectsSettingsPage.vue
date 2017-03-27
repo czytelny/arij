@@ -5,14 +5,20 @@
       <a-horizontal-label title="Name">
         <input type="text" v-model="name" class="u-full-width">
       </a-horizontal-label>
-      <a-horizontal-label title="Short Name">
+      <a-horizontal-label title="Short Name" description="unique identifier of the project">
         <input type="text" v-model="shortcut" class="u-full-width">
       </a-horizontal-label>
       <a-horizontal-label title="Users">
-        <input type="text" v-model="users" class="u-full-width">
-      </a-horizontal-label>
-      <a-horizontal-label title="Status">
-        <input type="checkbox" v-model="active">
+        <multiselect
+          v-model="projectUsers"
+          :options="allUsers"
+          :multiple="true"
+          :close-on-select="false"
+          :hide-selected="true"
+          placeholder="pick users"
+          label="label"
+          track-by="label"
+        ></multiselect>
       </a-horizontal-label>
       <div class="row">
         <div class="column twelve">
@@ -26,10 +32,9 @@
   import { mapMutations } from 'vuex';
   import HorizontalLabel from '../../HorizontalLabel';
   import ASubmitButton from "../../SubmitButton";
-  import { SAVE_PROJECT } from './../../../store/action-types'
+  import { FETCH_USERS, SAVE_PROJECT } from './../../../store/action-types'
   import {
-    SET_NEW_PROJECT_NAME, SET_NEW_PROJECT_SHORTCUT,
-    SET_NEW_PROJECT_STATUS, SET_NEW_PROJECT_USERS
+    SET_NEW_PROJECT_NAME, SET_NEW_PROJECT_SHORTCUT, SET_NEW_PROJECT_USERS
   } from './../../../store/mutation-types';
 
   export default {
@@ -55,7 +60,7 @@
           this.setNewProjectShortcut(value);
         }
       },
-      users: {
+      projectUsers: {
         get() {
           return this.$store.state.projects.newProject.users_id;
         },
@@ -63,20 +68,17 @@
           this.setNewProjectUsers(value);
         }
       },
-      active: {
-        get() {
-          return this.$store.state.projects.newProject.status;
-        },
-        set(value) {
-          this.setNewProjectStatus(value);
-        }
+      allUsers() {
+        return this.$store.state.users.all.map(({_id: id, name: label}) => ({id, label}));
       }
+    },
+    beforeMount() {
+      this.$store.dispatch(FETCH_USERS);
     },
     methods: {
       ...mapMutations({
         setNewProjectName: SET_NEW_PROJECT_NAME,
         setNewProjectShortcut: SET_NEW_PROJECT_SHORTCUT,
-        setNewProjectStatus: SET_NEW_PROJECT_STATUS,
         setNewProjectUsers: SET_NEW_PROJECT_USERS,
       }),
       handleSuccessSave() {

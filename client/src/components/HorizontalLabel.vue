@@ -1,6 +1,9 @@
 <template>
   <div class="horizontal-label row">
-    <div class="two columns title-label">{{title}}</div>
+    <div class="two columns title-label">
+      {{title}}
+      <div class="sub-description">{{description}}</div>
+    </div>
     <div class="divider"></div>
     <span class="content">
       <slot></slot>
@@ -10,7 +13,7 @@
 <script>
   export default {
     name: 'a-horizontal-label',
-    props: ['title'],
+    props: ['title', 'description'],
   }
 </script>
 <style lang="less" scoped>
@@ -25,6 +28,11 @@
       flex: none;
       text-align: right;
       align-self: center;
+    }
+
+    .sub-description {
+      font-size: .7em;
+      font-style: italic;
     }
 
     .divider {
