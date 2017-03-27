@@ -218,8 +218,8 @@
       }
     },
     methods: {
-      avatarInitialsUpdated(val1, val2) {
-        this.setAvatarInitials(val1, val2);
+      avatarInitialsUpdated(username, initials) {
+        this.setAvatarInitials(initials);
       },
       changeAvatarColor() {
         this.setAvatarRandomColor()

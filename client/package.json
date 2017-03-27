@@ -18,7 +18,7 @@
     "random-material-color": "^1.0.3",
     "velocity-animate": "^1.4.3",
     "vue": "^2.2.2",
-    "vue-avatar": "^2.0.0",
+    "vue-avatar": "git+https://github.com/czytelny/vue-avatar.git",
     "vue-multiselect": "2.0.0-beta.15",
     "vue-router": "^2.3.0",
     "vue-toasted": "^1.0.23",
