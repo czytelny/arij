@@ -107,7 +107,8 @@
           <avatar :username="name"
                   :size="100"
                   :rounded="false"
-                  :backgroundColor="avatarColor"></avatar>
+                  :backgroundColor="avatarColor"
+                  @avatar-initials="avatarInitialsUpdated"></avatar>
           <div class="reload" @click="changeAvatarColor()">shuffle color</div>
         </div>
       </div>
@@ -126,14 +127,15 @@
   import { mapMutations } from 'vuex'
   import { required, email, sameAs } from 'vuelidate/lib/validators'
   import Avatar from 'vue-avatar/dist/Avatar'
-  import randomColor from 'random-material-color'
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
   import { FETCH_PROJECTS, FETCH_ROLES, SAVE_USER } from './../../../store/action-types'
   import {
     SET_NEW_USER_EMAIL, SET_NEW_USER_NAME,
     SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
-    SET_NEW_USER_PROJECTS, SET_NEW_USER_ROLES
+    SET_NEW_USER_PROJECTS, SET_NEW_USER_ROLES,
+    SET_NEW_USER_AVATAR_INITIALS, SET_NEW_USER_RANDOM_AVATAR_COLOR
+
   } from './../../../store/mutation-types'
   import AValMessage from '../../common/ValidationMessage'
   import ASubmitButton from "../../SubmitButton"
@@ -142,17 +144,22 @@
     name: 'add-users-settings-page',
     data() {
       return {
-        loadingInProgress: false,
-        avatarColor: randomColor.getColor()
+        loadingInProgress: false
       }
     },
     computed: {
+      avatarInitials() {
+        return this.$store.state.users.newUser.avatar.initials;
+      },
+      avatarColor() {
+        return this.$store.state.users.newUser.avatar.color;
+      },
       email: {
         get() {
           return this.$store.state.users.newUser.email;
         },
         set(value) {
-          this.setNewUserEmail(value)
+          this.setEmail(value)
         }
       },
       name: {
@@ -160,7 +167,7 @@
           return this.$store.state.users.newUser.name;
         },
         set(value) {
-          this.setNewUserName(value)
+          this.setName(value)
         }
       },
       password: {
@@ -168,7 +175,7 @@
           return this.$store.state.users.newUser.password;
         },
         set(value) {
-          this.setNewUserPassword(value)
+          this.setPassword(value)
         }
       },
       passwordConfirm: {
@@ -176,7 +183,7 @@
           return this.$store.state.users.newUser.passwordConfirm;
         },
         set(value) {
-          this.setNewUserPasswordConfirm(value)
+          this.setPasswordConfirm(value)
         }
       },
       projects: {
@@ -184,7 +191,7 @@
           return this.$store.state.users.newUser.projects;
         },
         set(value) {
-          this.setNewUserProjects(value)
+          this.setProjects(value)
         }
       },
       roles: {
@@ -192,7 +199,7 @@
           return this.$store.state.users.newUser.roles;
         },
         set(value) {
-          this.setNewUserRoles(value)
+          this.setRoles(value)
         }
       },
       isPasswordValid() {
@@ -211,16 +218,21 @@
       }
     },
     methods: {
+      avatarInitialsUpdated(val1, val2) {
+        this.setAvatarInitials(val1, val2);
+      },
       changeAvatarColor() {
-        this.avatarColor = randomColor.getColor();
+        this.setAvatarRandomColor()
       },
       ...mapMutations({
-        setNewUserEmail: SET_NEW_USER_EMAIL,
-        setNewUserName: SET_NEW_USER_NAME,
-        setNewUserPassword: SET_NEW_USER_PASSWORD,
-        setNewUserPasswordConfirm: SET_NEW_USER_PASSWORDCONFIRM,
-        setNewUserRoles: SET_NEW_USER_ROLES,
-        setNewUserProjects: SET_NEW_USER_PROJECTS
+        setEmail: SET_NEW_USER_EMAIL,
+        setName: SET_NEW_USER_NAME,
+        setPassword: SET_NEW_USER_PASSWORD,
+        setPasswordConfirm: SET_NEW_USER_PASSWORDCONFIRM,
+        setRoles: SET_NEW_USER_ROLES,
+        setProjects: SET_NEW_USER_PROJECTS,
+        setAvatarInitials: SET_NEW_USER_AVATAR_INITIALS,
+        setAvatarRandomColor: SET_NEW_USER_RANDOM_AVATAR_COLOR,
       }),
       handleSuccessSave() {
         this.$notify.success('User added')
@@ -318,6 +330,7 @@
       font-size: .7em;
       cursor: pointer;
       color: @active-color;
+      user-select: none;
     }
 
   }

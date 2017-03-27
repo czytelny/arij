@@ -1,9 +1,11 @@
 import axios from 'axios';
+import randomColor from 'random-material-color'
 import {
   SET_LOGGED_USER, SET_USERS, SET_NEW_USER_EMAIL,
   SET_NEW_USER_NAME, SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
   SET_NEW_USER_PROJECTS, SET_NEW_USER_ROLES,
-  RESET_NEW_USER
+  RESET_NEW_USER, SET_NEW_USER_RANDOM_AVATAR_COLOR,
+  SET_NEW_USER_AVATAR_INITIALS
 } from '../mutation-types';
 import {
   FETCH_LOGGED_USER, FETCH_USERS,
@@ -18,6 +20,10 @@ function initialUserState() {
     passwordConfirm: '',
     projects: [],
     roles: [],
+    avatar: {
+      initials: '',
+      color: randomColor.getColor(),
+    }
   }
 }
 
@@ -63,7 +69,13 @@ export default {
     },
     [RESET_NEW_USER](state) {
       state.newUser = initialUserState();
-    }
+    },
+    [SET_NEW_USER_RANDOM_AVATAR_COLOR](state) {
+      state.newUser.avatar.color = randomColor.getColor();
+    },
+    [SET_NEW_USER_AVATAR_INITIALS](state, value) {
+      state.newUser.avatar.initials = value;
+    },
   },
   actions: {
     [FETCH_LOGGED_USER]({commit}) {
