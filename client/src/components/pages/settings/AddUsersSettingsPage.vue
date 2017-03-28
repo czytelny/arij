@@ -107,6 +107,7 @@
           <avatar :username="name"
                   :size="100"
                   :rounded="false"
+                  :border-radius="2"
                   :backgroundColor="avatarColor"
                   @avatar-initials="avatarInitialsUpdated"></avatar>
           <div class="reload" @click="changeAvatarColor()">shuffle color</div>

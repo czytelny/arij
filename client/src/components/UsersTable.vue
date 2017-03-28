@@ -25,6 +25,7 @@
                     username=""
                     :size="30"
                     :rounded="false"
+                    :border-radius="2"
                     :backgroundColor="user.avatar.color"
                     :initials="user.avatar.initials"
             ></avatar>
