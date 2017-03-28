@@ -15,6 +15,8 @@ import notifications from './plugins/Notifications'
 if (process.env.NODE_ENV !== 'production') {
   axios.defaults.baseURL = "http://localhost:3030";
   axios.defaults.headers = {"Access-Control-Allow-Credentials": true};
+} else {
+  axios.defaults.baseURL = "";
 }
 
 axios.defaults.withCredentials = true;
