@@ -19,7 +19,8 @@ const userSchema = new Schema({
   },
   projects: {type: Array},
   created_at: Date,
-  updated_at: Date
+  updated_at: Date,
+  last_login: Date
 })
 
 userSchema.pre('save', function (next) {
