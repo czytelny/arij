@@ -22,12 +22,11 @@
             :class="{'removed-row' : !user.active}">
           <td>
             <avatar v-if="user.avatar"
-                    username=""
+                    :username="user.name"
                     :size="30"
                     :rounded="false"
                     :border-radius="2"
                     :backgroundColor="user.avatar.color"
-                    :initials="user.avatar.initials"
             ></avatar>
           </td>
           <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
