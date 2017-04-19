@@ -108,8 +108,7 @@
                   :size="100"
                   :rounded="false"
                   :border-radius="2"
-                  :backgroundColor="avatarColor"
-                  @avatar-initials="avatarInitialsUpdated"></avatar>
+                  :backgroundColor="avatarColor"></avatar>
           <div class="reload" @click="changeAvatarColor()">shuffle color</div>
         </div>
       </div>
@@ -143,9 +142,6 @@
       }
     },
     computed: {
-      avatarInitials() {
-        return this.$store.state.users.newUser.avatar.initials;
-      },
       avatarColor() {
         return this.$store.state.users.newUser.avatar.color;
       },
@@ -213,9 +209,6 @@
       }
     },
     methods: {
-      avatarInitialsUpdated(initials) {
-        this.setNewUserAvatar({initials});
-      },
       changeAvatarColor() {
         this.shuffleAvatarColor()
       },

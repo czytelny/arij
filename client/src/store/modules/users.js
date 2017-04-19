@@ -19,7 +19,6 @@ function initialUserState() {
     projects: [],
     roles: [],
     avatar: {
-      initials: '',
       color: randomColor.getColor(),
     }
   }
