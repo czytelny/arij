@@ -131,13 +131,7 @@
   import Checkbox from './../../Checkbox'
   import Input from './../../Input'
   import { FETCH_PROJECTS, FETCH_ROLES, SAVE_USER } from './../../../store/action-types'
-  import {
-    SET_NEW_USER_EMAIL, SET_NEW_USER_NAME,
-    SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
-    SET_NEW_USER_PROJECTS, SET_NEW_USER_ROLES,
-    SET_NEW_USER_AVATAR_INITIALS, SET_NEW_USER_RANDOM_AVATAR_COLOR
-
-  } from './../../../store/mutation-types'
+  import { SET_NEW_USER, SET_NEW_USER_AVATAR, SHUFFLE_NEW_USER_AVATAR_COLOR } from './../../../store/mutation-types'
   import AValMessage from '../../common/ValidationMessage'
   import ASubmitButton from "../../SubmitButton"
 
@@ -159,48 +153,48 @@
         get() {
           return this.$store.state.users.newUser.email;
         },
-        set(value) {
-          this.setEmail(value)
+        set(emailValue) {
+          this.setNewUser({email: emailValue})
         }
       },
       name: {
         get() {
           return this.$store.state.users.newUser.name;
         },
-        set(value) {
-          this.setName(value)
+        set(name) {
+          this.setNewUser({name})
         }
       },
       password: {
         get() {
           return this.$store.state.users.newUser.password;
         },
-        set(value) {
-          this.setPassword(value)
+        set(password) {
+          this.setNewUser({password})
         }
       },
       passwordConfirm: {
         get() {
           return this.$store.state.users.newUser.passwordConfirm;
         },
-        set(value) {
-          this.setPasswordConfirm(value)
+        set(passwordConfirm) {
+          this.setNewUser({passwordConfirm})
         }
       },
       projects: {
         get() {
           return this.$store.state.users.newUser.projects;
         },
-        set(value) {
-          this.setProjects(value)
+        set(projects) {
+          this.setNewUser({projects})
         }
       },
       roles: {
         get() {
           return this.$store.state.users.newUser.roles;
         },
-        set(value) {
-          this.setRoles(value)
+        set(roles) {
+          this.setNewUser({roles})
         }
       },
       isPasswordValid() {
@@ -219,21 +213,16 @@
       }
     },
     methods: {
-      avatarInitialsUpdated(username, initials) {
-        this.setAvatarInitials(initials);
+      avatarInitialsUpdated(initials) {
+        this.setNewUserAvatar({initials});
       },
       changeAvatarColor() {
-        this.setAvatarRandomColor()
+        this.shuffleAvatarColor()
       },
       ...mapMutations({
-        setEmail: SET_NEW_USER_EMAIL,
-        setName: SET_NEW_USER_NAME,
-        setPassword: SET_NEW_USER_PASSWORD,
-        setPasswordConfirm: SET_NEW_USER_PASSWORDCONFIRM,
-        setRoles: SET_NEW_USER_ROLES,
-        setProjects: SET_NEW_USER_PROJECTS,
-        setAvatarInitials: SET_NEW_USER_AVATAR_INITIALS,
-        setAvatarRandomColor: SET_NEW_USER_RANDOM_AVATAR_COLOR,
+        setNewUser: SET_NEW_USER,
+        setNewUserAvatar: SET_NEW_USER_AVATAR,
+        shuffleAvatarColor: SHUFFLE_NEW_USER_AVATAR_COLOR
       }),
       handleSuccessSave() {
         this.$notify.success('User added')

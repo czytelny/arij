@@ -1,11 +1,9 @@
 import axios from 'axios';
 import randomColor from 'random-material-color'
 import {
-  SET_LOGGED_USER, SET_USERS, SET_NEW_USER_EMAIL,
-  SET_NEW_USER_NAME, SET_NEW_USER_PASSWORD, SET_NEW_USER_PASSWORDCONFIRM,
-  SET_NEW_USER_PROJECTS, SET_NEW_USER_ROLES,
-  RESET_NEW_USER, SET_NEW_USER_RANDOM_AVATAR_COLOR,
-  SET_NEW_USER_AVATAR_INITIALS
+  SET_NEW_USER, SET_NEW_USER_AVATAR,
+  SHUFFLE_NEW_USER_AVATAR_COLOR,
+  RESET_NEW_USER, SET_LOGGED_USER, SET_USERS
 } from '../mutation-types';
 import {
   FETCH_LOGGED_USER, FETCH_USERS,
@@ -49,32 +47,17 @@ export default {
     [SET_USERS](state, users) {
       state.all = users;
     },
-    [SET_NEW_USER_EMAIL](state, value) {
-      state.newUser.email = value;
+    [SET_NEW_USER](state, value) {
+      Object.assign(state.newUser, value);
     },
-    [SET_NEW_USER_NAME](state, value) {
-      state.newUser.name = value;
+    [SET_NEW_USER_AVATAR](state, value) {
+      Object.assign(state.newUser.avatar, value);
     },
-    [SET_NEW_USER_PASSWORD](state, value) {
-      state.newUser.password = value;
-    },
-    [SET_NEW_USER_PASSWORDCONFIRM](state, value) {
-      state.newUser.passwordConfirm = value;
-    },
-    [SET_NEW_USER_PROJECTS](state, value) {
-      state.newUser.projects = value;
-    },
-    [SET_NEW_USER_ROLES](state, value) {
-      state.newUser.roles = value;
+    [SHUFFLE_NEW_USER_AVATAR_COLOR](state) {
+      state.newUser.avatar.color = randomColor.getColor();
     },
     [RESET_NEW_USER](state) {
       state.newUser = initialUserState();
-    },
-    [SET_NEW_USER_RANDOM_AVATAR_COLOR](state) {
-      state.newUser.avatar.color = randomColor.getColor();
-    },
-    [SET_NEW_USER_AVATAR_INITIALS](state, value) {
-      state.newUser.avatar.initials = value;
     },
   },
   actions: {
