@@ -27,6 +27,7 @@
                     :rounded="false"
                     :border-radius="2"
                     :backgroundColor="user.avatar.color"
+                    v-tooltip.top-center="user.name"
             ></avatar>
           </td>
           <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>

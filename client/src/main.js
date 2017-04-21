@@ -5,6 +5,8 @@ import Vue from 'vue';
 import { sync } from 'vuex-router-sync'
 import Vuelidate from 'vuelidate'
 import Multiselect from 'vue-multiselect'
+import VTooltip from 'v-tooltip'
+
 
 import App from './App';
 import router from './router';
@@ -24,7 +26,8 @@ axios.defaults.withCredentials = true;
 sync(store, router)
 
 Vue.use(Vuelidate)
-Vue.use(notifications);
+Vue.use(notifications)
+Vue.use(VTooltip)
 
 // Global Components
 Vue.component('multiselect', Multiselect)

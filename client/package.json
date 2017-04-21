@@ -16,6 +16,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "random-material-color": "^1.0.3",
+    "v-tooltip": "^1.1.6",
     "velocity-animate": "^1.4.3",
     "vue": "^2.2.2",
     "vue-avatar": "git+https://github.com/czytelny/vue-avatar.git",

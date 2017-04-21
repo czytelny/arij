@@ -149,4 +149,29 @@
     margin-left: -5px;
     margin-right: 5px;
   }
+
+  .tooltip {
+    display: none;
+    opacity: 0;
+    transition: opacity .15s;
+    pointer-events: none;
+    padding: 4px;
+    z-index: 10000;
+
+    .tooltip-content {
+      background: black;
+      color: white;
+      border-radius: 4px;
+      padding: 2px 5px 2px;
+      font-size: .8em;
+    }
+
+    &.tooltip-open-transitionend {
+      display: block;
+    }
+
+    &.tooltip-after-open {
+      opacity: 1;
+    }
+  }
 </style>
