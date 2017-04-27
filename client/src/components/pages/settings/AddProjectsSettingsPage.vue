@@ -3,7 +3,13 @@
     <h3>Add Project</h3>
     <form name="newProjectForm" v-on:submit.prevent="addNewProject">
       <a-horizontal-label title="Name">
-        <input type="text" v-model="name" class="u-full-width">
+        <input type="text"
+               v-model="name"
+               class="u-full-width"
+               @input="$v.name.$touch();">
+        <a-val-message slot="caption"
+                       :hasError="$v.name.$error"
+                       :isRequired="$v.name.required" ></a-val-message>
       </a-horizontal-label>
       <a-horizontal-label title="Short Name" description="unique identifier of the project">
         <input type="text" v-model="shortcut" class="u-full-width">
@@ -22,15 +28,17 @@
       </a-horizontal-label>
       <div class="row">
         <div class="column twelve">
-          <a-submit-button :isLoading="false">Add project</a-submit-button>
+          <a-submit-button :isLoading="loadingInProgress">Add project</a-submit-button>
         </div>
       </div>
     </form>
   </div>
 </template>
 <script>
+  import { required } from 'vuelidate/lib/validators';
   import { mapMutations } from 'vuex';
   import HorizontalLabel from '../../HorizontalLabel';
+  import ValidationMessage from '../../common/ValidationMessage';
   import ASubmitButton from "../../SubmitButton";
   import { FETCH_USERS, SAVE_PROJECT } from './../../../store/action-types'
   import {
@@ -39,9 +47,15 @@
 
   export default {
     name: 'add-projects-settings-page',
+    data() {
+      return {
+        loadingInProgress: false,
+      };
+    },
     components: {
       'a-horizontal-label': HorizontalLabel,
       'a-submit-button': ASubmitButton,
+      'a-val-message': ValidationMessage,
     },
     computed: {
       name: {
@@ -82,16 +96,30 @@
         setNewProjectUsers: SET_NEW_PROJECT_USERS,
       }),
       handleSuccessSave() {
-        console.info("Success");
+        this.$notify.success('Project added');
+        this.loadingInProgress = false;
+        this.$v.$reset();
       },
       handleErrorSave() {
-        console.info("Error");
+        this.$notify.error('Adding project failed');
+        this.loadingInProgress = false;
       },
       addNewProject() {
-        this.$store
-          .dispatch(SAVE_PROJECT, this.$store.state.projects.newProject)
-          .then(this.handleSuccessSave, this.handleErrorSave)
+        this.$v.$touch();
+        if (!this.$v.$invalid) {
+          this.loadingInProgress = true;
+          this.$store
+            .dispatch(SAVE_PROJECT, this.$store.state.projects.newProject)
+            .then(this.handleSuccessSave, this.handleErrorSave);
+        } else {
+          this.$notify.error('Adding project failed');
+        }
       },
+    },
+    validations: {
+      name: {
+        required
+      }
     }
   };
 </script>

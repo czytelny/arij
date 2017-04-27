@@ -7,6 +7,9 @@
     <div class="divider"></div>
     <span class="content">
       <slot></slot>
+      <span class="caption">
+        <slot name="caption"></slot>
+      </span>
     </span>
   </div>
 </template>
@@ -43,6 +46,11 @@
     .content {
       width: 100%;
       align-self: center;
+      position: relative;
+    }
+
+    .caption {
+      position: absolute;
     }
   }
 </style>
