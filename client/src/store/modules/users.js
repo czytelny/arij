@@ -3,11 +3,11 @@ import randomColor from 'random-material-color'
 import {
   SET_NEW_USER, SET_NEW_USER_AVATAR,
   SHUFFLE_NEW_USER_AVATAR_COLOR,
-  RESET_NEW_USER, SET_LOGGED_USER, SET_USERS
+  RESET_NEW_USER, SET_LOGGED_USER, SET_USERS, SET_USER
 } from '../mutation-types';
 import {
   FETCH_LOGGED_USER, FETCH_USERS,
-  SAVE_USER
+  FETCH_USER, SAVE_USER
 } from './../action-types'
 
 function initialUserState() {
@@ -46,6 +46,9 @@ export default {
     [SET_USERS](state, users) {
       state.all = users;
     },
+    [SET_USER](state, user) {
+      state.details = user;
+    },
     [SET_NEW_USER](state, value) {
       Object.assign(state.newUser, value);
     },
@@ -72,6 +75,13 @@ export default {
         .get('/api/users/')
         .then(({data}) => {
           commit(SET_USERS, data);
+        })
+    },
+    [FETCH_USER]({commit}, userId) {
+      return axios
+        .get(`/api/user/${userId}`)
+        .then(({data}) => {
+          commit(SET_USER, data);
         })
     },
     [SAVE_USER]({commit}, userToSave) {

@@ -5,6 +5,7 @@ import ProjectsSettingsPage from 'components/pages/settings/projects/ProjectsSet
 import AddProjectsSettingsPage from 'components/pages/settings/projects/AddProjectsSettingsPage';
 import UsersSettingsPage from 'components/pages/settings/users/UsersSettingsPage';
 import AddUsersSettingsPage from 'components/pages/settings/users/AddUsersSettingsPage';
+import PreviewUserPage from 'components/pages/settings/users/PreviewUserPage';
 
 
 Vue.use(Router);
@@ -32,6 +33,11 @@ export default new Router({
     {
       path: '/settings/users/add',
       component: AddUsersSettingsPage,
+    },
+    {
+      path: '/settings/users/preview/:userId',
+      component: PreviewUserPage,
+      props: true
     },
   ],
 });
