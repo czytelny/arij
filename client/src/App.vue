@@ -174,4 +174,15 @@
       opacity: 1;
     }
   }
+
+  .action-buttons {
+    text-align: left;
+    background-color: rgba(31, 45, 61, 0.08);
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    button {
+      margin: 0;
+    }
+  }
+
 </style>

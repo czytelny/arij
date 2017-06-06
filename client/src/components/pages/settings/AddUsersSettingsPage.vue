@@ -113,7 +113,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="three columns action">
+        <div class="twelve columns action-buttons">
           <a-submit-button :isLoading="loadingInProgress">Add user</a-submit-button>
         </div>
       </div>
@@ -299,10 +299,6 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-  }
-
-  .action {
-    text-align: center;
   }
 
   .avatar-block {

@@ -27,7 +27,7 @@
         ></multiselect>
       </a-horizontal-label>
       <div class="row">
-        <div class="column twelve">
+        <div class="column twelve action-buttons">
           <a-submit-button :isLoading="loadingInProgress">Add project</a-submit-button>
         </div>
       </div>
