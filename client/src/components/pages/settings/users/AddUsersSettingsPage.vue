@@ -127,12 +127,12 @@
   import { mapMutations } from 'vuex'
   import { required, email, sameAs } from 'vuelidate/lib/validators'
   import Avatar from 'vue-avatar/dist/Avatar'
-  import Checkbox from './../../Checkbox'
-  import Input from './../../Input'
-  import { FETCH_PROJECTS, FETCH_ROLES, SAVE_USER } from './../../../store/action-types'
-  import { SET_NEW_USER, SET_NEW_USER_AVATAR, SHUFFLE_NEW_USER_AVATAR_COLOR } from './../../../store/mutation-types'
-  import AValMessage from '../../common/ValidationMessage'
-  import ASubmitButton from "../../SubmitButton"
+  import Checkbox from '../../../common/Checkbox'
+  import Input from '../../../common/Input'
+  import { FETCH_PROJECTS, FETCH_ROLES, SAVE_USER } from '../../../../store/action-types'
+  import { SET_NEW_USER, SET_NEW_USER_AVATAR, SHUFFLE_NEW_USER_AVATAR_COLOR } from '../../../../store/mutation-types'
+  import AValMessage from '../../../common/ValidationMessage'
+  import ASubmitButton from "../../../common/SubmitButton"
 
   export default {
     name: 'add-users-settings-page',
@@ -260,7 +260,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import "./../../../styles/variables.less";
+  @import "../../../../styles/variables.less";
 
   .flex-container {
     display: flex;

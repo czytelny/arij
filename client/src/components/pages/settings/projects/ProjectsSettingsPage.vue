@@ -27,8 +27,8 @@
 </template>
 
 <script>
-  import {FETCH_PROJECTS} from './../../../store/action-types';
-  import aTag from './../../Tag';
+  import {FETCH_PROJECTS} from '../../../../store/action-types';
+  import aTag from '../../../common/Tag';
 
   export default {
     name: 'projects-settings-page',

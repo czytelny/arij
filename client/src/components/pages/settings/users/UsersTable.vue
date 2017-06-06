@@ -46,8 +46,8 @@
 <script>
   import Velocity from 'velocity-animate'
   import Avatar from 'vue-avatar/dist/Avatar'
-  import Tag from './Tag'
-  import { FETCH_USERS } from './../store/action-types'
+  import Tag from '../../../common/Tag'
+  import { FETCH_USERS } from '../../../../store/action-types'
 
   export default {
     name: 'users-table',

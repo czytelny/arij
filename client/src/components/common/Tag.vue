@@ -13,7 +13,7 @@
 </script>
 
 <style lang="less">
-  @import "./../styles/variables.less";
+  @import "../../styles/variables.less";
 
   .arij-tag {
     background-color: @active-color;

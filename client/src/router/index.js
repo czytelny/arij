@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Hello from 'components/pages/Hello';
-import ProjectsSettingsPage from 'components/pages/settings/ProjectsSettingsPage';
-import AddProjectsSettingsPage from 'components/pages/settings/AddProjectsSettingsPage';
-import UsersSettingsPage from 'components/pages/settings/UsersSettingsPage';
-import AddUsersSettingsPage from 'components/pages/settings/AddUsersSettingsPage';
+import ProjectsSettingsPage from 'components/pages/settings/projects/ProjectsSettingsPage';
+import AddProjectsSettingsPage from 'components/pages/settings/projects/AddProjectsSettingsPage';
+import UsersSettingsPage from 'components/pages/settings/users/UsersSettingsPage';
+import AddUsersSettingsPage from 'components/pages/settings/users/AddUsersSettingsPage';
 
 
 Vue.use(Router);

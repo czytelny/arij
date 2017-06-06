@@ -23,10 +23,10 @@
 </template>
 
 <script>
-  import Checkbox from './../../Checkbox'
-  import TableActionPanel from './../../TableActionPanel'
-  import UsersTable from './../../UsersTable'
-  import Input from './../../Input'
+  import Checkbox from '../../../common/Checkbox'
+  import TableActionPanel from '../../../common/TableActionPanel'
+  import UsersTable from './UsersTable'
+  import Input from '../../../common/Input'
 
   export default {
     name: 'users-settings-page',

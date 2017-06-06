@@ -15,7 +15,7 @@
 </script>
 
 <style>
-  @import "../styles/variables.less";
+  @import "../../styles/variables.less";
 
   .a-action-container{
     display: flex;

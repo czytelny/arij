@@ -80,7 +80,7 @@
 </script>
 
 <style lang="less">
-  @import "../styles/variables.less";
+  @import "../../styles/variables.less";
 
   @background: #8391a5;
 

@@ -37,13 +37,13 @@
 <script>
   import { required } from 'vuelidate/lib/validators';
   import { mapMutations } from 'vuex';
-  import HorizontalLabel from '../../HorizontalLabel';
-  import ValidationMessage from '../../common/ValidationMessage';
-  import ASubmitButton from "../../SubmitButton";
-  import { FETCH_USERS, SAVE_PROJECT } from './../../../store/action-types'
+  import HorizontalLabel from '../../../common/HorizontalLabel';
+  import ValidationMessage from '../../../common/ValidationMessage';
+  import ASubmitButton from "../../../common/SubmitButton";
+  import { FETCH_USERS, SAVE_PROJECT } from '../../../../store/action-types'
   import {
     SET_NEW_PROJECT_NAME, SET_NEW_PROJECT_SHORTCUT, SET_NEW_PROJECT_USERS
-  } from './../../../store/mutation-types';
+  } from '../../../../store/mutation-types';
 
   export default {
     name: 'add-projects-settings-page',

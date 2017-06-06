@@ -66,7 +66,7 @@
 </script>
 
 <style>
-  @import "../styles/variables.less";
+  @import "../../styles/variables.less";
 
   input {
     transition: all .3s;
