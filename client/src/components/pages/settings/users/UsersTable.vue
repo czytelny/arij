@@ -18,9 +18,10 @@
         v-on:enter="enter"
         v-on:leave="leave"
       >
-        <tr v-for="user in usersList" :key="user['_id']"
-            :class="{'removed-row' : !user.active}">
-          <router-link :to="'/settings/users/preview/'+user['_id']" >
+        <router-link :to="'/settings/users/preview/'+user['_id']"
+                     tag="tr"
+                     v-for="user in usersList" :key="user['_id']"
+                     :class="{'removed-row' : !user.active}">
             <td>
               <avatar v-if="user.avatar"
                       :username="user.name"
@@ -28,18 +29,17 @@
                       :rounded="false"
                       :border-radius="2"
                       :backgroundColor="user.avatar.color"
-                      v-tooltip.top-center="user.name"
+                      v-tooltip="user.name"
               ></avatar>
             </td>
             <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
             <td>{{user.email}}</td>
             <td>
-            <span v-for="role in user.roles">
-              <a-tag :isSpecial="isAdmin(role)">{{role}}</a-tag>
-            </span>
+              <span v-for="role in user.roles">
+                <a-tag :isSpecial="isAdmin(role)">{{role}}</a-tag>
+              </span>
             </td>
-          </router-link>
-        </tr>
+        </router-link>
       </transition-group>
     </table>
   </div>
