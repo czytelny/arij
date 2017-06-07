@@ -3,12 +3,12 @@ import randomColor from 'random-material-color'
 import {
   SET_NEW_USER, SET_NEW_USER_AVATAR,
   SHUFFLE_NEW_USER_AVATAR_COLOR,
-  RESET_NEW_USER, SET_LOGGED_USER, SET_USERS, SET_USER
+  RESET_NEW_USER, SET_LOGGED_USER, SET_USERS, SET_USER_PREVIEW
 } from '../mutation-types';
 import {
   FETCH_LOGGED_USER, FETCH_USERS,
-  FETCH_USER, SAVE_USER
-} from './../action-types'
+  SAVE_USER, FETCH_USER_PREVIEW
+} from '../action-types'
 
 function initialUserState() {
   return {
@@ -35,7 +35,7 @@ function initialLoggedUser() {
 export default {
   state: {
     all: [],
-    details: {},
+    preview: {},
     newUser: initialUserState(),
     logged: initialLoggedUser()
   },
@@ -46,8 +46,8 @@ export default {
     [SET_USERS](state, users) {
       state.all = users;
     },
-    [SET_USER](state, user) {
-      state.details = user;
+    [SET_USER_PREVIEW](state, user) {
+      state.preview = user;
     },
     [SET_NEW_USER](state, value) {
       Object.assign(state.newUser, value);
@@ -77,11 +77,11 @@ export default {
           commit(SET_USERS, data);
         })
     },
-    [FETCH_USER]({commit}, userId) {
+    [FETCH_USER_PREVIEW]({commit}, userId) {
       return axios
-        .get(`/api/user/${userId}`)
+        .get(`/api/users/preview/${userId}`)
         .then(({data}) => {
-          commit(SET_USER, data);
+          commit(SET_USER_PREVIEW, data);
         })
     },
     [SAVE_USER]({commit}, userToSave) {

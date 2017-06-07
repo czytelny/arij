@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { FETCH_USER } from '../../../../store/action-types'
+  import { FETCH_USER_PREVIEW } from '../../../../store/action-types'
 
   export default {
     name: 'preview-user',
@@ -16,7 +16,7 @@
       userId: String,
     },
     beforeMount() {
-      this.$store.dispatch(FETCH_USER, this.userId)
+      this.$store.dispatch(FETCH_USER_PREVIEW, this.userId)
     }
   }
 </script>

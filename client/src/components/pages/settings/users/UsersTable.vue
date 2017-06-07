@@ -22,23 +22,23 @@
                      tag="tr"
                      v-for="user in usersList" :key="user['_id']"
                      :class="{'removed-row' : !user.active}">
-            <td>
-              <avatar v-if="user.avatar"
-                      :username="user.name"
-                      :size="30"
-                      :rounded="false"
-                      :border-radius="2"
-                      :backgroundColor="user.avatar.color"
-                      v-tooltip="user.name"
-              ></avatar>
-            </td>
-            <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
-            <td>{{user.email}}</td>
-            <td>
+          <td>
+            <avatar v-if="user.avatar"
+                    :username="user.name"
+                    :size="30"
+                    :rounded="false"
+                    :border-radius="2"
+                    :backgroundColor="user.avatar.color"
+                    v-tooltip="user.name"
+            ></avatar>
+          </td>
+          <td>{{user.name}} <span v-if="isRemoved(user)" class="removed">(removed)</span></td>
+          <td>{{user.email}}</td>
+          <td>
               <span v-for="role in user.roles">
                 <a-tag :isSpecial="isAdmin(role)">{{role}}</a-tag>
               </span>
-            </td>
+          </td>
         </router-link>
       </transition-group>
     </table>

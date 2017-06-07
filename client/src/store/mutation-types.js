@@ -17,3 +17,4 @@ export const RESET_NEW_USER = 'resetNewUser';
 export const SET_LOGGED_USER = 'setLoggedUser';
 export const SET_USERS = 'setUsers';
 export const SET_USER = 'setUser';
+export const SET_USER_PREVIEW = 'setUserPreview';

@@ -14,6 +14,8 @@ router.delete('/:userId', checkPermissions([roles.admin]), deactivate)
 router.patch('/:userId', checkPermissions([roles.user]), checkIdPrivilege, modifyUserPartial)
 router.get('/:userId', checkPermissions([roles.user]), findById)
 
+router.get('/preview/:userId', checkPermissions([roles.admin]), previewById)
+
 
 
 function findAll (req, res) {
@@ -24,6 +26,13 @@ function findAll (req, res) {
 }
 
 function findById (req, res) {
+  userService
+    .findById(req.params.userId)
+    .then((data) => res.json(data))
+    .catch((err) => handleError(res, err, 'Getting user failed'))
+}
+
+function previewById (req, res) {
   userService
     .findById(req.params.userId)
     .then((data) => res.json(data))
