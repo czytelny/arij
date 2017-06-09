@@ -60,7 +60,7 @@
         this.currentValue = "";
         this.$emit('input', "");
         this.$emit('change', "");
-      }
+      },
     }
   };
 </script>

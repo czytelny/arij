@@ -47,9 +47,12 @@ function makeAdminUser () {
   const password = bcrypt.hashSync('admin')
   const roles = [accessControl.roles.admin, accessControl.roles.user]
   const active = true
+  const avatar = {
+   color: "#FF4949"
+  }
 
 
-  return {_id, nickName, name, email, password, created_at, updated_at, roles, active}
+  return {_id, nickName, name, email, password, created_at, updated_at, roles, active, avatar}
 }
 
 function makeUser () {
@@ -62,6 +65,9 @@ function makeUser () {
   const password = bcrypt.hashSync('user')
   const roles = [accessControl.roles.user]
   const active = true
+  const avatar = {
+    color: "#41B883"
+  }
 
-  return {_id, nickName, name, email, password, created_at, updated_at, roles, active}
+  return {_id, nickName, name, email, password, created_at, updated_at, roles, active, avatar}
 }

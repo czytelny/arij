@@ -11,7 +11,7 @@ import VTooltip from 'v-tooltip'
 import App from './App';
 import router from './router';
 import store from './store/store'
-import dateFilter from './utils/filters';
+import {dateFilter, detailedDateFilter} from './utils/filters';
 import notifications from './plugins/Notifications'
 
 if (process.env.NODE_ENV !== 'production') {
@@ -34,6 +34,7 @@ Vue.component('multiselect', Multiselect)
 
 // Global filters
 Vue.filter('date', dateFilter);
+Vue.filter('detailed-date', detailedDateFilter);
 
 /* eslint-disable no-new */
 new Vue({
