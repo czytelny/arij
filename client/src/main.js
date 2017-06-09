@@ -34,7 +34,7 @@ Vue.component('multiselect', Multiselect)
 
 // Global filters
 Vue.filter('date', dateFilter);
-Vue.filter('detailed-date', detailedDateFilter);
+Vue.filter('detailedDate', detailedDateFilter);
 
 /* eslint-disable no-new */
 new Vue({

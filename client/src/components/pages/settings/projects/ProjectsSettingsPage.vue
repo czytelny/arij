@@ -14,7 +14,7 @@
       <tr v-for="project in projects">
         <td>{{project.name}}</td>
         <td>{{project.users_id}}</td>
-        <td>{{project.updated_at | date }}</td>
+        <td>{{project.updated_at | detailedDate }}</td>
         <td>
           <a-tag>
             {{project.active ? "Active" : "Inactive"}}

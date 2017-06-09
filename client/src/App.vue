@@ -140,6 +140,7 @@
     border-color: #c17517;
     transition: all .2s;
   }
+
   .button-primary:hover {
     background-color: #c17517;
   }
@@ -177,7 +178,7 @@
 
   .action-buttons {
     text-align: left;
-    background-color: rgba(31, 45, 61, 0.08);
+    background-color: rgba(98, 141, 192, 0.08);
     margin-top: 1.5rem;
     padding: 1.5rem;
     button {

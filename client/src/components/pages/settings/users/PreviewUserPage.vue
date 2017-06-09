@@ -8,10 +8,10 @@
         {{user.name}} <i>aka</i> {{user.nickName}} - {{user.email}}
       </a-horizontal-label>
       <a-horizontal-label title="Created">
-        {{createdAt | detailed-date}}
+        {{createdAt | detailedDate}}
       </a-horizontal-label>
       <a-horizontal-label title="Last login">
-        {{lastLogin | detailed-date}} {{lastLogin ? '' : 'Never'}}
+        {{lastLogin | detailedDate}} {{lastLogin ? '' : 'Never'}}
       </a-horizontal-label>
       <a-horizontal-label title="Roles">
           <span v-for="role in user.roles">
@@ -22,18 +22,28 @@
           <span v-for="project in user.projects">
                 <a-tag>{{project}}</a-tag>
           </span>
+        <span v-if="listIsEmpty(user.projects)">Not a single one, yet</span>
       </a-horizontal-label>
     </div>
     <div class="row">
       <div class="twelve columns action-buttons">
+        <span>
+           <a-default-button>OK</a-default-button>
+        </span>
+        <span class="u-pull-right">
+          <a-remove-button>Remove</a-remove-button>
+        </span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import _ from 'lodash'
   import HorizontalLabel from '../../../common/HorizontalLabel';
   import Tag from '../../../common/Tag';
+  import RemoveButton from '../../../common/RemoveButton';
+  import DefaultButton from '../../../common/DefaultButton';
   import { FETCH_USER_PREVIEW } from '../../../../store/action-types'
 
   export default {
@@ -55,12 +65,19 @@
         return roleName.toLowerCase() === 'admin'
       }
     },
+    methods: {
+      listIsEmpty(list) {
+        return _.isEmpty(list);
+      }
+    },
     beforeMount() {
       this.$store.dispatch(FETCH_USER_PREVIEW, this.userId)
     },
     components: {
       'a-horizontal-label': HorizontalLabel,
-      'a-tag': Tag
+      'a-tag': Tag,
+      'a-remove-button': RemoveButton,
+      'a-default-button': DefaultButton
     }
   }
 </script>
