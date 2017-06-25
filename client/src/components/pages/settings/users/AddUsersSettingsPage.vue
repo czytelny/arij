@@ -115,6 +115,10 @@
       <div class="row">
         <div class="twelve columns action-buttons">
           <a-submit-button :isLoading="loadingInProgress">Add user</a-submit-button>
+
+          <router-link to="/settings/users">
+            <a-default-button>Back</a-default-button>
+          </router-link>
         </div>
       </div>
     </form>
@@ -132,7 +136,8 @@
   import { FETCH_PROJECTS, FETCH_ROLES, SAVE_USER } from '../../../../store/action-types'
   import { SET_NEW_USER, SET_NEW_USER_AVATAR, SHUFFLE_NEW_USER_AVATAR_COLOR } from '../../../../store/mutation-types'
   import AValMessage from '../../../common/ValidationMessage'
-  import ASubmitButton from "../../../common/SubmitButton"
+  import ASubmitButton from '../../../common/SubmitButton'
+  import ADefaultButton from '../../../common/DefaultButton'
 
   export default {
     name: 'add-users-settings-page',
@@ -241,6 +246,7 @@
     components: {
       Avatar,
       ASubmitButton,
+      ADefaultButton,
       AValMessage,
       'a-checkbox': Checkbox,
       'a-input': Input

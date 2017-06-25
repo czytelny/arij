@@ -5,7 +5,7 @@
     </div>
     <div class="row">
       <a-horizontal-label title="Name, nickname and e-mail">
-        {{user.name}} <i>aka</i> {{user.nickName}} - {{user.email}}
+        {{user.name}} ({{user.nickName}}) - {{user.email}}
       </a-horizontal-label>
       <a-horizontal-label title="Created">
         {{createdAt | detailedDate}}
@@ -28,7 +28,9 @@
     <div class="row">
       <div class="twelve columns action-buttons">
         <span>
-           <a-default-button>OK</a-default-button>
+           <router-link to="/settings/users">
+             <a-default-button>Back</a-default-button>
+           </router-link>
         </span>
         <span class="u-pull-right">
           <a-remove-button>Remove</a-remove-button>

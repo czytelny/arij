@@ -36,6 +36,7 @@
 
   .button-default {
     transition: all .2s;
+    border: 1px solid #ebebeb;
   }
 
   .button-default:hover {
