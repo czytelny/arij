@@ -103,7 +103,7 @@
     flex-direction: column;
 
   .main-content {
-    background: #eee;
+    background: #fefefe;
     flex: 1 1 auto;
     overflow-y: auto;
     overflow-x: hidden;
@@ -178,7 +178,6 @@
 
   .action-buttons {
     text-align: left;
-    background-color: rgba(98, 141, 192, 0.08);
     margin-top: 1.5rem;
     padding: 1.5rem;
     button {

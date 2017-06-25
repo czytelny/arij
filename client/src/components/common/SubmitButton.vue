@@ -1,6 +1,5 @@
 <template>
   <button type="submit"
-          class="button-primary"
           :class="{'isLoading': isLoading}"
           :disabled="isLoading">
     <div class='relative' >
